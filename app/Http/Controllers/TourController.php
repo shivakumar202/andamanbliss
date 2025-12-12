@@ -95,14 +95,15 @@ class TourController extends Controller
     {
         $tours = TourPackages::with(['tourCategory', 'tourPhotos', 'subCategories'])
             ->where('status', 1)
-            ->whereHas('tourCategory', function ($query) use ($request) {
-                $query->where('slug', '!=', 'best-seller')
-                    ->when(!empty($request->categories), fn($q) => $q->whereIn('slug', $request->categories))
-                    ->when(!empty($request->category), fn($q) => $q->where('slug', $request->category));
+            ->when($request->category !== 'best-seller', function ($q) use ($request) {
+                $q->whereHas('tourCategory', function ($query) use ($request) {
+                    $query->when(!empty($request->categories), fn($q) => $q->whereIn('slug', $request->categories))
+                        ->when(!empty($request->category), fn($q) => $q->where('slug', $request->category));
+                });
             })
+            ->when($request->category == 'best-seller', fn($q) => $q->where('best_seller', 1))
             ->when(!empty($request->ratings), fn($q) => $q->whereIn('ratings', $request->ratings))
             ->when($request->featured == 1, fn($q) => $q->where('featured', 1))
-            ->when($request->best_seller == 1, fn($q) => $q->where('best_seller', 1))
             ->when(!empty($request->status), fn($q) => $q->where('status', $request->status))
             ->when(!empty($request->min_price), fn($q) => $q->where('package_cost', '>=', $request->min_price))
             ->when(!empty($request->max_price), fn($q) => $q->where('package_cost', '<=', $request->max_price))
@@ -114,6 +115,7 @@ class TourController extends Controller
                 );
             })
             ->paginate(9);
+
 
         $tours->each(function ($tour) {
             $cat = $tour->subCategories->sortBy('pivot.starts_from')->first();
@@ -137,7 +139,6 @@ class TourController extends Controller
                 'has_more' => $tours->hasMorePages()
             ]);
         }
-
 
 
         $categories = Category::where('type', 'tour')->where('status', 1)->get();
@@ -403,33 +404,54 @@ class TourController extends Controller
     public function static(string $slug, string $subslug = null)
     {
         $category = Category::with('metaHeadings', 'categorySection', 'faqs')->where('slug', $slug)->where('type', 'tour')->first();
-        $tour = TourPackages::with([
-            'tourPhotos',
-            'tourCategory',
-            'facilities',
-            'faqs',
-            'subCategories'
-        ])
-            ->whereHas('tourCategory', function ($query) use ($slug) {
-                $query->where('type', 'tour')
-                    ->where('slug', $slug);
-            })
-            ->first();
+        if ($slug == 'best-seller') {
+            $tour = TourPackages::with([
+                'tourPhotos',
+                'tourCategory',
+                'facilities',
+                'faqs',
+                'subCategories'
+            ])->whereHas('tourCategory', function ($query) use ($slug) {
+                $query->where('type', 'tour');
+            })->first();
 
-        $addons = Addon::with(['addonPhotos'])->get();
-        if ($tour && $tour->addons) {
-            $addonIds = explode(',', $tour->addons);
-            $tour->addon_names = Addon::whereIn('id', $addonIds)->get();
+
+            $tours = TourPackages::with(['tourPhotos', 'tourCategory', 'subCategories'])
+                ->whereHas('tourCategory', function ($query) use ($slug) {
+                    $query->where('type', 'tour');
+                })
+                ->where('status', 1)
+                ->where('best_seller',1)
+                ->inRandomOrder()
+                ->get();
+        } else {
+            $tour = TourPackages::with([
+                'tourPhotos',
+                'tourCategory',
+                'facilities',
+                'faqs',
+                'subCategories'
+            ])
+                ->whereHas('tourCategory', function ($query) use ($slug) {
+                    $query->where('type', 'tour')
+                        ->where('slug', $slug);
+                })
+                ->first();
+
+
+            $tours = TourPackages::with(['tourPhotos', 'tourCategory', 'subCategories'])
+                ->whereHas('tourCategory', function ($query) use ($slug) {
+                    $query->where('type', 'tour')
+                        ->where('slug', '!=', 'best-seller')
+                        ->where('slug', $slug);
+                })
+                ->where('status', 1)
+                ->inRandomOrder()
+                ->get();
         }
-        $tours = TourPackages::with(['tourPhotos', 'tourCategory', 'subCategories'])
-            ->whereHas('tourCategory', function ($query) use ($slug) {
-                $query->where('type', 'tour')
-                    ->where('slug', '!=', 'best-seller')
-                    ->where('slug', $slug);
-            })
-            ->where('status', 1)
-            ->inRandomOrder()
-            ->get();
+
+
+
 
         $tours->each(function ($tour) {
             $tour->start_price = optional($tour->subCategories->first())->pivot_starts_from ?? $tour->package_cost;
@@ -449,7 +471,7 @@ class TourController extends Controller
             '1' => $review->where('rating', 1)->count(),
         ];
 
-        return view("tours.main")->with(compact('tour', 'addons', 'tours', 'category', 'reviews', 'rating', 'review_images'));
+        return view("tours.main")->with(compact('tour',  'tours', 'category', 'reviews', 'rating', 'review_images'));
     }
 
 
@@ -1038,7 +1060,7 @@ class TourController extends Controller
 
         $hotelcost = $totalHotel * 1.05;
         $ferrycost = $totalFerry * 1.05;
-        
+
 
         $withouthotelCost = $totalService + $totalActivity + $totalFerry;
         $wmark = ($withouthotelCost * $markup / 100);
@@ -1068,7 +1090,7 @@ class TourController extends Controller
         ];
 
 
-        return view('tours.show')->with(compact('tour', 'itineraries', 'tours', 'inputs', 'totalCosts', 'guests', 'cat', 'priceBreakdown', 'livebook', 'reviews', 'review_images', 'rating', 'hotelcost','whcost'));
+        return view('tours.show')->with(compact('tour', 'itineraries', 'tours', 'inputs', 'totalCosts', 'guests', 'cat', 'priceBreakdown', 'livebook', 'reviews', 'review_images', 'rating', 'hotelcost', 'whcost'));
     }
 
 
@@ -2089,100 +2111,100 @@ class TourController extends Controller
         Log::info("Fetched RazorpayTransactions", ['exists' => !empty($paymentDetail)]);
 
 
-        if($wh == 1) {
-           
-        $hotels = HotelBookings::whereIn('package_id', $itinerary->pluck('search_hash'))
-            ->where('mode', 'package')
-            ->where('Status', 0)
-            ->get();
+        if ($wh == 1) {
 
-
-        Log::info("Fetched HotelBookings", ['count' => $hotels->count()]);
-        $hotelPayloads = [];
-
-        foreach ($hotels as $hotelBooking) {
-            Log::info("Processing HotelBooking", ['booking_code' => $hotelBooking->booking_code]);
-
-            $validation = json_decode($hotelBooking->validation, true) ?? [];
-            $grouped = $passengers->groupBy('group');
-            $hotelRoomsDetails = [];
-
-            foreach ($grouped as $room => $guests) {
-                $roomPassengers = [];
-                foreach ($guests as $index => $guest) {
-                    $passenger = [
-                        "Title" => $guest->prefix,
-                        "FirstName" => $guest->name,
-                        "MiddleName" => $guest->m_name,
-                        "LastName" => $guest->last_name,
-                        "Email" => $guest->email,
-                        "PaxType" => $guest->type,
-                        "LeadPassenger" => (bool) $guest->lead,
-                        "Age" => $guest->type == 2 ? ($guest->age ?? 0) : 0,
-                        "Phoneno" => $guest->phone,
-                        "PaxId" => $index,
-                    ];
-                    if (!empty($validation['PanMandatory']))
-                        $passenger['PAN'] = $guest->id_no ?? null;
-                    if (!empty($validation['PassportMandatory'])) {
-                        $passenger['PassportNo'] = $guest->pass_no ?? null;
-                        $passenger['PassportIssueDate'] = $guest->pass_issue ?? null;
-                        $passenger['PassportExpDate'] = $guest->pass_exp ?? null;
-                    }
-                    if (!empty($validation['GSTAllowed'])) {
-                        $passenger['GSTNumber'] = $guest->gst ?? null;
-                        $passenger['GSTCompanyAddress'] = $guest->gst_company_address ?? null;
-                        $passenger['GSTCompanyContactNumber'] = $guest->gst_company_contact ?? null;
-                        $passenger['GSTCompanyName'] = $guest->gst_company_name ?? null;
-                        $passenger['GSTCompanyEmail'] = $guest->gst_company_email ?? null;
-                    }
-                    $roomPassengers[] = array_filter($passenger, fn($v) => !is_null($v));
-                }
-                $hotelRoomsDetails[] = ["HotelPassenger" => $roomPassengers];
-            }
-            $hotelPayloads[] = [
-                "BookingCode" => $hotelBooking->booking_code,
-                "IsVoucherBooking" => true,
-                "GuestNationality" => 'IN',
-                "EndUserIp" => request()->ip(),
-                "TokenId" => Cache::get('tbo_token_id'),
-                "RequestedBookingMode" => 5,
-                "NetAmount" => $hotelBooking->net_amt,
-                "HotelRoomsDetails" => $hotelRoomsDetails
-            ];
-        }
-
-        foreach ($hotelPayloads as $payload) {
-            $hotelBooking = HotelBookings::where('booking_code', $payload['BookingCode'])
+            $hotels = HotelBookings::whereIn('package_id', $itinerary->pluck('search_hash'))
+                ->where('mode', 'package')
                 ->where('Status', 0)
-                ->first();
-            if (!$hotelBooking) {
-                Log::warning("HotelBooking not found for payload", ['booking_code' => $payload['BookingCode']]);
-                continue;
-            }
-            try {
-                Log::info("Confirming hotel booking", ['booking_code' => $payload['BookingCode']]);
-                $confirmBookResponse = $this->tboHotelService->confirmRoom($payload);
-                $bookResult = $confirmBookResponse['BookResult'] ?? [];
-                Log::info("Hotel booking response", ['booking_code' => $payload['BookingCode'], 'response' => $bookResult]);
+                ->get();
 
-                $hotelBooking->update([
-                    'InvoiceNumber' => $bookResult['InvoiceNumber'],
-                    'BookingRefNo' => $bookResult['BookingRefNo'],
-                    'BookingId' => $bookResult['BookingId'] ?? null,
-                    'TraceId' => $bookResult['TraceId'] ?? null,
-                    'ConfirmationNo' => $bookResult['ConfirmationNo'] ?? null,
-                    'HotelBookingStatus' => $bookResult['HotelBookingStatus'] ?? 'pending',
-                    'Status' => isset($bookResult['BookingId']) ? 1 : 2,
-                ]);
-                dispatch((new \App\Jobs\CheckTboHotelBookingStatus($hotelBooking->id))->delay(now()->addSeconds(300)));
-            } catch (\Exception $e) {
-                $hotelBooking->update(['Status' => 2]);
-                Log::error('Hotel booking failed', [
-                    'booking_code' => $payload['BookingCode'],
-                    'error' => $e->getMessage()
-                ]);
+
+            Log::info("Fetched HotelBookings", ['count' => $hotels->count()]);
+            $hotelPayloads = [];
+
+            foreach ($hotels as $hotelBooking) {
+                Log::info("Processing HotelBooking", ['booking_code' => $hotelBooking->booking_code]);
+
+                $validation = json_decode($hotelBooking->validation, true) ?? [];
+                $grouped = $passengers->groupBy('group');
+                $hotelRoomsDetails = [];
+
+                foreach ($grouped as $room => $guests) {
+                    $roomPassengers = [];
+                    foreach ($guests as $index => $guest) {
+                        $passenger = [
+                            "Title" => $guest->prefix,
+                            "FirstName" => $guest->name,
+                            "MiddleName" => $guest->m_name,
+                            "LastName" => $guest->last_name,
+                            "Email" => $guest->email,
+                            "PaxType" => $guest->type,
+                            "LeadPassenger" => (bool) $guest->lead,
+                            "Age" => $guest->type == 2 ? ($guest->age ?? 0) : 0,
+                            "Phoneno" => $guest->phone,
+                            "PaxId" => $index,
+                        ];
+                        if (!empty($validation['PanMandatory']))
+                            $passenger['PAN'] = $guest->id_no ?? null;
+                        if (!empty($validation['PassportMandatory'])) {
+                            $passenger['PassportNo'] = $guest->pass_no ?? null;
+                            $passenger['PassportIssueDate'] = $guest->pass_issue ?? null;
+                            $passenger['PassportExpDate'] = $guest->pass_exp ?? null;
+                        }
+                        if (!empty($validation['GSTAllowed'])) {
+                            $passenger['GSTNumber'] = $guest->gst ?? null;
+                            $passenger['GSTCompanyAddress'] = $guest->gst_company_address ?? null;
+                            $passenger['GSTCompanyContactNumber'] = $guest->gst_company_contact ?? null;
+                            $passenger['GSTCompanyName'] = $guest->gst_company_name ?? null;
+                            $passenger['GSTCompanyEmail'] = $guest->gst_company_email ?? null;
+                        }
+                        $roomPassengers[] = array_filter($passenger, fn($v) => !is_null($v));
+                    }
+                    $hotelRoomsDetails[] = ["HotelPassenger" => $roomPassengers];
+                }
+                $hotelPayloads[] = [
+                    "BookingCode" => $hotelBooking->booking_code,
+                    "IsVoucherBooking" => true,
+                    "GuestNationality" => 'IN',
+                    "EndUserIp" => request()->ip(),
+                    "TokenId" => Cache::get('tbo_token_id'),
+                    "RequestedBookingMode" => 5,
+                    "NetAmount" => $hotelBooking->net_amt,
+                    "HotelRoomsDetails" => $hotelRoomsDetails
+                ];
             }
+
+            foreach ($hotelPayloads as $payload) {
+                $hotelBooking = HotelBookings::where('booking_code', $payload['BookingCode'])
+                    ->where('Status', 0)
+                    ->first();
+                if (!$hotelBooking) {
+                    Log::warning("HotelBooking not found for payload", ['booking_code' => $payload['BookingCode']]);
+                    continue;
+                }
+                try {
+                    Log::info("Confirming hotel booking", ['booking_code' => $payload['BookingCode']]);
+                    $confirmBookResponse = $this->tboHotelService->confirmRoom($payload);
+                    $bookResult = $confirmBookResponse['BookResult'] ?? [];
+                    Log::info("Hotel booking response", ['booking_code' => $payload['BookingCode'], 'response' => $bookResult]);
+
+                    $hotelBooking->update([
+                        'InvoiceNumber' => $bookResult['InvoiceNumber'],
+                        'BookingRefNo' => $bookResult['BookingRefNo'],
+                        'BookingId' => $bookResult['BookingId'] ?? null,
+                        'TraceId' => $bookResult['TraceId'] ?? null,
+                        'ConfirmationNo' => $bookResult['ConfirmationNo'] ?? null,
+                        'HotelBookingStatus' => $bookResult['HotelBookingStatus'] ?? 'pending',
+                        'Status' => isset($bookResult['BookingId']) ? 1 : 2,
+                    ]);
+                    dispatch((new \App\Jobs\CheckTboHotelBookingStatus($hotelBooking->id))->delay(now()->addSeconds(300)));
+                } catch (\Exception $e) {
+                    $hotelBooking->update(['Status' => 2]);
+                    Log::error('Hotel booking failed', [
+                        'booking_code' => $payload['BookingCode'],
+                        'error' => $e->getMessage()
+                    ]);
+                }
             }
         }
         $nautikaFerries = ['Nautika Seaways', 'Nautika'];
@@ -2351,13 +2373,13 @@ class TourController extends Controller
             }
         }
 
-    //      if ($ferry === 'Makruzz') {
-    //     return [
-    //         'pnr' => 'MAKRUZZ5678',
-    //         'booking_id' => rand(1000, 9999),
-    //         'pdf_base64' => base64_encode('Dummy PDF content for Makruzz'),
-    //     ];
-    // }
+        //      if ($ferry === 'Makruzz') {
+        //     return [
+        //         'pnr' => 'MAKRUZZ5678',
+        //         'booking_id' => rand(1000, 9999),
+        //         'pdf_base64' => base64_encode('Dummy PDF content for Makruzz'),
+        //     ];
+        // }
 
 
         return ['status' => 'error', 'ferry' => $ferry, 'message' => 'Unsupported ferry service'];

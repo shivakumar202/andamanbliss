@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\RazorpayTransactions;
+use App\Models\TempItinerary;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $users = User::count();
+        $bookings = RazorpayTransactions::where('payment_id','!=',null)->count();
+        $revenue = RazorpayTransactions::where('payment_id','!=',null)->sum('amount');
+        
+        return view('admin.home',compact('users','bookings','revenue'));
     }
 
     /**

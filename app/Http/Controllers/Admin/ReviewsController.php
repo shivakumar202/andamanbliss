@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Intervention\Image\Constraint;
 use App\Models\Drive;
+use App\Models\GoogleReview;
+use App\Models\ReviewImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -23,15 +25,15 @@ class ReviewsController extends Controller
      */
     public function index(Request $request)
     {
-        $reviews = Review::with('reviewPhotos')
+        $webreviews = Review::with('reviewPhotos')
             ->when($request->filled('category'), function ($query) use ($request) {
                 $query->where('table_type', $request->category);
             })
             ->when($request->filled('status'), function ($query) use ($request) {
                 $query->where('status', $request->status);
-            })
-            ->get();
-
+            })->get();
+        $google = GoogleReview::orderBy('review_date','DESC')->take(10)->get();
+        $reviews = $webreviews->merge($google); 
         $categories = Review::pluck('table_type')->filter()->unique()->values();
         return view('admin.reviews.index', compact('reviews', 'categories'));
     }
@@ -44,6 +46,11 @@ class ReviewsController extends Controller
         return view('admin.reviews.create', ['review' => null]);
     }
 
+    public function Images()
+    {
+        $images = ReviewImage::get();
+        return view('admin.reviews.images',compact('images'));
+    }
 
     /**
      * Store a newly created resource in storage.

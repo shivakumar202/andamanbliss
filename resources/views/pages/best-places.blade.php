@@ -13,63 +13,63 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
 @section('meta_schema')
 
 {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Best Places to Visit in Andaman Islands",
-  "url": "https://www.andamanbliss.com/best-places-to-visit-in-andaman",
-  "mainEntity": {
-    "@type": "TravelGuide",
-    "headline": "24 Best Places to Visit in Andaman Islands (2023 Ultimate Guide)",
-    "description": "Discover the 24 most beautiful places to visit in Andaman Islands with our comprehensive travel guide. From pristine beaches like Radhanagar to historical sites like Cellular Jail, plan your perfect Andaman trip.",
-    "keywords": "Andaman places to visit, best places in Andaman, Andaman tourist spots, Radhanagar Beach, Cellular Jail, Havelock Island, Neil Island, Port Blair attractions, Baratang Island, Little Andaman, North Andaman",
-    "itemListElement": [
-      { "@type": "TouristAttraction", "name": "Cellular Jail", "location": { "@type": "Place", "name": "Port Blair" } },
-      { "@type": "TouristAttraction", "name": "Ross Island", "location": { "@type": "Place", "name": "Port Blair" } },
-      { "@type": "TouristAttraction", "name": "Chidiya Tapu", "location": { "@type": "Place", "name": "Port Blair" } },
-      { "@type": "TouristAttraction", "name": "North Bay", "location": { "@type": "Place", "name": "Port Blair" } },
-      { "@type": "TouristAttraction", "name": "Corbyn's Cove Beach", "location": { "@type": "Place", "name": "Port Blair" } },
-      { "@type": "TouristAttraction", "name": "Jolly Buoy Beach", "location": { "@type": "Place", "name": "Port Blair" } },
-      { "@type": "TouristAttraction", "name": "Radhanagar Beach", "location": { "@type": "Place", "name": "Havelock Island" } },
-      { "@type": "TouristAttraction", "name": "Elephant Beach", "location": { "@type": "Place", "name": "Havelock Island" } },
-      { "@type": "TouristAttraction", "name": "Kalapathar Beach", "location": { "@type": "Place", "name": "Havelock Island" } },
-      { "@type": "TouristAttraction", "name": "Bharatpur Beach", "location": { "@type": "Place", "name": "Neil Island" } },
-      { "@type": "TouristAttraction", "name": "Laxmanpur Beach", "location": { "@type": "Place", "name": "Neil Island" } },
-      { "@type": "TouristAttraction", "name": "Natural Bridge (Howrah Bridge)", "location": { "@type": "Place", "name": "Neil Island" } },
-      { "@type": "TouristAttraction", "name": "Limestone Caves", "location": { "@type": "Place", "name": "Baratang" } },
-      { "@type": "TouristAttraction", "name": "Mud Volcano", "location": { "@type": "Place", "name": "Baratang" } },
-      { "@type": "TouristAttraction", "name": "Parrot Island", "location": { "@type": "Place", "name": "Baratang" } },
-      { "@type": "TouristAttraction", "name": "Ross and Smith Islands", "location": { "@type": "Place", "name": "North & Middle Andaman" } },
-      { "@type": "TouristAttraction", "name": "Saddle Peak National Park", "location": { "@type": "Place", "name": "North & Middle Andaman" } },
-      { "@type": "TouristAttraction", "name": "Kalipur Beach", "location": { "@type": "Place", "name": "North & Middle Andaman" } },
-      { "@type": "TouristAttraction", "name": "Butler Bay Beach", "location": { "@type": "Place", "name": "Little Andaman" } },
-      { "@type": "TouristAttraction", "name": "White Surf Waterfall", "location": { "@type": "Place", "name": "Little Andaman" } },
-      { "@type": "TouristAttraction", "name": "Kalapathar Crocodile Sanctuary", "location": { "@type": "Place", "name": "Little Andaman" } },
-      { "@type": "TouristAttraction", "name": "Lalaji Bay Beach", "location": { "@type": "Place", "name": "Long Island" } },
-      { "@type": "TouristAttraction", "name": "Guitar Island", "location": { "@type": "Place", "name": "Long Island" } },
-      { "@type": "TouristAttraction", "name": "Merk Bay", "location": { "@type": "Place", "name": "Long Island" } }
-    ]
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Andaman Bliss™ Pvt Ltd",
-    "url": "https://www.andamanbliss.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.andamanbliss.com/logo.png"
-    },
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "telephone": "+91-8900909900",
-        "contactType": "Customer Service"
-      },
-      {
-        "@type": "ContactPoint",
-        "telephone": "+91-9933202248",
-        "contactType": "Customer Service"
-      }
-    ]
-  }
+"@context": "https://schema.org",
+"@type": "WebPage",
+"name": "Best Places to Visit in Andaman Islands",
+"url": "https://www.andamanbliss.com/best-places-to-visit-in-andaman",
+"mainEntity": {
+"@type": "TravelGuide",
+"headline": "24 Best Places to Visit in Andaman Islands (2023 Ultimate Guide)",
+"description": "Discover the 24 most beautiful places to visit in Andaman Islands with our comprehensive travel guide. From pristine beaches like Radhanagar to historical sites like Cellular Jail, plan your perfect Andaman trip.",
+"keywords": "Andaman places to visit, best places in Andaman, Andaman tourist spots, Radhanagar Beach, Cellular Jail, Havelock Island, Neil Island, Port Blair attractions, Baratang Island, Little Andaman, North Andaman",
+"itemListElement": [
+{ "@type": "TouristAttraction", "name": "Cellular Jail", "location": { "@type": "Place", "name": "Port Blair" } },
+{ "@type": "TouristAttraction", "name": "Ross Island", "location": { "@type": "Place", "name": "Port Blair" } },
+{ "@type": "TouristAttraction", "name": "Chidiya Tapu", "location": { "@type": "Place", "name": "Port Blair" } },
+{ "@type": "TouristAttraction", "name": "North Bay", "location": { "@type": "Place", "name": "Port Blair" } },
+{ "@type": "TouristAttraction", "name": "Corbyn's Cove Beach", "location": { "@type": "Place", "name": "Port Blair" } },
+{ "@type": "TouristAttraction", "name": "Jolly Buoy Beach", "location": { "@type": "Place", "name": "Port Blair" } },
+{ "@type": "TouristAttraction", "name": "Radhanagar Beach", "location": { "@type": "Place", "name": "Havelock Island" } },
+{ "@type": "TouristAttraction", "name": "Elephant Beach", "location": { "@type": "Place", "name": "Havelock Island" } },
+{ "@type": "TouristAttraction", "name": "Kalapathar Beach", "location": { "@type": "Place", "name": "Havelock Island" } },
+{ "@type": "TouristAttraction", "name": "Bharatpur Beach", "location": { "@type": "Place", "name": "Neil Island" } },
+{ "@type": "TouristAttraction", "name": "Laxmanpur Beach", "location": { "@type": "Place", "name": "Neil Island" } },
+{ "@type": "TouristAttraction", "name": "Natural Bridge (Howrah Bridge)", "location": { "@type": "Place", "name": "Neil Island" } },
+{ "@type": "TouristAttraction", "name": "Limestone Caves", "location": { "@type": "Place", "name": "Baratang" } },
+{ "@type": "TouristAttraction", "name": "Mud Volcano", "location": { "@type": "Place", "name": "Baratang" } },
+{ "@type": "TouristAttraction", "name": "Parrot Island", "location": { "@type": "Place", "name": "Baratang" } },
+{ "@type": "TouristAttraction", "name": "Ross and Smith Islands", "location": { "@type": "Place", "name": "North & Middle Andaman" } },
+{ "@type": "TouristAttraction", "name": "Saddle Peak National Park", "location": { "@type": "Place", "name": "North & Middle Andaman" } },
+{ "@type": "TouristAttraction", "name": "Kalipur Beach", "location": { "@type": "Place", "name": "North & Middle Andaman" } },
+{ "@type": "TouristAttraction", "name": "Butler Bay Beach", "location": { "@type": "Place", "name": "Little Andaman" } },
+{ "@type": "TouristAttraction", "name": "White Surf Waterfall", "location": { "@type": "Place", "name": "Little Andaman" } },
+{ "@type": "TouristAttraction", "name": "Kalapathar Crocodile Sanctuary", "location": { "@type": "Place", "name": "Little Andaman" } },
+{ "@type": "TouristAttraction", "name": "Lalaji Bay Beach", "location": { "@type": "Place", "name": "Long Island" } },
+{ "@type": "TouristAttraction", "name": "Guitar Island", "location": { "@type": "Place", "name": "Long Island" } },
+{ "@type": "TouristAttraction", "name": "Merk Bay", "location": { "@type": "Place", "name": "Long Island" } }
+]
+},
+"publisher": {
+"@type": "Organization",
+"name": "Andaman Bliss™ Pvt Ltd",
+"url": "https://www.andamanbliss.com",
+"logo": {
+"@type": "ImageObject",
+"url": "https://www.andamanbliss.com/logo.png"
+},
+"contactPoint": [
+{
+"@type": "ContactPoint",
+"telephone": "+91-8900909900",
+"contactType": "Customer Service"
+},
+{
+"@type": "ContactPoint",
+"telephone": "+91-9933202248",
+"contactType": "Customer Service"
+}
+]
+}
 }
 
 
@@ -92,8 +92,8 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
                 <h1 class=" text-white">24 Best Places to Visit in Andaman</h1>
                 <p class="lead">A comprehensive guide to help you plan your perfect Andaman vacation</p>
                 <div class="hero-buttons">
-                    <a href="#places-list" class="btn btn-primary">Explore All Places</a>
-                    <a href="{{ url('make-your-trip') }}" class="btn btn-outline-light">Plan Your Trip</a>
+                    <a href="#places-list"  class="btn btn-primary">Explore All Places</a>
+                    <a href="{{ route('tours.index') }}" class="btn btn-outline-light">Plan Your Trip</a>
                 </div>
             </div>
         </div>
@@ -166,35 +166,35 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
                             <ul class="toc-list list-group list-group-flush" aria-label="Table of contents">
                                 <li
                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 border-0 border-bottom">
-                                    
-                                        <p class="text-decoration-none text-dark stretched-link">Port
+
+                                    <p class="text-decoration-none text-dark stretched-link">Port
                                         Blair - The Gateway</p>
                                     <span class="badge rounded-pill" style="background-color: #ff8c00;">6</span>
                                 </li>
                                 <li
                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 border-0 border-bottom">
-                                    
+
                                     <p class="text-decoration-none text-dark stretched-link">Havelock
                                         Island - Beach Paradise</p>
                                     <span class="badge rounded-pill" style="background-color: #ff8c00;">3</span>
                                 </li>
                                 <li
                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 border-0 border-bottom">
-                                    
+
                                     <p class="text-decoration-none text-dark stretched-link">Neil
                                         Island - Vegetable Bowl</p>
                                     <span class="badge rounded-pill" style="background-color: #ff8c00;">3</span>
                                 </li>
                                 <li
                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 border-0 border-bottom">
-                                    
+
                                     <p class="text-decoration-none text-dark stretched-link">Baratang
                                         Island - Hidden Wonders</p>
                                     <span class="badge rounded-pill" style="background-color: #ff8c00;">3</span>
                                 </li>
                                 <li
                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 border-0 border-bottom">
-                                   
+
                                     <p class="text-decoration-none text-dark stretched-link">North
                                         & Middle Andaman</p>
                                     <span class="badge rounded-pill" style="background-color: #ff8c00;">3</span>
@@ -227,11 +227,10 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
         </div>
     </div>
 </div>
-</div>
-</div>
+
 
 <!-- Places List Section -->
-<div id="places-list" class="container mt-5">
+<div class="container mt-5" id="places-list">
     <!-- Port Blair Section -->
     <div id="port-blair" class="destination-section mb-5">
         <div class="section-header text-center mb-4">
@@ -477,7 +476,7 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
                             <span class="badge bg-light text-dark">Coral Reefs</span>
                             <span class="badge bg-light text-dark">Water Sports</span>
                         </div>
-                        <a href="#" class="read-more">Read more <i class="fas fa-chevron-right"></i></a>
+                        <a href="{{ url('islands/havelock-swaraj-dweep/elephant-beach') }}" class="read-more">Read more <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1096,7 +1095,7 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
                         <li><i class="fas fa-check text-primary"></i> Hassle free service</li>
                     </ul>
                     <div class="cta-buttons">
-                        <a href="{{ url('make-your-trip') }}" class="btn btn-primary">Plan My Trip</a>
+                        <a href="{{ route('tours.index') }}" class="btn btn-primary">Plan My Trip</a>
                         <a href="{{ url('contact') }}" class="btn btn-outline-light">Contact Us</a>
                     </div>
                 </div>
@@ -1108,7 +1107,7 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
                     </div>
                     <form id="lead-generation-form" action="{{ route('contact') }}" method="POST">
                         @csrf
-                                    <input type="text" name="website" id="website" style="display:none;" tabindex="-1"
+                        <input type="text" name="website" id="website" style="display:none;" tabindex="-1"
                             autocomplete="off" value="">
                         <div class="row g-2">
                             <div class="col-md-6">
@@ -1134,7 +1133,7 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
 
                         <div class="input-group mb-2">
                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                        <input type="text" name="checkin" placeholder="dd-mm-yyyy" id="checkin" class="form-control" readonly>
+                            <input type="text" name="checkin" placeholder="dd-mm-yyyy" id="checkin" class="form-control" readonly>
                         </div>
 
                         <div class="input-group mb-2">
@@ -1777,53 +1776,53 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Table of contents search functionality
-    const tocSearch = document.getElementById('toc-search');
-    const tocItems = document.querySelectorAll('.toc-list li');
+        // Table of contents search functionality
+        const tocSearch = document.getElementById('toc-search');
+        const tocItems = document.querySelectorAll('.toc-list li');
 
-    if (tocSearch) {
-        tocSearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
+        if (tocSearch) {
+            tocSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
 
-            tocItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    }
-
-    // Highlight active section in table of contents when scrolling
-    const sections = document.querySelectorAll(
-        '[id^="port-blair"], [id^="havelock"], [id^="neil-island"], [id^="baratang"], [id^="north-middle"], [id^="little-andaman"], [id^="long-island"], [id^="other-islands"], [id^="faq"]'
-    );
-    const tocLinks = document.querySelectorAll('.toc-list a');
-
-    function highlightTocItem() {
-        const scrollPosition = window.scrollY;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 200;
-            const sectionBottom = sectionTop + section.offsetHeight;
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                const id = section.getAttribute('id');
-
-                tocLinks.forEach(link => {
-                    link.parentElement.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.parentElement.classList.add('active');
+                tocItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
-            }
-        });
-    }
+            });
+        }
 
-    window.addEventListener('scroll', highlightTocItem);
-});
+        // Highlight active section in table of contents when scrolling
+        const sections = document.querySelectorAll(
+            '[id^="port-blair"], [id^="havelock"], [id^="neil-island"], [id^="baratang"], [id^="north-middle"], [id^="little-andaman"], [id^="long-island"], [id^="other-islands"], [id^="faq"]'
+        );
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        function highlightTocItem() {
+            const scrollPosition = window.scrollY;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    const id = section.getAttribute('id');
+
+                    tocLinks.forEach(link => {
+                        link.parentElement.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.parentElement.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightTocItem);
+    });
 </script>
 
 <style>
@@ -1874,45 +1873,45 @@ travel guide, Andaman beaches, Radhanagar beach, Cellular Jail, Havelock Island,
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+        // Smooth scrolling for anchor links
+        // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        //     anchor.addEventListener('click', function(e) {
+        //         e.preventDefault();
 
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+        //         const targetId = this.getAttribute('href');
+        //         const targetElement = document.querySelector(targetId);
 
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        //         if (targetElement) {
+        //             const headerOffset = 80;
+        //             const elementPosition = targetElement.getBoundingClientRect().top;
+        //             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+        //             window.scrollTo({
+        //                 top: offsetPosition,
+        //                 behavior: 'smooth'
+        //             });
+        //         }
+        //     });
+        // });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
             }
         });
-    });
 
-    // Back to Top Button
-    const backToTopButton = document.getElementById('back-to-top');
-
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-    });
-
-    backToTopButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     });
-});
 </script>
 @endpush

@@ -1649,7 +1649,7 @@ function toggleItinerary(dayNumber) {
 <section id="packages" class="section-padding">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-title-h2 text-center">Andaman Tour <span> Packages</span></h2>
+            <h2 class="section-title-h2 text-center">Andaman Tour <span> Packages from Jammu</span></h2>
             <p>Everything you need to know about planning your trip to the Andaman Islands</p>
         </div>
         <div class="activity-grid">

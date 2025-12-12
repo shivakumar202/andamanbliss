@@ -130,15 +130,12 @@
                                             @case('hotels')
                                                 <div class="col-12 col-lg-3">
                                                     <div class="form-floating">
-                                                       <select name="keyword"
-        class="form-select select2-input border-dark-subtle rounded-0"
-        id="hotels-name"
-        required>
-    <option value="" disabled {{ request('keyword') ? '' : 'selected' }}>Select a Location</option>
-    <option value="Port Blair" {{ request('keyword') == 'Port Blair' ? 'selected' : '' }}>Best Hotels in Port Blair</option>
-    <option value="Havelock Island" {{ request('keyword') == 'Havelock Island' ? 'selected' : '' }}>Best Hotels in Havelock Island</option>
-    <option value="Neil Island" {{ request('keyword') == 'Neil Island' ? 'selected' : '' }}>Best Hotels in Neil Island</option>
-</select>
+                                                       <select name="keyword" class="form-select select2-input border-dark-subtle rounded-0" id="hotels-name" required>
+                                                            <option value="" disabled {{ request('keyword') ? '' : 'selected' }}>Select a Location</option>
+                                                            <option value="Port Blair" {{ request('keyword') == 'Port Blair' ? 'selected' : '' }}>Best Hotels in Port Blair</option>
+                                                            <option value="Havelock Island" {{ request('keyword') == 'Havelock Island' ? 'selected' : '' }}>Best Hotels in Havelock Island</option>
+                                                            <option value="Neil Island" {{ request('keyword') == 'Neil Island' ? 'selected' : '' }}>Best Hotels in Neil Island</option>
+                                                        </select>
 
                                                         <label for="hotels-name">Select Location</label>
                                                         
@@ -474,10 +471,15 @@
                                             @case('activities')
                                                 <div class="col-12 col-lg-4">
                                                     <div class="form-floating">
-                                                        <input type="text"
+                                                        <select type="text"
                                                             class="form-control rounded-0 border-dark-subtle"
                                                             id="activities-location" placeholder="Activity Location"
                                                             name="location" required>
+                                                            <option value="" disabled {{ request('location') ? '' : 'selected' }}>Select a Location</option>
+                                                    <option value="Port Blair" {{ request('location') == 'Port Blair' ? 'selected' : '' }}>popular activities in Port Blair</option>
+                                                    <option value="Havelock Island" {{ request('location') == 'Havelock Island' ? 'selected' : '' }}>popular activities in Havelock Island</option>
+                                                    <option value="Neil Island" {{ request('location') == 'Neil Island' ? 'selected' : '' }}>popular activities in Neil Island</option>
+                                                        </select>
                                                         <label for="activities-location">Location</label>
                                                     </div>
                                                 </div>
@@ -488,10 +490,15 @@
                                                             class="form-control select2-input rounded-0 border-dark-subtle"
                                                             required>
                                                             <option value="" disabled selected>Select Activity</option>
-                                                            <option value="scuba">Scuba Diving</option>
-                                                            <option value="snorkeling">Snorkeling</option>
-                                                            <option value="trekking">Trekking</option>
-                                                            <option value="watersports">Water Sports</option>
+                                                              @php
+                                                                $activities = \App\Models\Category::where('status',1)->where('type','activity')->pluck('name');
+                                                            @endphp
+                                                            @foreach($activities as $act)
+                                                           <option value="{{ $act }}" @selected(request('keyword') == $act)>
+                                                                {{ $act }}
+                                                            </option>
+
+                                                            @endforeach
                                                         </select>
 
                                                         <label for="activities-type">Activity Type</label>

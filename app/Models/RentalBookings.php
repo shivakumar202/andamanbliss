@@ -48,6 +48,6 @@ class RentalBookings extends Model
     
     public function payment()
     {
-        return $this->hasOne(RazorpayTransactions::class,'booking_id','id');
+        return $this->hasOne(RazorpayTransactions::class,'booking_id','id')->where('purpose','Bike Booking');
     }
 }

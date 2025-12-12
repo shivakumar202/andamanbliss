@@ -188,6 +188,7 @@
         color: #fff;
         border-color: #0d6efd;
     }
+
     .testimonials-section {
         padding: 35px 0;
         position: relative;
@@ -491,6 +492,7 @@
 </section>
 @include('common.search2')
 
+@include('common.login-modal')
 
 @if(isset($bikes) == null )
 <section class=" overview-section">
@@ -893,25 +895,31 @@
                 <p>{{ $bike['description'] }}</p>
                 <p>Location : {{$bike['address']}}</p>
             </div>
-           
-<div class="d-flex flex-lg-column col-lg-4 px-1 align-items-center w-auto bik-mobile-full">
-    <div class="bik-price mb-2 col">₹{{ number_format($bike['price'], 2) }} / day</div>
 
-    <form action="{{ route('bike.book.review') }}" class="col" method="post">
-        @csrf
-        @php
-            $params = [
-                'bikeId' => $bike['id'],
-                'location' => request()->query('location'),
-                'pickupdate' => request()->query('pickupdate'),
-                'dropoffdate' => request()->query('dropdate'),
-            ];
-        @endphp
+            <div class="d-flex flex-lg-column col-lg-4 px-1 align-items-center w-auto bik-mobile-full">
+               
+                <div class="bik-price mb-2 col">₹{{ number_format($bike['price'], 2) }} / day</div>
+                @if(Auth::check()) 
+                <form action="{{ route('bike.book.review') }}" class="col" method="post">
+                    @csrf
+                    @php
+                    $params = [
+                    'bikeId' => $bike['id'],
+                    'location' => request()->query('location'),
+                    'pickupdate' => request()->query('pickupdate'),
+                    'dropoffdate' => request()->query('dropdate'),
+                    ];
+                    @endphp
 
-        <input type="hidden" name="params" value='@json($params)'>
-        <button type="submit" class="bik-btn">Book Now</button>
-    </form>
-</div>
+                    <input type="hidden" name="params" value='@json($params)'>
+                    <button type="submit" class="btn btn-primary">Book Now</button>
+                </form>
+                @else
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Book Now 
+                </button>
+                @endif
+            </div>
 
         </div>
         @endforeach
@@ -1155,110 +1163,120 @@
 
 
 
-        <section class=" review-section mt-3 bg-white p-4 rounded">
-            <div class="text-center">
-                  <h2 class="section-title">Real <span class="text-gradient">Experiences</span> from Real Travelers</h2>
-            <p class="section-description">Discover why thousands of travelers choose our Andaman packages for their dream vacation</p>
-            </div>
-              <div class="container rev-container mt-3">
-    <div class="rev-rating-box flex-wrap">
-        <div class="col-lg-6 col-12">
-            <div class="rev-stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-            </div>
-            <h1 class="rev-rating-value">{{ number_format($rating['average_rating'],1) }}</h1>
-            <p class="rev-rating-sub">From 70+ countries</p>
-        </div>
-        <div class="col-lg-6 col-12">
-            <div class="rev-rating-row">
-                <span>5 ★</span>
-                <div class="rev-bar"><div style="width:95%"></div></div>
-                <span>{{ $rating[5] }}</span>
-            </div>
-
-            <div class="rev-rating-row">
-                <span>4 ★</span>
-                <div class="rev-bar"><div style="width:30%"></div></div>
-                <span>{{ $rating[4] }}</span>
-            </div>
-
-            <div class="rev-rating-row">
-                <span>3 ★</span>
-                <div class="rev-bar"><div style="width:3%"></div></div>
-                <span>{{ $rating[3] }}</span>
-            </div>
-
-            <div class="rev-rating-row">
-                <span>2 ★</span>
-                <div class="rev-bar"><div style="width:2%"></div></div>
-                <span>{{ $rating[2] }}</span>
-            </div>
-
-            <div class="rev-rating-row">
-                <span>1 ★</span>
-                <div class="rev-bar"><div style="width:4%"></div></div>
-                <span>{{ $rating[1] }}</span>
-            </div>
-          
-
-        </div>
+<section class=" review-section mt-3 bg-white p-4 rounded">
+    <div class="text-center">
+        <h2 class="section-title">Real <span class="text-gradient">Experiences</span> from Real Travelers</h2>
+        <p class="section-description">Discover why thousands of travelers choose our Andaman packages for their dream vacation</p>
     </div>
+    <div class="container rev-container mt-3">
+        <div class="rev-rating-box flex-wrap">
+            <div class="col-lg-6 col-12">
+                <div class="rev-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h1 class="rev-rating-value">{{ number_format($rating['average_rating'],1) }}</h1>
+                <p class="rev-rating-sub">From 70+ countries</p>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="rev-rating-row">
+                    <span>5 ★</span>
+                    <div class="rev-bar">
+                        <div style="width:95%"></div>
+                    </div>
+                    <span>{{ $rating[5] }}</span>
+                </div>
 
-    <h3 class="rev-gallery-title fs-5">Traveller Image Gallery</h3>
-<div class="rev-gallery-grid">
+                <div class="rev-rating-row">
+                    <span>4 ★</span>
+                    <div class="rev-bar">
+                        <div style="width:30%"></div>
+                    </div>
+                    <span>{{ $rating[4] }}</span>
+                </div>
 
-    @php $first = $review_images->first(); @endphp
+                <div class="rev-rating-row">
+                    <span>3 ★</span>
+                    <div class="rev-bar">
+                        <div style="width:3%"></div>
+                    </div>
+                    <span>{{ $rating[3] }}</span>
+                </div>
 
-    @if($first)
+                <div class="rev-rating-row">
+                    <span>2 ★</span>
+                    <div class="rev-bar">
+                        <div style="width:2%"></div>
+                    </div>
+                    <span>{{ $rating[2] }}</span>
+                </div>
 
-        {{-- BIG IMAGE --}}
-        <a href="{{ $first->image_url }}" data-lightbox="gallery" class="rev-big-wrap">
-            <img src="{{ $first->image_url }}" class="rev-big-img">
-            <span class="rev-view-all"><i class="fa fa-camera"></i> View All ({{ $review_images->count() }})</span>
-        </a>
+                <div class="rev-rating-row">
+                    <span>1 ★</span>
+                    <div class="rev-bar">
+                        <div style="width:4%"></div>
+                    </div>
+                    <span>{{ $rating[1] }}</span>
+                </div>
 
-        @foreach($review_images->skip(1)->take(6) as $img)
+
+            </div>
+        </div>
+
+        <h3 class="rev-gallery-title fs-5">Traveller Image Gallery</h3>
+        <div class="rev-gallery-grid">
+
+            @php $first = $review_images->first(); @endphp
+
+            @if($first)
+
+            {{-- BIG IMAGE --}}
+            <a href="{{ $first->image_url }}" data-lightbox="gallery" class="rev-big-wrap">
+                <img src="{{ $first->image_url }}" class="rev-big-img">
+                <span class="rev-view-all"><i class="fa fa-camera"></i> View All ({{ $review_images->count() }})</span>
+            </a>
+
+            @foreach($review_images->skip(1)->take(6) as $img)
             <a href="{{ $img->image_url }}" data-lightbox="gallery">
                 <img src="{{ $img->image_url }}" class="rev-small-img">
             </a>
-        @endforeach
+            @endforeach
 
-    @endif
+            @endif
 
-    {{-- HIDDEN: ALL IMAGES FOR LIGHTBOX --}}
-    <div style="display:none;">
-        @foreach($review_images as $img)
-            <a href="{{ $img->image_url }}" data-lightbox="gallery"></a>
-        @endforeach
-    </div>
+            {{-- HIDDEN: ALL IMAGES FOR LIGHTBOX --}}
+            <div style="display:none;">
+                @foreach($review_images as $img)
+                <a href="{{ $img->image_url }}" data-lightbox="gallery"></a>
+                @endforeach
+            </div>
 
-</div>
-
-
-
-  @foreach($reviews as $review)
-<div class="rev-review-card   mt-2 flex-wrap">
-    <img src="{{ $review['reviewer_profile_photo_url'] }}" class="rev-avatar">
-
-    <div class="rev-review-content col-10">
-        <h4 class="rev-name">{{ $review['reviewer_name'] }}</h4>
-        <p class="rev-date">Reviewed: {{ \Carbon\Carbon::parse($review['review_date'])->format('M Y') }}</p>
-        <p class="mt-1" style="text-align: justify;">{{ $review['comment'] }}</p>
         </div>
 
-    <div class="rev-rating-badge">
-        ⭐ {{ number_format($review['rating'],1) }}
-    </div>
-</div>
-            
-@endforeach
-</div>  
 
-        </section>
+
+        @foreach($reviews as $review)
+        <div class="rev-review-card   mt-2 flex-wrap">
+            <img src="{{ $review['reviewer_profile_photo_url'] }}" class="rev-avatar">
+
+            <div class="rev-review-content col-10">
+                <h4 class="rev-name">{{ $review['reviewer_name'] }}</h4>
+                <p class="rev-date">Reviewed: {{ \Carbon\Carbon::parse($review['review_date'])->format('M Y') }}</p>
+                <p class="mt-1" style="text-align: justify;">{{ $review['comment'] }}</p>
+            </div>
+
+            <div class="rev-rating-badge">
+                ⭐ {{ number_format($review['rating'],1) }}
+            </div>
+        </div>
+
+        @endforeach
+    </div>
+
+</section>
 
 @push('scripts')
 
@@ -1267,7 +1285,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 <script>
-     $(document).ready(function () {
+    $(document).ready(function() {
         // Infinite testimonial slider with 6 cards
         const slider = $('#testimonialSlider');
         const cards = slider.find('.testimonial-card');
@@ -1276,7 +1294,7 @@
         const nextBtn = $('#testimonialNext');
 
         // Clone cards for infinite scrolling
-        cards.each(function () {
+        cards.each(function() {
             $(this).clone().appendTo(slider);
         });
 
@@ -1378,7 +1396,7 @@
                 slider.css('transform', `translateX(${translateValue}px)`);
 
                 // After animation completes
-                setTimeout(function () {
+                setTimeout(function() {
                     isAnimating = false;
 
                     // If we've scrolled past the original set, reset to the clone
@@ -1435,19 +1453,19 @@
         updateSlider(false);
 
         // Event listeners
-        nextBtn.on('click', function () {
+        nextBtn.on('click', function() {
             clearInterval(autoSlideInterval);
             nextSlide();
             startAutoSlide();
         });
 
-        prevBtn.on('click', function () {
+        prevBtn.on('click', function() {
             clearInterval(autoSlideInterval);
             prevSlide();
             startAutoSlide();
         });
 
-        dotsContainer.on('click', '.dot', function () {
+        dotsContainer.on('click', '.dot', function() {
             if (isAnimating) return;
             clearInterval(autoSlideInterval);
 
@@ -1459,9 +1477,9 @@
 
         // Handle window resize with debounce for better performance
         let resizeTimer;
-        $(window).on('resize', function () {
+        $(window).on('resize', function() {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function () {
+            resizeTimer = setTimeout(function() {
                 // Store current index before recalculating
                 const currentActiveIndex = currentIndex % originalCardsCount;
 
@@ -1479,7 +1497,7 @@
         let autoSlideInterval;
 
         function startAutoSlide() {
-            autoSlideInterval = setInterval(function () {
+            autoSlideInterval = setInterval(function() {
                 nextSlide();
             }, 5000);
         }
@@ -1488,9 +1506,9 @@
         startAutoSlide();
 
         // Pause auto-sliding when user interacts
-        $('.testimonial-slider-container').on('mouseenter', function () {
+        $('.testimonial-slider-container').on('mouseenter', function() {
             clearInterval(autoSlideInterval);
-        }).on('mouseleave', function () {
+        }).on('mouseleave', function() {
             startAutoSlide();
         });
 
@@ -1498,12 +1516,12 @@
         let touchStartX = 0;
         let touchEndX = 0;
 
-        slider.on('touchstart', function (e) {
+        slider.on('touchstart', function(e) {
             touchStartX = e.originalEvent.touches[0].clientX;
             clearInterval(autoSlideInterval);
         });
 
-        slider.on('touchend', function (e) {
+        slider.on('touchend', function(e) {
             touchEndX = e.originalEvent.changedTouches[0].clientX;
 
             // Determine swipe direction

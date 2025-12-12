@@ -10,6 +10,7 @@ use App\Models\FerryBookings;
 use App\Models\HotelBookings;
 use App\Models\RazorpayTransactions;
 use App\Models\RentalBookings;
+use App\Models\TempItinerary;
 use App\Models\TourPackageBook;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,7 @@ class DeleteController extends Controller
             $ferry->delete();
         } else {
             $ferry->delete();
-            RazorpayTransactions::where('purpose', 'Ferry Booking')->where('booking_id', $ferry->bookno)->delete();  
+            RazorpayTransactions::where('purpose', 'Ferry Booking')->where('booking_id', $ferry->bookno)->delete();
         }
         return response()->json(['status' => 200]);
     }
@@ -69,7 +70,7 @@ class DeleteController extends Controller
 
     public function deleteHotel($id)
     {
-        $htl = HotelBookings::with(['passengerDetails','paymentDetails'])->find($id);
+        $htl = HotelBookings::with(['passengerDetails', 'paymentDetails'])->find($id);
         $htl->passengerDetails()->delete();
         $htl->paymentDetails()->delete();
         $htl->delete();
@@ -78,6 +79,22 @@ class DeleteController extends Controller
 
     public function deleteTour($id)
     {
-        $tour = TourPackageBook::find($id);
+        $tour = TempItinerary::with(['ferries', 'payments', 'TourPricing', 'bookedHotels', 'paxangers'])
+            ->where('search_hash', $id)
+            ->first();
+
+        if (!$tour) {
+            return response()->json(['status' => 404, 'message' => 'Tour not found']);
+        }
+
+        $tour->ferries()->delete();
+        $tour->bookedHotels()->delete();
+        $tour->paxangers()->delete();
+        $tour->payments()->delete();
+        $tour->TourPricing()->delete();
+
+        TempItinerary::where('search_hash', $id)->delete();
+
+        return response()->json(['status' => 200]);
     }
 }

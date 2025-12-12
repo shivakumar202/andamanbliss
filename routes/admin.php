@@ -185,7 +185,10 @@ Route::middleware(['auth:admin', 'admin'])->group(function () {
 		Route::resource('reviews', ReviewsController::class);
 		Route::prefix('reviews')->name('reviews')->group(function () {
 			Route::post('reviews/{id}/destroy', [ReviewsController::class, 'destroy'])->name('reviews.destroy');
+
 		});
+
+
 
 		Route::resource('blogs', BlogController::class);
 

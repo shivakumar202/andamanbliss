@@ -29,15 +29,15 @@
 
                         @if ($activity->discount > 0)
 
-                            <div class="discount-tag">{{$activity->discount }}% OFF</div>
+                        <div class="discount-tag">{{$activity->discount }}% OFF</div>
                         @endif
                     </div>
 
                     @if ($activity->discount > 0)
-                        <div class="original-price">
-                            <span class="label">Original Price:</span>
-                            <span class="value">₹{{ number_format($activity->adult_cost) }}</span>
-                        </div>
+                    <div class="original-price">
+                        <span class="label">Original Price:</span>
+                        <span class="value">₹{{ number_format($activity->adult_cost) }}</span>
+                    </div>
                     @endif
 
                     <div class="limited-offer">
@@ -54,20 +54,20 @@
                             <input type="text" id="arrival_date" placeholder="Activity Date" class="" readonly />
                         </div>
                         @error('arrival_date')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     @if(!empty($timeSlots))
-                        <div class="form-group">
-                            <label><i class="far fa-clock"></i> Select Time Slot</label>
-                            <select class="form-select" wire:model="activityTime" required>
-                                <option value="">Choose a time slot</option>
-                                @foreach($timeSlots as $slot)
-                                    <option value="{{ $slot['value'] }}">{{ $slot['label'] }}</option>
-                                @endforeach
-                            </select>
-                            @error('activityTime') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="form-group">
+                        <label><i class="far fa-clock"></i> Select Time Slot</label>
+                        <select class="form-select" wire:model="activityTime" required>
+                            <option value="">Choose a time slot</option>
+                            @foreach($timeSlots as $slot)
+                            <option value="{{ $slot['value'] }}">{{ $slot['label'] }}</option>
+                            @endforeach
+                        </select>
+                        @error('activityTime') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                     @endif
                     <div class="form-row">
                         <div class="form-group form-group-half">
@@ -111,10 +111,16 @@
                         }}</span>
                     </div>
 
+                    @if(Auth::check())
                     <button class="booking-submit-btn" wire:click="submitBookingForm">
                         <span style="font-size:14px;">Book Now</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
+                    @else
+                    <button type="button" class="booking-submit-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> <span style="font-size:14px;">Book Now</span>
+                        <i class="fas fa-arrow-right"></i></button>
+                    @endif
+
                 </div>
 
 
@@ -129,8 +135,8 @@
 
 </div>
 @push('styles')
-    <style>
-        /* .modal-backdrop {
+<style>
+    /* .modal-backdrop {
                 --bs-backdrop-zindex: 0 !important;
                 --bs-backdrop-bg: #000;
                 --bs-backdrop-opacity: 0.5;
@@ -142,24 +148,24 @@
                 height: 100vh;
                 background-color: var(--bs-backdrop-bg);
             } */
-        .modal-backdrop {
-            z-index: 1040 !important;
-        }
+    .modal-backdrop {
+        z-index: 1040 !important;
+    }
 
-        .modal {
-            z-index: 1050 !important;
-        }
+    .modal {
+        z-index: 1050 !important;
+    }
 
 
-        @media only screen and (max-width: 600px) and (min-width: 300px) {
-            .sticky-top {
-                position: sticky;
-                top: 72px;
-                background-color: #ffffff;
-                z-index: 222;
-            }
+    @media only screen and (max-width: 600px) and (min-width: 300px) {
+        .sticky-top {
+            position: sticky;
+            top: 72px;
+            background-color: #ffffff;
+            z-index: 222;
         }
-    </style>
+    }
+</style>
 @endpush
 @push('scripts')
 <script>

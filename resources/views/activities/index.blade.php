@@ -1889,7 +1889,7 @@
                                             <span class="ab-tour-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Guide"><i class="fa-solid fa-user-group"></i></span>
                                             <span class="ab-tour-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Safety"><i class="fa-solid fa-shield-heart"></i></span>
                                             <span class="ab-tour-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Photos"><i class="fas fa-camera"></i></span>
-                                            <span class="ab-tour-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="{{ $activity->rating .' star rating' }}"><i class="fa-solid fa-star text-warning"></i></span>
+                                            <span class="ab-tour-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="${ratings}"><i class="fa-solid fa-star text-warning"></i></span>
                                         </div>
 
 

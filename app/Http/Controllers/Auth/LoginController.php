@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -58,7 +59,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-            try {
+        try {
             if (!empty($request->website)) {
                 Log::warning('Spam detected', ['ip' => $request->ip(), 'time' => now()]);
                 return back()->with('error', 'Spam detected. Submission blocked.');
@@ -117,6 +118,70 @@ class LoginController extends Controller
             ]);
         }
     }
+
+
+    public function ajxlogin(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|string',
+                'password' => 'required|string',
+
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withInput()->withErrors($validator);
+            }
+
+            $field = 'username';
+            if (is_numeric($request->username)) {
+                $field = 'mobile';
+            } elseif (filter_var($request->username, FILTER_VALIDATE_EMAIL)) {
+                $field = 'email';
+            }
+
+            $credentials = [
+                $field => $request->username,
+                'password' => $request->password,
+                'status' => 'active'
+            ];
+
+            if (Auth::guard('web')->attempt($credentials, $request->boolean('remember'))) {
+                $user = Auth::guard('web')->user();
+                Log::info('AJAX Login successful', [
+                    'user_id' => $user->id,
+                    'username' => $user->username ?? null,
+                    'email' => $user->email ?? null,
+                    'ip' => $request->ip(),
+                    'time' => now()
+                ]);
+
+                return back()->with('success', __('Login Success!'));
+
+            }
+
+            Log::warning('AJAX Invalid credentials', [
+                'username' => $request->username,
+                'ip' => $request->ip(),
+                'time' => now()
+            ]);
+
+            return back()->with('error', __('Invalid Credentials'));
+        } catch (\Throwable $e) {
+            Log::error('AJAX Login error', [
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'ip' => $request->ip(),
+                'time' => now()
+            ]);
+
+            return back()->with('error', __('Unexpected Error'));
+        }
+    }
+
+
+
 
     public function generateOtp($id)
     {

@@ -324,7 +324,7 @@ package, Andaman family tour, cheap Andaman packages, Andaman itinerary, Port Bl
                     </div>
                     <div class="tour-andamanbliss-package-item">
                         <div class="tour-andamanbliss-package-name">
-                            <a href="https://andamanbliss.com/andaman-tour-packages/honeymoon">Andaman Honeymoon
+                            <a href="https://andamanbliss.com/andaman-honeymoon-packages/">Andaman Honeymoon
                                 Tour</a>
                         </div>
                         <div class="tour-andamanbliss-package-duration">5 Nights & 6 Days</div>
@@ -332,21 +332,21 @@ package, Andaman family tour, cheap Andaman packages, Andaman itinerary, Port Bl
                     </div>
                     <div class="tour-andamanbliss-package-item">
                         <div class="tour-andamanbliss-package-name">
-                            <a href="https://andamanbliss.com/andaman-tour-packages/family">A Family Trip To Andaman</a>
+                            <a href="https://andamanbliss.com/andaman-family-packages/">A Family Trip To Andaman</a>
                         </div>
                         <div class="tour-andamanbliss-package-duration">6 Nights & 7 Days</div>
                         <div class="tour-andamanbliss-package-price">INR 13,250 ~PP</div>
                     </div>
                     <div class="tour-andamanbliss-package-item">
                         <div class="tour-andamanbliss-package-name">
-                            <a href="#">Backpacking Trip To The Islands</a>
+                            <a href="https://andamanbliss.com/andaman-adventure-packages/">Backpacking Trip To The Islands</a>
                         </div>
                         <div class="tour-andamanbliss-package-duration">8 Nights & 9 Days</div>
                         <div class="tour-andamanbliss-package-price">INR 40,200 ~PP</div>
                     </div>
                     <div class="tour-andamanbliss-package-item">
                         <div class="tour-andamanbliss-package-name">
-                            <a href="https://andamanbliss.com/andaman-tour-packages/honeymoon">Romantic Honeymoon At
+                            <a href="https://andamanbliss.com/andaman-honeymoon-packages/">Romantic Honeymoon At
                                 Andaman</a>
                         </div>
                         <div class="tour-andamanbliss-package-duration">6 Nights & 7 Days</div>
@@ -2641,7 +2641,7 @@ package, Andaman family tour, cheap Andaman packages, Andaman itinerary, Port Bl
                 <div class="ab-tour-card-header">
                       ${hasDiscount ? `
                                 <div class="ab-tour-card-deal">
-                                    <span>Exclusive Deal upto {{ number_format($tour->discount,0) }}% <em>-off</em></span>
+                                    <span>Exclusive Deal upto ${discount}% <em>-off</em></span>
                                 </div> ` : ``}
                     <div class="ab-tour-card-image">
                         <img src="${photo}" alt="${tourName}">

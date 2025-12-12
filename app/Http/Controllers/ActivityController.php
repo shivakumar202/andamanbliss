@@ -55,25 +55,7 @@ class ActivityController extends Controller
                 })->when(!empty($request->category) && empty($request->categories), function ($q) use ($request) {
                     $q->where('slug', $request->category);
                 });
-            })
-            ->when(!empty($request->ratings), function ($query) use ($request) {
-                $query->whereIn('rating', $request->ratings);
-            })
-            ->when($request->featured == 1, function ($query) {
-                $query->where('featured', 1);
-            })
-            ->when($request->best_seller == 1, function ($query) {
-                $query->where('best_seller', 1);
-            })
-            ->when(!empty($request->status), function ($query) use ($request) {
-                $query->where('status', $request->status);
-            })
-            ->when(!empty($request->min_price), function ($query) use ($request) {
-                $query->where('adult_cost', '>=', $request->min_price);
-            })
-            ->when(!empty($request->max_price), function ($query) use ($request) {
-                $query->where('adult_cost', '<=', $request->max_price);
-            })
+            })           
             ->when(!empty($request->keyword), function ($query) use ($request) {
                 $query->where(function ($q) use ($request) {
                     $q->where('service_name', 'like', "%{$request->keyword}%")
@@ -85,7 +67,7 @@ class ActivityController extends Controller
         if ($request->ajax()) {
             try {
                 return response()->json([
-                    'activities' => $activities->items(),
+                    'activities' => $activities->items() ,
                     'next_page' => $activities->nextPageUrl(),
                     'has_more' => $activities->hasMorePages()
                 ]);

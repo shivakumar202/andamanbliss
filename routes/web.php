@@ -17,6 +17,7 @@ use App\Http\Controllers\CabController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BoatTripsController;
 use App\Http\Controllers\BoatCharterFishing;
 use App\Http\Controllers\FerryTickets;
@@ -26,6 +27,8 @@ use App\Http\Controllers\PushNotificationController;
 use App\Http\Controllers\upSaleController;
 use App\Models\GoogleReview;
 use App\Models\TourPackages;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -49,6 +52,7 @@ Route::middleware(['guest'])->group(function () {
     // Login
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
+    Route::post('ajx-login', [LoginController::class, 'ajxlogin'])->name('axjlogin');
 
     // OTP Login
     Route::prefix('otp/{id}')->name('otp.')->group(function () {
@@ -108,10 +112,12 @@ Route::middleware([])->group(function () {
         ->name('tour.dynamic.category');
 
     Route::get('andaman-{slug}-tour-{subslug}', [TourController::class, 'show'])->name('tour.dynamic.category');
-    Route::get('andaman-{slug}-packages', [TourController::class, 'static'])->name('tour.home');
+    Route::get('andaman-{slug}-packages', [TourController::class, 'static'])
+        ->where('slug', '[A-Za-z0-9\-]+')
+        ->name('tour.home');
 
 
-Route::match(['get', 'post'], '/{category}/andaman-{slug}-tour-{subslug}/itinerary',[TourController::class, 'itinerary'])->name('tour.itinerary');
+    Route::match(['get', 'post'], '/{category}/andaman-{slug}-tour-{subslug}/itinerary', [TourController::class, 'itinerary'])->name('tour.itinerary');
 
     Route::get('/{category?}/andaman-{slug}-tour-{subslug}', [TourController::class, 'show'])
         ->name('tour.static');
@@ -155,7 +161,7 @@ Route::middleware([])->group(function () {
     Route::get('activities/{slug}', [ActivityController::class, 'devIndex'])->name('activity.static');
     Route::get('activity/booking/review', [ActivityController::class, 'PaymentReview'])->name('activity.review');
     Route::post('activity/paymentsubmit', [ActivityController::class, 'Paymentsubmit'])->name('activity.paymentsubmit');
-    Route::post('activity/send-enquiry',[ActivityController::class, 'SendEnquiry'])->name('activity.send-enquiry');
+    Route::post('activity/send-enquiry', [ActivityController::class, 'SendEnquiry'])->name('activity.send-enquiry');
     Route::post('activity/payment/update', [ActivityController::class, 'updatePayment'])->name('activity.payment.update');
     Route::get('activity/payment-voucher/{book_id}', [ActivityController::class, 'ActivityPaymentVoucher'])->name('activity.payment.voucher');
     Route::get('activity/package-voucher/{ticket_no}', [ActivityController::class, 'ActivityPackagePaymentVoucher'])->name('activity.package.voucher');
@@ -571,13 +577,19 @@ Route::post('/track-duration', [PushNotificationController::class, 'duration']);
 
 Route::get('/dev/update-review', [GoogleReviewController::class, 'fetchNewReviews'])->middleware('auth')->name('google.reviews.store');
 
-
-
-
-Route::get('/auth/google', function () {
+Route::get('/auth/google/login', function () {
+    session(['url.intended' => url()->previous()]);
     return Socialite::driver('google')
-        ->scopes([
-            'https://www.googleapis.com/auth/business.manage',
+        ->scopes(['openid', 'email', 'profile'])
+        ->stateless()
+        ->redirect();
+})->name('google.login');
+
+
+Route::get('/auth/google/register', function () {
+    session(['url.intended' => url()->previous()]);
+    return Socialite::driver('google')
+         ->scopes([
             'https://www.googleapis.com/auth/userinfo.email',
             'https://www.googleapis.com/auth/userinfo.profile',
             'openid'
@@ -585,46 +597,31 @@ Route::get('/auth/google', function () {
         ->with(['access_type' => 'offline', 'prompt' => 'consent'])
         ->stateless()
         ->redirect();
-})->name('google.login');
+})->name('google.register');
 
 
-
-Route::get('/auth/google/callback', function (Request $request) {
-
-    if (!$request->has('code')) {
-        return redirect('/login')->with('error', 'Invalid Google login request.');
-    }
-
+Route::get('/auth/google/callback', function () {
     try {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        $googleUser = Socialite::driver('google')
+            ->stateless()
+            ->user();
 
-        if (!$googleUser || !$googleUser->getEmail()) {
-            return redirect('/login')->with('error', 'Unable to fetch Google account details.');
+        if (!$googleUser || !$googleUser->email) {
+            return redirect('/login')->with('error', 'Unable to fetch Google account.');
         }
 
-        /**
-         * 🚀 STORE REFRESH TOKEN
-         * Required for generating new access tokens automatically.
-         */
-        if (!empty($googleUser->refreshToken)) {
+        if ($googleUser->refreshToken) {
             Cache::put('google_refresh_token', $googleUser->refreshToken, now()->addDays(365));
-
-            // Optional log (recommended)
-        } else {
         }
 
-        /**
-         * 🚀 Call your RegisterController method correctly
-         */
         return app(\App\Http\Controllers\Auth\RegisterController::class)
-                ->googleCallback($googleUser);
+            ->googleCallback($googleUser);
 
-    } catch (\GuzzleHttp\Exception\ClientException $e) {
-        return redirect('/login')->with('error', 'Google authentication failed. Please try again.');
     } catch (\Exception $e) {
-        return redirect('/login')->with('error', 'Something went wrong: ' . $e->getMessage());
+        return redirect('/login')->with('error', 'Google login failed: ' . $e->getMessage());
     }
+});
 
-})->name('google.callback');
 
-Route::get('/upsale',[upSaleController::class,'index'])->name('upsale.index');
+
+Route::get('/upsale', [upSaleController::class, 'index'])->name('upsale.index');

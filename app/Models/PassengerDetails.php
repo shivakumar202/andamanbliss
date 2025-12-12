@@ -56,6 +56,11 @@ public function boatTrips()
     return $this->belongsTo(BoatTripBookings::class,'booking_id','id')->where('purpose','Boat Trip Booking');
 }
 
+public function tourItinerary()
+{
+    return $this->belongsTo(TempItinerary::class,'booking_id','search_hash')->where('purpose','Package Booking');
+}
+
 
 
 }

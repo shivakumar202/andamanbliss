@@ -221,7 +221,7 @@ class HomeController extends Controller
         $CelebsReviews = Review::with('reviewPhotos')->where('table_type', 'home-page-postcards')->where('status', 1)->get();
         $blogs = Blog::with('photo')->where('status', '1')->orderBy('id', 'DESC')->take(6)->get();
 
-        $featuredHotels = Hotel::where('hotel_rating', '>', 3)->inRandomOrder()->take(8)->get();
+        $featuredHotels = Hotel::where('hotel_rating', '>', 3)->inRandomOrder()->take(4)->get();
 
 
         $categoryIds = Activities::select('category_id')
@@ -232,7 +232,7 @@ class HomeController extends Controller
         $activities = Activities::with('category', 'activityPhotos')
             ->whereIn('category_id', $categoryIds)
             ->get()
-            ->groupBy('category_id')
+            ->groupBy('category_id')->take(6)
             ->map(fn($group) => $group->first());
 
 
@@ -358,6 +358,7 @@ class HomeController extends Controller
 
     public function contact(Request $request)
     {
+
         if ($request->isMethod('post')) {
 
             if (!$request->has('website') || !empty($request->website)) {

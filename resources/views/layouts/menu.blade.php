@@ -84,16 +84,7 @@
 
         <li class="mobile-submenu-item has-submenu">
 
-         @if ($category->name === 'Best Seller')
-                             <a href="#"
-                class="mobile-submenu-link">
-                {{ $category->name }}
-                <button type="button" class="mobile-submenu-toggle level-2"
-                    aria-label="Toggle sub-menu level 2">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </a>
-                        @else
+         
                              <a href="{{ route('tour.home', ['slug' => $category->slug]) }}"
                 class="mobile-submenu-link">
                 {{ $category->name }}
@@ -102,7 +93,6 @@
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </a>
-                        @endif
             
        
 
@@ -138,6 +128,7 @@
             $tours = \App\Models\TourPackages::where('category_id', $category->id)
                 ->where('status', 1) 
                 ->limit(6)
+                ->orderBy('nights', 'ASC')
                 ->get();
         @endphp
 
@@ -572,14 +563,11 @@
             @foreach ($categories as $category)
                 <div class="col-md-2 col-sm-6 {{ $loop->iteration % 2 == 1 ? 'bg-list-first' : '' }}">
                     <h2 class="fs-6">
-                        @if ($category->name === 'Best Seller')
-                            <a href="#" class="fw-bold">{{ $category->name }}</a>
-                        @else
+                       
                             <a href="{{ route('tour.home', ['slug' => $category->slug]) }}" 
                                class="fw-bold">
                                 {{ $category->name }}
                             </a>
-                        @endif
                     </h2>
 
                     <ul class="list-unstyled">
@@ -607,10 +595,12 @@
                                 $tours = \App\Models\TourPackages::where('category_id', $category->id)
                                     ->where('status', 1)
                                     ->limit(5)
+                                    ->orderBy('nights','ASC')
                                     ->get();
                             @endphp
 
                             @foreach ($tours as $tour)
+                            
                                 <li>
                                     <a href="{{ route('tour.static', [
                                             'slug' => $category->slug,

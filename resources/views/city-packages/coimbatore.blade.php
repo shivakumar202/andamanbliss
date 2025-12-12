@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('title', 'Book Your Andaman Tour Package from Ahmedabad')
-@section('keywords', 'Andaman tour package from Ahmedabad, Andaman package from Ahmedabad,, Ahmedabad to the Andaman island, best Time to Visit Andaman Island')
-@section('description', 'Enjoy our Affordable Andaman Package from Ahmedabad that includes hotel booking, sightseeing and thrilling activities. Book now for a better deal.')
+@section('title', 'Andaman Tour Package from Coimbatore | Andaman Bliss')
+@section('keywords', 'Andaman tour package from Coimbatore, Andaman tour package, Andaman trip from Coimbatore, Andaman Family Tour Package from Coimbatore, Andaman Honeymoon Tour Package from Coimbatore, Andaman Trip Cost.')
+@section('description', 'Explore the best Andaman tour package from Coimbatore with hotels & sightseeings. Perfect for family, honeymoon & group holiday.')
 @push('styles')
 <!-- Chennai specific CSS -->
 <!-- <link rel="stylesheet" href="{{ asset('site/css/chennai.css') }}"> -->
 <style>
 /* Andaman Honeymoon Packages Styles */
 .chennai-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* overlay */ url('../site/img/city-packages/sunset2.jpg'); /* image */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* overlay */ url('../site/img/city-packages/city_packages1.jpeg'); /* image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1613,10 +1613,10 @@ function toggleItinerary(dayNumber) {
                 <div class="hero-content">
                     <div class="hero-badge">Experience Comfort</div>
                     <h1 class="hero-title">
-                        Affordable Andaman Tour Package from Ahmedabad  <span class="highlight"> - Book Your Dream Holiday</span>                     
+                        Discover Unforgettable Andaman Tour Package from Coimbatore <span class="highlight">| Andaman Bliss</span>                     
                     </h1>
                     <p class="hero-subtitle">
-                      Enjoy pristine beaches, thrilling water sports and experience hassle free travel with our customized Andaman tour package from Ahmedabad.
+                      Escape from Coimbatore to the Andaman Islands with our customized tour packages. Experience adventure, culture and relaxation on your perfect getaway.
                     </p>
                     <div class="hero-buttons">
                         <a href="#packages" class="hero-cta primary">Explore Packages</a>
@@ -1651,98 +1651,146 @@ function toggleItinerary(dayNumber) {
                     style="background: white; padding: 30px 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     <h2
                         style="color: #333; font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; line-height: 1.4;">
-                        Andaman Tour Package from Ahmedabad  <span style="color: #fd7e14;">- A complete Travel Guide</span> 
+                        Andaman Tour Package from Coimbatore <span style="color: #fd7e14;">| Your Gateway to Island Bliss</span> 
                     </h2>
                     <div>
                         <h2 class="fw-bold fs-6">Summary</h2>
                         <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">
-                       Our Andaman tour package from Ahmedabad offers pristine beaches, adventure water sports and historical sightseetings with our 5 to 10 days tour itinerary. Take a connecting flight from Chennai, Kolkata, Bangalore or Hyderabad to reach Andaman Island. The best time to visit Andaman island is between <em> October and May</em>. The top locations that are included in this package includes Cellular Jail, Radhanagar beach, Neil Island, Ross and North Bay island. You can enjoy many activities like snorkeling, scuba diving, sea walking, kayaking, trekking and island hopping. Our package includes comfortable stays, inter island transfers, ferries, complimentary breakfast and guided tours, while flight tickets, personal expenses and extra meals are excluded in our package. The prices usually start from <em>INR 18,000 to INR 40,000 per person</em> with full customization, 24x7 customer support and proper guidance.
-                    </p>
+                       Are you from Coimbatore and want to plan a memorable vacation that is filled with peaceful beaches, clean blue water and variety of exciting <a href="https://andamanbliss.com/activities/" target="_blank">water activities</a>, the Andaman islands are waiting for you. Andaman island is considered as one of the perfect destination in India for families, honeymoon couples, students and even senior travelers who wish to enjoy nature at its best.</p>
+                        <p>If you are looking for the <strong>best Andaman tour package from Coimbatore</strong>, then here is a complete guide that will help you to plan your dream vacation like how to reach, best places to visit, top activities to do, how much does the trip cost and travel tips as well.</p>
                     </div>
                     <a href="#" id="readMoreToggle" class="read-more-toggle">Read More</a>
                     <div id="readMoreContent" class="read-more-content">
-                        <h3 class="fs-6 mt-3 fw-bold">Andaman Tour Package from Ahmedabad | Exclusive Andaman Tour Package
-                        </h3>
-                        <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">At Andaman Bliss you get the opportunity to turn your dreams into reality. Get a chance to immerse yourself in the breathtaking beauty of pristine beaches, crystal clear water and vibrant coral reefs. This destination is perfect for families, couples and group travelers. Our specially designed Andaman tour package will ensure you to give unforgettable adventure experiences that you will never forget.</p>
 
-                        <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">If you are planning to visit Andaman island and dreaming of a tropical escape, then our Andaman tour package from Ahmedabad is your ticket to paradise. As the Andaman island is located in the Bay of Bengal, this island is a paradise to crystal clear water, untouched beaches, lush green forest and offers a fascinating history of Andaman island. Whether you are looking for relaxation, adventure activities or want to explore the historical site, then our Andaman package from Ahmedabad will ensure that your journey is comfortable, exciting and unforgettable.</p>
-
-                        <h3 class="fs-6 fw-bold mt-2">Why to Choose Andaman Bliss?</h3>
+                        <h3 class="fs-6 fw-bold mt-2">Why Choose Andaman Island from Coimbatore?</h3>
+                        <p>If you live in Coimbatore and looking for a switch, Andaman Islands is the go-to solution. Here are some reasons it has become a favourite getaway for leisure traveler:</p>
                         <ul class="packages-list-style mb-3">
-                            <li>We provide comfortable stays in handpicked resorts and hotels</li>
-                            <li>Water sports and adventure activities included</li>
-                            <li>Guided sightseeing tour to top attractions</li>
-                            <li>Complete assistance with permits and ferry bookings</li>
-                            <li>Our team will assist you 24x7 for a hassle-free experience</li>
-                            <li>We ensure smooth inter-island transfer and well-planned itineraries</li>
-                            <li>We provide the best local experience with trusted guides</li>
+                            <li><strong>Fast Connectivity:</strong> The routes via Chennai or Bangalore make it easy and simple to reach Andaman from Coimbatore.</li>
+                            <li><strong>Great for Families:</strong> Safe, clean and offering several activities where both kids and elders can participate together.</li>
+                            <li><strong>Honeymoon Destination:</strong> Beautiful sunsets, luxurious beach resorts, candle light dinners are some of the reasons it is great escape for couples.</li>
+                            <li><strong>Adventure to the best:</strong> Whether you want scuba diving, snorkeling or adventure water sports, Andaman is heaven for adventure travellers.</li>
                         </ul>
+                        <p>So, for anyone who wants to take a break from the chaos of the busy life of Coimbatore, then the Andaman island is a perfect mix of relaxation, fun and adventure all together.</p>
                        
-                        <h3 class="fs-6 fw-bold">How to Reach from Ahmedabad to Andaman</h3>
+                        <h3 class="fs-6 fw-bold mt-2">How can I Reach Andaman Island from Coimbatore?</h3>
+                        <p>The easiest and fastest way to reach Andaman island from Coimbatore is by air:</p>
                         <ul class="packages-list-style">
-                            <li><strong>By Air:</strong> No direct flights. Connect via Chennai, Kolkata, Bangalore, or Hyderabad. Travel time: 6–8 hours, with layover.</li>
-                            <li><strong>By Sea:</strong> Ships sail from Chennai, Kolkata, Visakhapatnam. Travel is long, not ideal for most from Ahmedabad.</li>
+                            <li>You take fly from <strong>Coimbatore International Airport (CJB)</strong> to Chennai or Bangalore.</li>
+                            <li>From there, you can take a direct flight to Port Blair, the capital city of Andaman island.</li>
                         </ul>
-                        
-                        
-                        <h3 class="fs-6 fw-bold mt-3">Best Time To Visit Andaman:</h3>
+                        <p>We recommend you to book your flight well in advance, as flight tickets are not included in our <strong>Andaman tour package.</strong></p>
+                        <p><strong>Alternative Route:</strong></p>
+                        <p>If you want to get a more adventurous experience, then you can travel to Chennai and take a ship to Port Blair. The journey takes around 60 to 70 hours and that means it will take 3 to 4 days to reach. This journey is best suited for those who want to get a unique travel experience.</p>
+                                                
+                        <h3 class="fs-6 fw-bold mt-3">Best Time To Visit the Andaman island from Coimbatore</h3>
+                        <p>Here are the best guides that will help you in planning your <strong>Andaman trip from Coimbatore</strong>:</p>
                         <ul class="packages-list-style">
-                            <li>If you want to experience the best of Andaman Island, then we recommend you to plan your trip between <em>October and May</em>. As the weather during this month is pleasant, seas are calm and skies are clear and is also perfect for sightseeing and doing water sports activities.</li>
-                            <li>Avoid the Monsoon season that starts from June to September, as you may face heavy rainfall and rough sea conditions.</li>
+                            <li><strong>October to May:</strong> This month is the best time to visit because during this season, you can experience pleasant weather, calm seas and perfect time to participate in variety of <a href="https://andamanbliss.com/activities/" target="_blank">water sports activities</a>.</li>
+                            <li><strong>June to September:</strong> This month is considered as the monsoon season. This month is less recommended for first time travelers as it may lead to heavy rainfall and cancellation of water sports activities.</li>
                         </ul>
 
-                        <h3 class="fs-6 fw-bold mt-3">Top Attractions to see in Andaman Island</h3>
+                        <h3 class="fs-6 fw-bold mt-3">Top Places to Explore in Andaman Islands</h3>
+                        <p>Below are some of the popular places that you should include in your travels to the Andaman island from Coimbatore:</p>
                         
+                        <p class="mt-2"><strong><a href="https://andamanbliss.com/islands/port-blair/" target="_blank">Port Blair- Capital of Andaman</a></strong></p>
                        <ul class="packages-list-style">
-                             <li><strong><a href="https://andamanbliss.com/islands/port-blair" target="_blank" rel="noopener noreferrer">Port Blair:</a></strong> Cellular Jail, Corbyn’s Cove Beach, Light and Sound Show</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/havelock-swaraj-dweep" target="_blank" rel="noopener noreferrer">Havelock</a></strong> Radhanagar Beach, Elephant Beach, Kalapathar Beach</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/neil-shaheed-dweep" target="_blank" rel="noopener noreferrer">Neil Island:</a></strong> Laxmanpur Beach, Natural Rock Formation, Bharatpur Beach</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/baratang" target="_blank" rel="noopener noreferrer">Baratang Island:</a></strong> Limestone Cave, Mud Volcano, Parrot Island</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/port-blair/ross-island" target="_blank" rel="noopener noreferrer"></a>North Bay & Ross Island:</strong> Colonial ruins at Ross Island, Water sports at North Bay Island</li>
+                          <li><strong>Cellular Jail:</strong> A historical place that tells the story of Indias freedom struggle.</li> 
+                          <li><strong>Corbyn cove beach:</strong> Best for beachwalk and water sports activity.</li> 
+                          <li><strong>Samudrika Marine Museum:</strong> This museum is really good for kids and families to learn about marine life.</li> 
+                        </ul>
+
+                        <p class="mt-2"><strong><a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/" target="_blank">Havelock Island (Swaraj Dweep)</a></strong></p>
+                       <ul class="packages-list-style">
+                          <li><strong>Radhanagar Beach:</strong> Ranked as Asia most beautiful beaches.</li> 
+                          <li><strong>Elephant Beach:</strong> Well known for water sports activities such as snorkeling, scuba diving, glass bottom boat rides, Jet ski.</li> 
+                          <li><strong>Scuba diving:</strong> A must try activity for beginners to adventure seekers.</li> 
+                        </ul>
+
+                        <p class="mt-2"><strong><a href="https://andamanbliss.com/islands/neil-shaheed-dweep/" target="_blank">Neil Island (Shaheed Dweep)</a></strong></p>
+                       <ul class="packages-list-style">
+                          <li><strong>Natural rock formation:</strong> A famous spot for photography.</li> 
+                          <li><strong>Laxmanpur & Bharatpur beach:</strong> This beach is best for quick family times or a romantic evening walks.</li> 
+                        </ul>
+
+                        <p class="mt-2"><strong><a href="https://andamanbliss.com/islands/baratang/" target="_blank">Baratang island</a></strong></p>
+                       <ul class="packages-list-style">
+                          <li><strong>Limestone cave & Mud Volcano:</strong> A uniquely natural wonders.</li> 
+                          <li>You have to take a boat ride and enjoy the experience while riding through mangrove creeks.</li> 
+                        </ul>
+
+                        <p class="mt-2"><strong><a href="https://andamanbliss.com/islands/diglipur/" target="_blank">North & Middle Andaman</a></strong></p>
+                       <ul class="packages-list-style">
+                          <li><strong>Ross & Smith island (Diglipur):</strong> A twin island connected by a sand bar.</li> 
+                          <li><strong>Saddle peak:</strong> A good place for trekking.</li> 
                         </ul>
                       
                         
-                        <h3 class="fs-6 fw-bold mt-3">Best Things to do in Andaman Island</h3>
+                        <h3 class="fs-6 fw-bold mt-3">Fun Activities to Try in Andaman Island</h3>
+                        <p>It does not matter what kind of traveler you are, the Andaman island has something for everyone:</p>
                         
                             <ul class="packages-list-style">
-                                <li>Relax at Radhanagar Beach</li>
-                                <li>Snorkeling at <em>Elephant Beach</em></li>
-                                <li><em>Scuba diving</em> in Havelock & Neil Island</li>
-                                <li>Enjoy the historic Cellular Jail and Light & Sound Show</li>
-                                <li><em>Sea walking</em> in North Bay Island</li>
-                                <li><em>Glass Bottom Boat rides</em> at Jolly Buoy Island</li>
-                                <li>Trek to Mount Harriet National Park</li>
-                                <li>Kayaking at Baratang Island</li>
-                                <li>Visit <em>Limestone Cave</em> at Baratang Island</li>
-                                <li>Enjoy island hopping in Neil, Havelock, and North Bay Island</li>
-                                <li>Relax at Laxmanpur and Bharatpur Beach</li>
-                                <li>Go for a volcano excursion at Barren Island</li>
+                                    <li><strong>Scuba Diving & Snorkeling:</strong> Get a chance to enjoy the crystal clear water and witness the colorful corals and vibrant marine life.</li>
+                                    <li><strong>Sea walk:</strong> Get a unique experience of walking under the seas and you know whats the best part is, you do not even need to know how to swim.</li>
+                                    <li><strong>Glass bottom boat rides:</strong> It is a safe and fun way to experience the underwater world without getting wet. It is suitable for families and kids.</li>
+                                    <li><strong>Parasailing & Jet skiing:</strong> For those who want to get more adventure, then these water sports activities are a must try to get an exciting experience.</li>
+                                    <li><strong>Beach Relaxation:</strong> There are many beaches in Andaman island where you can relax and enjoy the sunsets with your families and loved ones.</li>
+                                </ul>
                             </ul>
  
-                            <h3 class="fs-6 fw-bold mt-3">Sample 4 Nights 5 Days Itinerary</h3>
+                            <h3 class="fs-6 fw-bold mt-3">Sample 4 Nights 5 Days Itinerary for Coimbatore Travelers</h3>
                         <ul>
-                            <li><strong>Day 1:</strong> Arrive in Port Blair and visit Cellular Jail, followed by the Light & Sound Show in the evening</li>
-                            <li><strong>Day 2:</strong> Take a ferry ride to Havelock Island and enjoy Radhanagar Beach and Kalapathar Beach</li>
-                            <li><strong>Day 3:</strong> Visit Elephant Beach and explore various water sports activities</li>
-                            <li><strong>Day 4:</strong> Return to Port Blair and visit Ross Island, North Bay Island, and Chidiya Tapu Beach</li>
+                            <li><strong>Day 1:</strong> Arrive in Port Blair and visit <a href="https://andamanbliss.com/islands/port-blair/cellular-jail/" target="_blank">Cellular Jail</a>, followed by the <a href="https://andamanbliss.com/activity/show-in-cellular-jail/" target="_blank">Light & Sound Show</a> in the evening</li>
+                            <li><strong>Day 2:</strong> Take a ferry ride to Havelock Island and enjoy <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/radhanagar-beach/" target="_blank">Radhanagar Beach</a> and <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/kalapathar-beach/" target="_blank">Kalapathar Beach</a></li>
+                            <li><strong>Day 3:</strong> Visit <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/elephant-beach/" target="_blank">Elephant Beach</a> and explore various <a href="https://andamanbliss.com/activities/" target="_blank">water sports activities</a>.</li>
+                            <li><strong>Day 4:</strong> Return to Port Blair and visit <a href="https://andamanbliss.com/islands/port-blair/ross-island/" target="_blank">Ross Island</a>, <a href="https://andamanbliss.com/islands/port-blair/north-bay-island/" target="_blank">North Bay Island</a>, and <a href="https://andamanbliss.com/islands/port-blair/chidiatapu/" target="_blank">Chidiya Tapu Beach</a>.</li>
                             <li><strong>Day 5:</strong> Departure</li>
                         </ul>
 
                         
                         <h3 class="fs-6 fw-bold mt-3">How Many Days Are Sufficient for an Andaman Tour Package</h3>
                         <ul class="packages-list-style">
-                            <li><strong>5 - 7 Days:</strong> Explore Port Blair, Havelock, and Neil Island</li>
-                            <li><strong>7 - 10 Days:</strong> Add Baratang, Rangat, and Long Island to your itinerary</li>
+                            <li><strong>5 - 7 Days:</strong> Explore <a href="https://andamanbliss.com/islands/port-blair/" target="_blank">Port Blair</a>, <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/" target="_blank">Havelock</a>, and <a href="https://andamanbliss.com/islands/neil-shaheed-dweep/" target="_blank">Neil Island</a>.</li>
+                            <li><strong>7 - 10 Days:</strong> Add <a href="https://andamanbliss.com/islands/baratang/" target="_blank">Baratang</a>, <a href="https://andamanbliss.com/islands/rangat/" target="_blank">Rangat</a>, and <a href="https://andamanbliss.com/islands/long-island/" target="_blank">Long Island</a> to your itinerary</li>
                         </ul>
 
-
-                        <h3 class="fs-6 fw-bold mt-3">How to Plan Your Andaman Trip from Ahmedabad</h3>
+                        <h3 class="fs-6 fw-bold mt-3">Andaman Trip Cost from Coimbatore</h3>
+                        <p>The <strong>Andaman trip cost from coimbatore</strong> totally depends on the factors like:</p>
                         <ul class="packages-list-style">
-                            <li>Book early for the best prices</li>
-                            <li>Pick the right season</li>
-                            <li>Choose a balanced itinerary</li>
-                            <li>Pack smart and light</li>
-                            <li>Choose a trusted tour operator like Andaman Bliss</li>
+                            <li>Flight tickets (Coimbatore to Port Blair via Chennai/Bangalore). You need to buy the flight tickets from your own expenses because flight ticket are not included in our package.</li>
+                            <li>Types of accommodations (budget, deluxe and luxury).</li>
+                            <li>Duration of your stay.</li>
+                            <li>Activities included.</li>
+                        </ul>
+
+                        <p>So the package will cost you approximately:</p>
+                        <ul class="packages-list-style">
+                            <li><strong>Budget Package:</strong> INR 18,000 to INR 22,000 per person.</li>
+                            <li><strong>Standard Package:</strong> INR 25,000 to INR 35,000 per person.</li>
+                            <li><strong>Luxury Package:</strong> INR 50,000 and above.</li>
+                        <p>We recommend you to book your <strong>Andaman package from Coimbatore</strong> with Andaman Bliss because it will help you save money and we will ensure that you get a hassle free holiday.</p>
+                        </ul>
+
+                        <h3 class="fs-6 fw-bold mt-3">Types of Andaman Tour Package from Coimbatore</h3>
+                        <p>Everyone travels for a different reason, some with family, some with friends and some for a romantic vacation. That is the reason why <strong>Andaman package from Coimbatore</strong> comes in different style so that it will suit your needs and preferences.</p>                        
+                            <ul class="packages-list-style">
+                                    <li><strong>Andaman Family Tour Package from Coimbatore:</strong> This package is designed for families, kids and even elders as well. This package includes kids friendly activities, comfortable stays and relaxed sightseeing so that the whole family can enjoy.</li>
+                                    <li><strong>Andaman Honeymoon Tour Package from Coimbatore:</strong> This package is perfect for newlywed couples that includes candlelight dinners, private beachside resorts and gets a romantic experiences that will make your trip unforgettable.</li>
+                                    <li><strong>Andaman Group Tour Package:</strong> This package is ideal for friends, office teams and groups of students. You can take part in lots of adventure activities with special group discount.</li>
+                                    <li><strong>Customized Andaman Package from Coimbatore:</strong> It offers a flexible itinerary where you can choose hotels, activities and destinations according to your budget and preferences.</li>
+                                </ul>
+                            </ul>
+
+                        <h3 class="fs-6 fw-bold mt-3">Travel Tips for Your Andaman Trip from Coimbatore</h3>
+                        <p>Here are the tips that you need to keep in mind while traveling from Coimbatore to Andaman island:</p>
+                        <ul class="packages-list-style">
+                                <li>Book your flight tickets early.</li>
+                                <li>Carry a valid ID proof like (Aadhaar card or Driving license).</li>
+                                <li>Pack light cotton clothes.</li>
+                                <li>Keep some cash handy.</li>
+                                <li>Avoid carrying plastic bags and bottles.</li>
+                                <li>Book you water sports activities with a certified instructors.</li>
+                                <li>Always respect the local tribes and culture.</li>
+                            </ul>
                         </ul>
                         <div class="row mt-3">
                             <div class="col-md-6">
@@ -1784,7 +1832,7 @@ function toggleItinerary(dayNumber) {
 <section id="packages" class="section-padding">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-title-h2 text-center">Andaman Tour <span> Packages</span></h2>
+            <h2 class="section-title-h2 text-center">Andaman Tour <span> Packages from Coimbatore</span></h2>
             <p>Everything you need to know about planning your trip to the Andaman Islands</p>
         </div>
         <div class="activity-grid">
@@ -1816,7 +1864,7 @@ function toggleItinerary(dayNumber) {
             <div class="col-12 text-center">
                 <div class="faq-header mb-5">
                     <h2 class="section-title-h2 text-center">Frequently Asked <span> Questions</span></h2>
-                    <p class="faq-subtitle">Everything you need to know about planning your trip to Andaman Islands From Chennai</p>
+                    <p class="faq-subtitle">Everything you need to know about planning your trip to Andaman Islands From Coimbatore</p>
                 </div>
             </div>
         </div>
@@ -1829,14 +1877,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-route"></i>
                         </div>
-                        <h3>How can I travel from Ahmedabad to Andaman island?</h3>
+                        <h3>Can I know how to reach Andaman island from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="faq-answer collapse show" id="faqAnswer1" style="">
-                        <p>If you want to travel from Ahmedabad to the Andaman island, then you need to require a connecting flight, as there are no direct flights to Port Blair. The most common and easy route is via Chennai, Kolkata, Bangalore or Hyderabad that takes a total travel time of about six to nine hours depending on the layovers. Many travelers prefer flying Ahmedabad to Chennai and then catch a direct Chennai to Port Blair flight for a smoother connection.</p>
+                        <p>The fastest and most comfortable way to reach Andaman island from Coimbatore is by flight. You can fly from Coimbatore to Chennai or Bangalore and then take a direct flight to Port Blair, the capital city of Andaman island. There are many travelers who choose to travel by ship from Chennai but the journey will take around 60 to 70 hours. We recommend you choose the flight option especially for families and honeymooners.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq2">
@@ -1845,14 +1893,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-map-marked-alt"></i>
                         </div>
-                        <h3>Can I know what is the ideal time to book our Andaman tour package?</h3>
+                        <h3>How much does the Andaman trip cost from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer2">
-                        <p>The best time to visit the Andaman island is between October and May. During this month, the weather is pleasant, the skies are clear and the sea is calm which is perfect for sightseeing, beach relaxation and water sports like scuba diving or snorkeling. The monsoon season tht starts from June to September brings heavy rainfall and choppy seas and there might be less chances of participating in any outdoor activities.</p>
+                        <p>The cost of the trip totally depends on the type of holiday you choose. If you are planning for an budget friendly trip, it may cost you around INR 18,000 to INR 22,000 per person. While the luxury package can goes up to INR 50,000 per person. The costing totally depends on the type of accommodation you choose, ferry transfers, sightseeing and water sports activities.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq3">
@@ -1861,14 +1909,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <h3>How many days are enough for an Andaman trip?</h3>
+                        <h3>What is the ideal duration for an Andaman holiday from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer3">
-                        <p>For travelers, a five to seven days itinerary is perfect to cover all the key highlights like Port Blair, Havelock and Neil island without feeling rushed. If you want to go beyond a normal holiday and explore Baratang limestone cave and mud volcano, then planning a trip for eight to ten days will give you a more relaxed and immersive experience.</p>
+                        <p>If you want to explore the main attractions like Port Blair, Havelock and Neil island, then a 5 to 6 days are enough. But if you want to explore the offbeat destinations like Baratang or Diglipur then we suggest you plan a trip for 8 to 9 days.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq5">
@@ -1877,14 +1925,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <h3>What are the things that are included in our Andaman tour package?</h3>
+                        <h3>What are the must visit places to explore in Andaman from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer5">
-                        <p>Our Andaman tour package from Ahmedabad includes hotel stays in Port Blair and nearby islands, complimentary breakfast, airport transfers in Port Blair, sightseeing tours with entry fees and inter island ferry transfers. You need to arrange your flight tickets, as flight tickets are not included in our Andaman tour package from Ahmedabad.</p>
+                        <p>There are many places to visit in Andaman island that includes historic Cellular Jail, Radhanagar Beach for stunning beaches, water sports activity at Elephant beach, watch the sunsets at Laxmanpur Beach in Neil island and explore the offbeat destinations like Limestone cave and Mud volcano in Baratang island.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq6">
@@ -1893,14 +1941,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Are flights included in our Andaman tour package from Ahmedabad?</h3>
+                        <h3>Is Andaman island safe for traveler who are traveling from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer6">
-                        <p>No, flight tickets are not included in our Andaman tour package from Ahmedabad. As we fully focus on ground arrangements like hotel booking, airport pick up and drop services and sightseeing. Thus, our Andaman Bliss team can help you in the flight booking process so that you can get the ticket at affordable rates.</p>
+                        <p>Yes, the Andaman island are safe, clean and tourist friendly. That is the reason why the Andaman family tour package from Coimbatore is so popular because it is designed to suit everyone, from children to senior travelers.</p>
                     </div>
                     
                 </div>
@@ -1912,14 +1960,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-car"></i>
                         </div>
-                        <h3>What is the cost of an average Andaman tour package from Ahmedabad?</h3>
+                        <h3>Can I know what is the best time to visit Andaman island from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer4">
-                        <p>The cost of your Andaman tour package from Ahmedabad totally depends on the season, duration and hotel category as well. On average, a five day budget package without airfares will start from INR 12,000 to INR 15,000 per person, while the luxury package may cost you around INR 30,000 to INR 70,000 per person. Prices are generally high during the peak season that starts from December to January, so early booking can help you secure better deals.</p>
+                        <p>The perfect and ideal time to plan your vacation is between October to May. During this month, the weather is pleasant and the seas are calm. The monsoon month that starts from June to September is not much recommended because it may lead to heavy rain and rough sea conditions.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq7">
@@ -1928,14 +1976,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Do I need a passport or visa to travel to the Andaman island from Ahmedabad?</h3>
+                        <h3>Are flight tickets included in our Andaman package from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer7">
-                        <p>Since the Andaman islands are a part of India, Indian citizens do not generally require a passport or a visa. However, you must carry a valid government issued photo ID card such as Aadhaar Card, voter ID or driving license, that may be required during flight boarding and hotel check ins.</p>
+                        <p>No, flight tickets are not included in our package, as we totally deal with ground handling arrangements like hotels, ferry transfers, sightseeings and water sports activities. Our Andaman Bliss team will help you in the flight booking process.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq8">
@@ -1944,14 +1992,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>What are the must visit attractions in Andaman island?</h3>
+                        <h3>Do I need to carry a passport or visa if I am traveling to Andaman island?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer8">
-                        <p>They must visit attractions that you will be going to see in your Andaman tour package from Ahmedabad includes Port Blair, Radhanagar Beach and Elephant beach in Havelock, Neil island for its natural rock formations and peaceful beaches, Cellular Jail for its historical significance and baratang island that gives a unique experience by visiting Limestone cave and a Mud Volcano.</p>
+                        <p>No, Indian citizen do not require to curry passport or visa to visit Andaman island from Coimbatore. We recommend you to carry a valid government issued ID card like Aadhaar card or driving license, as it may be required at the time of airport and hotel check ins.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq9">
@@ -1960,14 +2008,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Are water sports activities included in our Andaman tour package?</h3>
+                        <h3>How early should I book my Andaman package from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer9">
-                        <p>Our package offers a complimentary snorkeling session that you can enjoy with your loved ones. But if you want to take part in other water activities, you can directly book in advance from our own website. Or you can book directly at the activity centre like Havelock and North Bay island.</p>
+                        <p>It is mandatory to book your package at least 1 to 2 months in advance, especially during the peak season that starts from October to May.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq10">
@@ -1976,14 +2024,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Can I customize my Andaman tour package?</h3>
+                        <h3>What should I pack for my Andaman trip from Coimbatore?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer10">
-                        <p>Yes, our tour package from Ahmedabad to Andaman allows you to customize your trip as per your choices and preferences. You can choose your preferred hotels, sightseeing and activities. Whether you are a honeymoon couple, a family or group of friends, the itinerary can be tailored according to your interest and budget.</p>
+                        <p>We recommend you to carry light cotton clothes, swimwear, hats, comfortable shoes, a reusable water bottle and basic medicines. If you want to take part in water sports activities, we suggest you carry waterproof bags and quick dry clothes.</p>
                     </div>
                 </div>
             </div>

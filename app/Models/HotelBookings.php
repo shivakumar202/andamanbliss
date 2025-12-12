@@ -70,4 +70,10 @@ class HotelBookings extends Model
         return $this->belongsTo(TempItinerary::class,'booking_code','room_booking_code');
     }
 
+    public function TempIt()
+    {
+        return $this->hasMany(TempItinerary::class,'package_id','search_hash')->where('mode','package');
+    }
+
+
 }

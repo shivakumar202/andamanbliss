@@ -128,10 +128,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Page Category') }} <span style="color:red;">*</span></label>
                                     <select name="category" class="form-control {{ $errors->has('category') ? 'is-invalid' : '' }}">
-                                        <option value="home-page" {{ old('category', $review->table_type ?? '') == 'home-page' ? 'selected' : '' }}>Home Page</option>
                                         <option value="home-page-postcards" {{ old('category', $review->table_type ?? '') == 'home-page-postcards' ? 'selected' : '' }}>Home Page Post Cards</option>
-                                        <option value="about-page" {{ old('category', $review->table_type ?? '') == 'about-page' ? 'selected' : '' }}>About Page</option>
-                                        <option value="contact-page" {{ old('category', $review->table_type ?? '') == 'contact-page' ? 'selected' : '' }}>Contact Page</option>
                                     </select>
                                     @if ($errors->has('category'))
                                         <label class="error">{{ $errors->first('category') }}</label>

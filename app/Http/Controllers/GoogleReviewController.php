@@ -216,7 +216,7 @@ class GoogleReviewController extends Controller
     $mail = Auth::user()->email;
 
     if ($mail !== 'info@andamanbliss.com') {
-        return ['success' => false, 'message' => 'Not allowed'];
+        return ['success' => false, 'message' => 'Not allowed', 'status' => '300'];
     }
 
     $accessToken = $this->getAccessToken();
@@ -281,7 +281,7 @@ class GoogleReviewController extends Controller
 
     Log::info('Google reviews fetch completed.');
 
-    return ['success' => true, 'new_reviews' => count($allReviews)];
+    return ['success' => true, 'message' => count($allReviews), 'status' => 200];
 }
 
 

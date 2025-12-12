@@ -43,8 +43,10 @@
 
     @include('admin.layouts.alert')
 
+   
     <!-- Widgets  -->
     <div class="row">
+
       <div class="col-lg-3 col-md-6">
         <div class="card">
           <div class="card-body">
@@ -54,7 +56,7 @@
               </div>
               <div class="stat-content">
                 <div class="text-left dib">
-                  <div class="stat-text">₹<span class="count">23569</span></div>
+                  <div class="stat-text">₹<span class="count">{{ $revenue }}</span></div>
                   <div class="stat-heading">Revenue</div>
                 </div>
               </div>
@@ -62,7 +64,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-lg-3 col-md-6">
         <div class="card">
           <div class="card-body">
@@ -90,8 +91,8 @@
               </div>
               <div class="stat-content">
                 <div class="text-left dib">
-                  <div class="stat-text"><span class="count">349</span></div>
-                  <div class="stat-heading">Invoices</div>
+                  <div class="stat-text"><span class="count">{{ $bookings }}</span></div>
+                  <div class="stat-heading">Bookings</div>
                 </div>
               </div>
             </div>
@@ -108,7 +109,7 @@
               </div>
               <div class="stat-content">
                 <div class="text-left dib">
-                  <div class="stat-text"><span class="count">2986</span></div>
+                  <div class="stat-text"><span class="count">{{ $users }}</span></div>
                   <div class="stat-heading">Clients</div>
                 </div>
               </div>
@@ -159,9 +160,18 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript">
   $(document).ready(function() {
-    //
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
+    });
   });
 </script>
 @endsection

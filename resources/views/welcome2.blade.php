@@ -93,6 +93,44 @@ hotel bookings, adventure activities, and more. Book today for an unforgettable 
 
 
 @section('content')
+<style>
+.home-banner {
+    position: relative;
+    min-height: 80vh;
+}
+
+.home-banner .banner-form-container {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    z-index: 10;
+    max-width: 400px;
+    width: 90%;
+}
+
+.home-banner .lead-form-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+    .home-banner {
+        min-height: auto;
+        padding: 40px 0;
+    }
+    
+    .home-banner .banner-form-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+</style>
+
 <section class="home-banner">
     <div class="d-flex justify-content-center align-items-center h-100 w-100 position-relative">
          <video autoplay loop muted playsinline class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
@@ -101,12 +139,90 @@ hotel bookings, adventure activities, and more. Book today for an unforgettable 
         </video>
 
         <!-- Optional overlay -->
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: none !important;"></div>
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.2);"></div>
 
-        <!-- <div class="text-center text-white position-relative">
-            <h1 class="display-3 fw-bold text-white">Travel Andaman</h1>
-            <p class="mb-0 fs-6 text-uppercase fw-bold" style="letter-spacing: 10px;">with the local experts</p>
-        </div> -->
+        <!-- Lead Form in Banner -->
+        <div class="banner-form-container">
+            <div class="card lead-form-card shadow-lg border-0 rounded-4">
+                <div class="card-body p-3">
+                    <div class="text-center mb-3">
+                        <h3 class="h5 fw-bold text-andaman mb-2">Get Your Free Travel Consultation</h3>
+                        <p class="text-muted small mb-0">Fill out the form and our travel experts will contact you</p>
+                    </div>
+
+                    <form class="lead-generation-form" method="POST" action="{{ route('contact') }}">
+                        @csrf
+                        <div class="row g-2">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" name="name" class="form-control form-control-sm" id="fullName"
+                                        placeholder="Your Full Name" required>
+                                    <label for="fullName">Full Name</label>
+                                </div>
+                            </div>
+                            <input type="text" class="hidden" style="display: none;" name="url" id="url"
+                                value="{{ url()->current() }}">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="email" name="email" class="form-control form-control-sm" id="emailAddress"
+                                        placeholder="Your Email Address" required>
+                                    <label for="emailAddress">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="col-12 input-group">
+                                <select class="form-select form-select-sm rounded-0 py-1" name="code"
+                                    id="contact_pre" aria-label="Country Code" required>
+                                    <option value="+91" selected>+91</option>
+                                    <option value="+1">+1</option>
+                                    <option value="+44">+44</option>
+                                </select>
+                                <input type="text" name="mobile" id="mobile" placeholder="Contact Number"
+                                    class="form-control form-control-sm py-2" required>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-floating month-input-wrapper w-100">
+                                    <input type="month" name="month" class="form-control form-control-sm" id="travelMonth"
+                                        value="{{ date('Y-m', strtotime('+0 months')) }}"
+                                        min="{{ date('Y-m') }}" required>
+                                    <label for="travelMonth">Travel Month</label>
+                                </div>
+                            </div>
+
+                            <input type="text" name="website" id="website" style="display:none;" tabindex="-1"
+                                autocomplete="off">
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <select class="form-select form-select-sm" name="tour" id="travelType"
+                                        aria-label="Preferred Travel Type" required>
+                                        <option selected disabled value="">Select Type</option>
+                                        <option value="honeymoon">Honeymoon</option>
+                                        <option value="family">Family</option>
+                                        <option value="adventure">Adventure</option>
+                                        <option value="solo">Solo</option>
+                                        <option value="group">Group</option>
+                                    </select>
+                                    <label for="travelType">Travel Type</label>
+                                </div>
+                            </div>
+                            <!-- <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control form-control-sm" name="message"
+                                        placeholder="Additional Preferences" id="additionalPreferences"
+                                        style="height: 80px"></textarea>
+                                    <label for="additionalPreferences">Additional Preferences</label>
+                                </div>
+                            </div> -->
+                            <div class="col-12 d-flex justify-content-center text-center">
+                                <button type="submit" class="btn-andaman btn-sm w-100 rounded-pill py-2">
+                                    Get Free Consultation <i class="fas fa-paper-plane ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
 </section>
@@ -150,12 +266,12 @@ $offerTypes = [
 ];
 @endphp
 
-<section id="andaman-special-offers" class="pb-2 bg-light special-offers-unique-section">
+<section id="andaman-special-offers" class="pb-2 bg-light special-offers-unique-section d-none">
     <div class="container">
         <div class="row mb-4">
             <div class="col-12 text-center mt-3">
                 <h2 class="section-heading">Exclusive Travel <span class="text-gradient">Deals</span></h2>
-                <p class="section-subheading pt-2">Unbeatable Offers Across Your Dream Destinations</p>
+                <p class="section-subheading">Unbeatable Offers Across Your Dream Destinations</p>
             </div>
         </div>
 
@@ -245,8 +361,671 @@ $offerTypes = [
         </div>
     </div>
 </section>
+<!-- review section-->
+
+<style>
+.reviews-section {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-content {
+    color: white;
+    padding: 20px 10px;
+}
+
+.welcome-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.welcome-brand {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FF5722;
+    margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+    opacity: 0.95;
+}
+
+.welcome-tagline {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.welcome-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.traveler-image-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.traveler-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+}
+
+.review-cards-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.review-card-compact {
+    background: white;
+    border-radius: 12px;
+    padding: 15px 10px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.review-card-compact:hover {
+    transform: translateY(-5px);
+}
+
+.review-logo-compact {
+    max-width: 80px;
+    margin-bottom: 8px;
+}
+
+.review-rating-compact {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 3px;
+}
+
+.review-stars-compact {
+    color: #FFA500;
+    font-size: 0.75rem;
+    margin-bottom: 5px;
+}
+
+.review-text-compact {
+    font-size: 0.7rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.review-subtext-compact {
+    font-size: 0.65rem;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .reviews-section {
+        height: auto;
+        min-height: 400px;
+        padding: 20px 0;
+    }
+    
+    .welcome-content {
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .welcome-title {
+        font-size: 1.3rem;
+    }
+    
+    .welcome-brand {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .welcome-tagline {
+        font-size: 1rem;
+    }
+    
+    .welcome-description {
+        font-size: 0.8rem;
+    }
+    
+    .traveler-image-container {
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .traveler-image {
+        max-height: 180px;
+    }
+    
+    .review-cards-vertical {
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .review-card-compact {
+        padding: 10px 8px;
+    }
+    
+    .review-logo-compact {
+        max-width: 60px;
+    }
+    
+    .review-rating-compact {
+        font-size: 1rem;
+    }
+}
+</style>
+
+<section class="reviews-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Column: Welcome Content (6 columns on desktop, 12 on mobile) -->
+            <div class="col-md-6 col-12 order-1">
+                <div class="welcome-content">
+                    <h1 class="welcome-title">Welcome to</h1>
+                    <h2 class="welcome-brand">Andaman Bliss</h2>
+                    <p class="welcome-subtitle">Your Trusted Andaman Travel Partner</p>
+                    
+                    <h3 class="welcome-tagline">Explore. Experience. Escape.</h3>
+                    <p class="welcome-description">
+                        Discover the pristine beauty of the Andaman & Nicobar islands like never before. At Andaman Bliss, we believe travel should be more than just a trip, it should be a soulful experience.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Right Column: Review Cards (2 columns on desktop, 6 on mobile, appears 2nd on mobile) -->
+            <div class="col-md-2 col-6 order-md-3 order-3">
+                <div class="review-cards-vertical">
+                    <!-- Google Review Card -->
+                    <div class="review-card-compact">
+                        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" class="review-logo-compact">
+                        <div class="review-rating-compact">5.0</div>
+                        <div class="review-stars-compact">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="review-text-compact">Rated by</div>
+                        <div class="review-subtext-compact">3,200+ Happy<br>Travelers</div>
+                    </div>
+                    
+                    <!-- TripAdvisor Review Card -->
+                    <div class="review-card-compact">
+                        <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg" alt="TripAdvisor" class="review-logo-compact">
+                        <div class="review-text-compact">Top Rated on<br>Tripadvisor</div>
+                        <div class="review-subtext-compact">Travelers' Choice</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Column: Traveler Image (4 columns on desktop, 6 on mobile, appears 1st on mobile) -->
+            <div class="col-md-4 col-6 order-md-2 order-2">
+                <div class="traveler-image-container">
+                    <img src="{{ asset('site/img/model.png') }}" alt="Happy Traveler" class="traveler-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--hot-deal or popular packages -->
+
+<section class="hot-deals bg-light mt-3">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-heading fw-bolder mb-3">Explore Our <span class="text-gradient">Hot Deals</span></h2>
+                <p class="section-subheading">Discover amazing travel experiences at unbeatable prices</p>
+            </div>
+        </div>
+
+        <div class="row g-4 mobile-scroll-row">
+            @foreach ($hotDeals as $deal)
+            @php
+                $rate = $deal['package_cost'] ?? 0;
+                $discountAmount = $deal['discount'] ?? 0;
+                $discountPercent = $rate > 0 ? round(($discountAmount / $rate) * 100) : 0;
+                $discount = $rate - $discountAmount;
+            @endphp
+
+            <div class="col-lg-3 col-md-6">
+                <div class="honeymoon-package-card">
+                    <div class="honeymoon-package-image">
+                        <img src="{{ @$deal->tourPhotos[0]->file }}" alt="{{ $deal['package_name'] }}">
+                        @if($discountPercent > 0)
+                        <div class="package-discount-badge">{{ $discountPercent }}% DISCOUNT</div>
+                        @endif
+                        <div class="package-rating-badge">
+                            <i class="fas fa-star text-warning"></i> 4.8 (120)
+                        </div>
+                        <div class="package-duration">
+                            {{ $deal['nights'] ?? 3 }} Nights, {{ $deal['days'] ?? 4 }} Days
+                        </div>
+                    </div>
+                    
+                    <div class="honeymoon-package-content">
+                        <div class="package-route">{{ $deal['tourCategory']['name'] ?? 'Andaman Tour' }}</div>
+                        <h3 class="package-title">{{ $deal['package_name'] }}</h3>
+                    </div>
+                    
+                    <div class="package-price-footer">
+                        <div class="package-price-text">INR {{ number_format($rate) }}/Person</div>
+                        @if($discountAmount > 0)
+                        <div class="package-price-original">{{ number_format($discount) }}</div>
+                        @endif
+                    </div>
+                    
+                    <div class="package-itinerary-container">
+                        <a href="{{ route('tour.dynamic.category', [
+                            'slug' => $deal['tourCategory']['slug'], 
+                            'subslug' => $deal['slug']
+                        ]) }}" class="package-itinerary-btn">View Itinerary</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{{ url('andaman-tour-packages') }}" class="view-all-btn btn-lg rounded-pill px-3">
+                    View All Deals <i class="fas fa-chevron-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--honeymoon -section-->
+
+@php
+$honeymoonPackages = [
+    [
+        'discount' => '10% DISCOUNT',
+        'rating' => '5.0',
+        'reviews' => '250',
+        'nights' => 3,
+        'days' => 4,
+        'route' => 'Port Blair → Havelock → Port Blair',
+        'title' => 'Andaman Couple Tour Package',
+        'price' => '12,900',
+        'original_price' => '17,000',
+        'image' => asset('site/img/home/home_honeymoon3.webp'),
+        'link' => 'https://andamanbliss.com/andaman-honeymoon-tour-3-nights-4-days'
+    ],
+    [
+        'discount' => '20% DISCOUNT',
+        'rating' => '5.0',
+        'reviews' => '280',
+        'nights' => 4,
+        'days' => 5,
+        'route' => 'Port Blair → Havelock → Port Blair',
+        'title' => 'Andaman and Nicobar Couple Package',
+        'price' => '16,900',
+        'original_price' => '21,500',
+        'image' => asset('site/img/home/hone_honeymoon2.webp'),
+        'link' => 'https://andamanbliss.com/andaman-honeymoon-tour-4-nights-5-days'
+
+    ],
+    [
+        'discount' => '30% DISCOUNT',
+        'rating' => '5.0',
+        'reviews' => '290',
+        'nights' => 5,
+        'days' => 6,
+        'route' => 'Port Blair → Havelock → Neil → Port Blair',
+        'title' => 'Andaman Honeymoon Tour Packages',
+        'price' => '18,900',
+        'original_price' => '25,000',
+        'image' => asset('site/img/home/home_honeymoon.webp'),
+        'link' => 'https://andamanbliss.com/andaman-honeymoon-tour-5-nights-6-days'
+    ],
+    [
+        'discount' => '10% DISCOUNT',
+        'rating' => '5.0',
+        'reviews' => '310',
+        'nights' => 6,
+        'days' => 7,
+        'route' => 'Port Blair → Havelock → Neil → Ross Island → Port Blair',
+        'title' => 'Exciting Andaman Honeymoon Package',
+        'price' => '20,900',
+        'original_price' => '27,000',
+        'image' => asset('site/img/home/home_honeymoon5.webp'),
+        'link' => 'https://andamanbliss.com/andaman-honeymoon-tour-6-nights-7-days'
+    ],
+];
+@endphp
+
+<style>
+.honeymoon-packages {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.honeymoon-package-card {
+    border-radius: 0 0 0 50px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background: white;
+    position: relative;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.honeymoon-package-card:hover {
+    transform: translateY(-10px);
+}
+
+.honeymoon-package-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.honeymoon-package-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.honeymoon-package-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+    z-index: 1;
+}
+
+.package-discount-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #FF5722;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.package-rating-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.package-duration {
+   position: absolute;
+    bottom: 11px;
+    left: 35px;
+    background: #FF5722;
+    color: white;
+    padding: 5px 13px;
+    border-radius: 2px;
+    font-size: 0.725rem;
+    font-weight: 600;
+    z-index: 2;
+}
 
 
+.honeymoon-package-content {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 2;
+    color: white;
+}
+
+.package-route {
+    font-size: 0.75rem;
+    color: white;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.package-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 18px;
+    min-height: auto;
+}
+
+.package-itinerary-container {
+    position: absolute;
+    bottom: 12px;
+    left: 150px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 2;
+}
+
+.package-itinerary-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 3px 6px;
+    border-radius: 1px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.package-itinerary-btn:hover {
+    background: white;
+    color: #0d6efd;
+}
+
+.package-price-footer {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    background: transparent;
+    color: white;
+    padding: 15px 20px;
+    z-index: 2;
+}
+
+.package-price-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.package-price-original {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    text-decoration: line-through;
+}
+
+@media (max-width: 768px) {
+    .honeymoon-package-card {
+        margin-bottom: 20px;
+    }
+}
+</style>
+
+<section class="honeymoon-packages">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-heading fw-bolder mb-3">Andaman <span class="text-gradient">Honeymoon</span> Tour Packages</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4 mobile-scroll-row">
+            @foreach($honeymoonPackages as $package)
+            <div class="col-lg-3 col-md-6">
+                <div class="honeymoon-package-card">
+                    <div class="honeymoon-package-image">
+                        <img src="{{ $package['image'] }}" alt="{{ $package['title'] }}">
+                        <div class="package-discount-badge">{{ $package['discount'] }}</div>
+                        <div class="package-rating-badge">
+                            <i class="fas fa-star text-warning"></i> {{ $package['rating'] }} ({{ $package['reviews'] }})
+                        </div>
+                        <div class="package-duration">
+                            {{ $package['nights'] }} Nights, {{ $package['days'] }} Days
+                        </div>
+                    </div>
+                    
+                    <div class="honeymoon-package-content">
+                        <div class="package-route">{{ $package['route'] }}</div>
+                        <h3 class="package-title">{{ $package['title'] }}</h3>
+                    </div>
+                    
+                    <div class="package-price-footer">
+                        <div class="package-price-text">INR {{ $package['price'] }}/Person</div>
+                        <div class="package-price-original">{{ $package['original_price'] }}</div>
+                    </div>
+                    
+                    <div class="package-itinerary-container">
+                        <a href="{{ $package['link'] ?? 'add link' }}" class="package-itinerary-btn">View Itinerary</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<style>
+    .popular-activities .activity-card {
+        border-radius: 0;
+        border-bottom-left-radius: 40px; /* Consistent curve on bottom-left */
+        overflow: hidden;
+        position: relative;
+        height: 350px;
+        border: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        border-radius: 0 0 0 50px !important;
+    }
+    
+    .popular-activities .activity-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .popular-activities .activity-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .popular-activities .activity-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+        color: white;
+        text-align: center;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 60%;
+    }
+
+    .popular-activities .activity-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        color: white;
+    }
+
+    .popular-activities .activity-separator {
+        width: 50px;
+        height: 2px;
+        background-color: white;
+        margin: 5px auto;
+    }
+
+    .popular-activities .activity-price {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        color: white;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        .popular-activities .activity-card {
+            height: 220px; /* Reduced height for mobile */
+            border-bottom-left-radius: 25px; /* Slightly smaller curve for smaller cards */
+        }
+        
+        .popular-activities .activity-overlay {
+            padding: 10px;
+            height: 70%; /* Increase overlay height coverage for better text visibility */
+        }
+
+        .popular-activities .activity-title {
+            font-size: 0.75rem; /* Smaller font */
+            margin-bottom: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .popular-activities .activity-separator {
+            width: 30px;
+            margin: 3px auto;
+        }
+
+        .popular-activities .activity-price {
+            font-size: 0.7rem;
+        }
+    }
+</style>
 
 <section class="popular-activities bg-light">
     <div class="container">
@@ -254,61 +1033,36 @@ $offerTypes = [
             <div class="col-12 text-center">
                 <h2 class="section-heading fw-bolder mb-3">Popular & Trending <span
                         class="text-gradient">Activities</span></h2>
-                <p class="section-subheading pb-3 pt-2">Discover exciting adventures that make Andaman unforgettable</p>
+                <p class="section-subheading pb-5">Discover exciting adventures that make Andaman unforgettable</p>
             </div>
         </div>
-        <div class="row g-4 mobile-scroll-row">
+        
+        <div class="row g-2 g-md-4"> <!-- Reduced gap on mobile -->
             @foreach ($activities as $activity)
-            <div class="col-md-3 col-sm-6">
-                <div class="card activity-card border-0 shadow-sm h-100 position-relative">
-                    <div class="activity-icon position-absolute">
-                        <i class="fa-solid fa-person-swimming text-andaman"></i>
-                    </div>
-                    <img src="{{ $activity['activityPhotos'][0]['file'] }}" class="card-img-top activity-image"
-                        alt="{{ $activity['service_name'] }}" loading="lazy">
-                    <div class="card-body">
-                        <h3 class="card-title fw-bold mb-3">{{ $activity['service_name'] }}</h3>
-                        <p class="card-text text-muted mb-3 truncate-text">{{ $activity['description'] }}</p>
-
-                        <div class="activity-details">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="rating-stars d-flex align-items-center">
-                                    @for ($i = 1; $i <= $activity['rating']; $i++) <i class="fas fa-star filled"></i>
-                                        @endfor
-                                        ({{ $activity['rating'] }}) reviews
-                                </span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-1">
-                                @php
-    $original = $activity['adult_cost'];
-    $discount = $activity['discount'] ?? 0;
-    $finalPrice = $original - ($original * $discount / 100);
-@endphp
-
-<span class="fs-6 fw-bolder text-andaman mb-0">
-    @if($discount > 0)
-        <del>₹{{ number_format($original) }}</del> ₹{{ number_format($finalPrice) }}
-    @else
-        ₹{{ number_format($original) }}
-    @endif
-</span>
-
-                                    @php
-                                        $activityUrl = $activity->url ?? $activity->slug;
-                                    @endphp
-
-
-
-                                <div class="cruise-actions">
-                                    <a href="{{ route('activity.view',['url' =>  $activityUrl ])  }}"
-                                        class="btn-book rounded-5 ">
-                                        Book Now <i class="fas fa-chevron-right ms-2"></i>
-                                    </a>
-                                </div>
-                            </div>
+            <div class="col-lg-2 col-md-3 col-4"> <!-- col-4 for 3 columns on mobile -->
+                @php
+                    $activityUrl = $activity->url ?? $activity->slug;
+                    $original = $activity['adult_cost'];
+                    $discount = $activity['discount'] ?? 0;
+                    $finalPrice = $original - ($original * $discount / 100);
+                @endphp
+                <a href="{{ route('activity.view',['url' =>  $activityUrl ]) }}" class="text-decoration-none">
+                    <div class="card activity-card">
+                        <img src="{{ $activity['activityPhotos'][0]['file'] }}" class="activity-image"
+                            alt="{{ $activity['service_name'] }}" loading="lazy">
+                        <div class="activity-overlay">
+                            <h3 class="activity-title">{{ $activity['service_name'] }}</h3>
+                            <div class="activity-separator"></div>
+                            <p class="activity-price">
+                                @if($discount > 0)
+                                    ₹{{ number_format($finalPrice) }}
+                                @else
+                                    ₹{{ number_format($original) }}
+                                @endif
+                            </p>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             @endforeach
         </div>
@@ -628,7 +1382,7 @@ $offerTypes = [
                                     <div class="col-12">
                                         <div class="form-check d-flex align-items-center py-2">
                                             <input class="form-check-input me-2" type="checkbox" id="privacyConsent">
-                                            <label class="form-check-label privacyCondition text-muted ms-2 mt-2" for="privacyConsent">
+                                            <label class="form-check-label text-muted ms-2" for="privacyConsent">
                                                 I agree to receive travel updates and promotional offers
                                             </label>
                                         </div>
@@ -648,12 +1402,516 @@ $offerTypes = [
     </div>
 </section>
 
+<style>
+.promo-banner-slider {
+    padding: 40px 0;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+
+.promo-slider-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.promo-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.promo-slide {
+    min-width: 100%;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 200px;
+    background: linear-gradient(135deg, #2c3e50 0%, #4a5568 100%);
+}
+
+.promo-slide-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 30px 50px;
+    color: white;
+}
+
+.promo-left {
+    flex: 1;
+}
+
+.promo-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+
+.promo-package {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffffff;
+    margin-bottom: 10px;
+}
+
+.promo-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.promo-price small {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.promo-features {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+}
+
+.promo-right {
+    position: relative;
+    width: 300px;
+    height: 100%;
+}
+
+.promo-image {
+    position: absolute;
+    right: -50px;
+    bottom: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.promo-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    max-width: 150px;
+    z-index: 3;
+}
+
+.promo-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.promo-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.promo-dot.active {
+    background: #FD6E0F;
+    width: 30px;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+   .promo-slide {
+        height: 150px;
+    }
+   
+    .promo-slide-content {
+        padding: 15px 20px;
+    }
+   
+    .promo-title {
+        font-size: 0.75rem;
+        margin-bottom: 5px;
+    }
+   
+    .promo-package {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+   
+    .promo-price {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+   
+    .promo-price small {
+        font-size: 0.7rem;
+    }
+   
+    .promo-features {
+        font-size: 0.65rem;
+        gap: 8px;
+    }
+   
+    .promo-right {
+        width: 150px;
+    }
+   
+    .promo-image {
+        right: -20px;
+        max-height: 120px;
+    }
+   
+    .promo-logo {
+        max-width: 80px;
+        top: 10px;
+        right: 10px;
+    }
+}
+</style>
+
+@php
+$promoSlides = [
+    [
+        'title' => 'Deal Never Before - Luxurious Escape to Andaman!',
+        'package' => '3N/4D Luxury Package',
+        'price' => '₹16,999',
+        'per' => 'per person',
+        'features' => ['Stay', 'Private Ferry', 'Sightseeing', 'All Inclusive'],
+        'image' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop',
+        'gradient' => 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    ],
+    [
+        'title' => 'Honeymoon Special - Paradise Awaits!',
+        'package' => '5N/6D Romantic Package',
+        'price' => '₹24,999',
+        'per' => 'per couple',
+        'features' => ['Luxury Stay', 'Candlelight Dinner', 'Island Hopping', 'Spa'],
+        'image' => 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400&h=400&fit=crop',
+        'gradient' => 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+    ],
+    [
+        'title' => 'Family Adventure - Create Memories Together!',
+        'package' => '4N/5D Family Package',
+        'price' => '₹19,999',
+        'per' => 'per person',
+        'features' => ['Family Rooms', 'Water Sports', 'Beach Activities', 'Meals'],
+        'image' => 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=400&fit=crop',
+        'gradient' => 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+    ],
+];
+@endphp
+
+<section class="promo-banner-slider">
+    <div class="container">
+        <div class="promo-slider-container">
+            <div class="promo-slides" id="promoSlides">
+                @foreach($promoSlides as $index => $slide)
+                <div class="promo-slide" style="background: {{ $slide['gradient'] }};">
+                    <div class="promo-slide-content">
+                        <div class="promo-left">
+                            <h2 class="promo-title">{{ $slide['title'] }}</h2>
+                            <div class="promo-package">{{ $slide['package'] }}</div>
+                            <div class="promo-price">Starting at {{ $slide['price'] }} <small>{{ $slide['per'] }}</small></div>
+                            <div class="promo-features">
+                                @foreach($slide['features'] as $feature)
+                                <span>{{ $feature }}</span> @if(!$loop->last) | @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="promo-right">
+                            <img src="{{ $slide['image'] }}" alt="Promo" class="promo-image">
+                            <img src="{{ asset('site/img/ad_girl.png') }}" alt="Logo" class="promo-logo">
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            
+            <div class="promo-dots">
+                @foreach($promoSlides as $index => $slide)
+                <div class="promo-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slidesContainer = document.getElementById('promoSlides');
+    const dots = document.querySelectorAll('.promo-dot');
+    let currentSlide = 0;
+    const totalSlides = {{ count($promoSlides) }};
+    
+    function goToSlide(index) {
+        currentSlide = index;
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        goToSlide(currentSlide);
+    }
+    
+    // Auto-play
+    let autoPlay = setInterval(nextSlide, 5000);
+    
+    // Dot navigation
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            clearInterval(autoPlay);
+            goToSlide(parseInt(this.dataset.slide));
+            autoPlay = setInterval(nextSlide, 5000);
+        });
+    });
+});
+</script>
+
+<!--andaman family pacakge-->
+
+@php
+$familyPackages = [
+    [
+        'discount' => '15% DISCOUNT',
+        'rating' => '4.9',
+        'reviews' => '180',
+        'nights' => 4,
+        'days' => 5,
+        'route' => 'Port Blair → Havelock → Neil Island',
+        'title' => 'Andaman Family Adventure Package',
+        'price' => '15,500',
+        'original_price' => '18,200',
+        'image' => asset('site/img/home/home_family1.jpg'),
+        'link' => 'https://andamanbliss.com/andaman-family-tour-3-nights-4-days'
+    ],
+    [
+        'discount' => '20% DISCOUNT',
+        'rating' => '5.0',
+        'reviews' => '220',
+        'nights' => 5,
+        'days' => 6,
+        'route' => 'Port Blair → Havelock → Neil → Ross Island',
+        'title' => 'Andaman Family Deluxe Package',
+        'price' => '19,900',
+        'original_price' => '24,900',
+        'image' => asset('site/img/home/home_family2.jpg'),
+        'link' => 'https://andamanbliss.com/andaman-family-tour-5-nights-6-days'
+    ],
+    [
+        'discount' => '10% DISCOUNT',
+        'rating' => '4.8',
+        'reviews' => '150',
+        'nights' => 3,
+        'days' => 4,
+        'route' => 'Port Blair → Havelock → Port Blair',
+        'title' => 'Andaman Family Budget Package',
+        'price' => '11,700',
+        'original_price' => '13,000',
+        'image' => asset('site/img/home/home_family3.jpg'),
+        'link' => 'https://andamanbliss.com/andaman-family-tour-3-nights-4-days'
+    ],
+    [
+        'discount' => '25% DISCOUNT',
+        'rating' => '5.0',
+        'reviews' => '300',
+        'nights' => 6,
+        'days' => 7,
+        'route' => 'Port Blair → Havelock → Neil → Baratang',
+        'title' => 'Andaman Family Premium Package',
+        'price' => '24,750',
+        'original_price' => '33,000',
+        'image' => asset('site/img/home/home_family4.jpg'),
+        'link' => 'https://andamanbliss.com/andaman-family-tour-6-nights-7-days'
+    ],
+];
+@endphp
+
+
+
+<section class="honeymoon-packages">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-heading fw-bolder mb-3">Andaman <span class="text-gradient">Family</span> Tour Packages</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4 mobile-scroll-row">
+            @foreach($familyPackages as $package)
+            <div class="col-lg-3 col-md-6">
+                <div class="honeymoon-package-card">
+                    <div class="honeymoon-package-image">
+                        <img src="{{ $package['image'] }}" alt="{{ $package['title'] }}">
+                        <div class="package-discount-badge">{{ $package['discount'] }}</div>
+                        <div class="package-rating-badge">
+                            <i class="fas fa-star text-warning"></i> {{ $package['rating'] }} ({{ $package['reviews'] }})
+                        </div>
+                        <div class="package-duration">
+                            {{ $package['nights'] }} Nights, {{ $package['days'] }} Days
+                        </div>
+                    </div>
+                    
+                    <div class="honeymoon-package-content">
+                        <div class="package-route">{{ $package['route'] }}</div>
+                        <h3 class="package-title">{{ $package['title'] }}</h3>
+                    </div>
+                    
+                    <div class="package-price-footer">
+                        <div class="package-price-text">INR {{ $package['price'] }}/Person</div>
+                        <div class="package-price-original">{{ $package['original_price'] }}</div>
+                    </div>
+                    
+                    <div class="package-itinerary-container">
+                        <a href="{{ $package['link'] ?? 'add-link' }}" class="package-itinerary-btn">View Itinerary</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!--popular cruise-->
+
+<style>
+    .popular-cruise .cruise-card {
+        border: none;
+        border-radius: 15px 15px 15px 40px; /* Match footer curve */
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        position: relative;
+        background: transparent; /* Remove white background */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .popular-cruise .cruise-image-container {
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .popular-cruise .cruise-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .popular-cruise .cruise-card:hover .cruise-image {
+        transform: scale(1.1);
+    }
+
+    .popular-cruise .cruise-discount-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: #FF5722;
+        color: white;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        z-index: 2;
+    }
+
+    .popular-cruise .cruise-rating-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        text-align: right;
+        z-index: 2;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .popular-cruise .cruise-overlay-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        color: white;
+        z-index: 2;
+    }
+
+    .popular-cruise .cruise-route {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .popular-cruise .cruise-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        line-height: 1.2;
+        color: white;
+    }
+
+    .popular-cruise .cruise-price {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .popular-cruise .cruise-original-price {
+        font-size: 0.9rem;
+        text-decoration: line-through;
+        opacity: 0.7;
+        margin-left: 10px;
+        font-weight: normal;
+    }
+
+    .popular-cruise .cruise-footer {
+        background: rgb(17, 157, 213); /* Updated Theme Color */
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom-left-radius: 40px; /* The requested curve */
+    }
+
+    .popular-cruise .cruise-footer .phone-icon {
+        color: white;
+        font-size: 1.2rem;
+        transform: rotate(90deg);
+    }
+
+    .popular-cruise .cruise-footer .btn-view-itinerary {
+        background: white;
+        color: #333;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .popular-cruise .cruise-footer .btn-view-itinerary:hover {
+        background: #f8f9fa;
+    }
+</style>
+
 <section class="popular-cruise">
     <div class="container">
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-12 text-center">
-                <h2 class="section-heading">Popular Cruise<span> Lines</span></h2>
-                <p class="section-subheading pb-3 pt-2">Discover the best ferry and cruise options in Andaman</p>
+                <h2 class="section-heading fw-bolder mb-3">Popular Cruise <span class="text-gradient">Lines</span></h2>
+                <p class="section-subheading">Discover the best ferry and cruise options in Andaman</p>
             </div>
         </div>
 
@@ -662,40 +1920,44 @@ $offerTypes = [
         [
         'name' => 'Makruzz Gold',
         'description' => 'Premium Luxury Ferry',
-        'image' => 'makruzz-gold-ferry.webp',
+        'image' => asset('site/img/home/makruzz_3.jpg'),
         'routes' => ['Port Blair', 'Havelock', 'Neil Island'],
         'duration' => '2-3 Hours',
-        'price' => 'Starting ₹1,500',
+        'price' => '₹1,500',
+        'original_price' => '₹1,800',
         'rating' => 4.8,
         'reviews' => 245
         ],
         [
         'name' => 'Nautika',
         'description' => 'Comfortable Island Connector',
-        'image' => 'nautika-cruise-ferry.webp',
+        'image' => asset('site/img/home/nautika.jpg'),
         'routes' => ['Port Blair', 'Havelock', 'Neil Island'],
         'duration' => '2-3 Hours',
-        'price' => 'Starting ₹1,400',
+        'price' => '₹1,400',
+        'original_price' => '₹1,650',
         'rating' => 4.6,
         'reviews' => 189
         ],
         [
         'name' => 'Green Ocean',
         'description' => 'Eco-Friendly Ferry Service',
-        'image' => 'green-ocean-1.webp',
+        'image' => asset('site/img/home/green_ocean.webp'),
         'routes' => ['Port Blair', 'Havelock'],
         'duration' => '2 Hours',
-        'price' => 'Starting ₹850',
+        'price' => '₹850',
+        'original_price' => '₹1,000',
         'rating' => 4.5,
         'reviews' => 156
         ],
         [
         'name' => 'ITT Majestic',
         'description' => 'Reliable Island Transport',
-        'image' => 'itt-ferry.webp',
+        'image' => asset('site/img/home/itt_majestic.jpg'),
         'routes' => ['Port Blair', 'Neil Island'],
         'duration' => '1.5 Hours',
-        'price' => 'Starting ₹1,200',
+        'price' => '₹1,200',
+        'original_price' => '₹1,400',
         'rating' => 4.4,
         'reviews' => 132
         ]
@@ -704,52 +1966,31 @@ $offerTypes = [
 
         <div class="row g-4 mobile-scroll-row">
             @foreach($cruises as $cruise)
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="cruise-card">
-                    <div class="cruise-card-ribbon">Popular Choice</div>
-                    <div class="cruise-image">
-                        <img src="{{ asset('site/img/' . $cruise['image']) }}" alt="{{ $cruise['name'] }}">
-                        <div class="cruise-badge">
-                            <i class="fas fa-ship"></i>
+            <div class="col-lg-3 col-md-6">
+                <div class="honeymoon-package-card">
+                    <div class="honeymoon-package-image">
+                        <img src="{{$cruise['image']}}" alt="{{ $cruise['name'] }}">
+                        <div class="package-discount-badge">POPULAR</div>
+                        <div class="package-rating-badge">
+                            <i class="fas fa-star text-warning"></i> {{ $cruise['rating'] }} ({{ $cruise['reviews'] }})
                         </div>
-                        <div class="cruise-overlay">
-                            <div class="cruise-quick-view">
-                                <a href="{{ route('cruises') }}" class="quick-view-btn">Quick View</a>
-                            </div>
+                        <div class="package-duration">
+                            {{ $cruise['duration'] }}
                         </div>
                     </div>
-                    <div class="cruise-content">
-                        <div class="cruise-rating">
-                            <span class="rating-score">{{ $cruise['rating'] }}</span>
-                            <div class="rating-stars">
-                                @for($i = 1; $i <= 5; $i++) <i
-                                    class="fas fa-star {{ $i <= floor($cruise['rating']) ? 'filled' : '' }}"></i>
-                                    @endfor
-                            </div>
-                            <span class="rating-count">({{ $cruise['reviews'] }})</span>
-                        </div>
-                        <h3 class="cruise-title">{{ $cruise['name'] }}</h3>
-                        <p class="cruise-desc">{{ $cruise['description'] }}</p>
-
-                        <div class="cruise-info">
-                            <div class="info-item">
-                                <i class="fas fa-route"></i>
-                                <span>{{ implode(', ', $cruise['routes']) }}</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <span>{{ $cruise['duration'] }}</span>
-                            </div>
-                            <div class="info-item price-item">
-                                <i class="fas fa-tag"></i>
-                                <span class="price">{{ $cruise['price'] }}</span>
-                            </div>
-                        </div>
-
-                        <div class="cruise-actions">
-                            <a href="{{ route('cruises') }}" class="btn-details">View Details</a>
-                            <a href="{{ route('cruises') }}" class="btn-book">Book Now</a>
-                        </div>
+                    
+                    <div class="honeymoon-package-content">
+                        <div class="package-route">{{ implode(' → ', $cruise['routes']) }}</div>
+                        <h3 class="package-title">{{ $cruise['name'] }}</h3>
+                    </div>
+                    
+                    <div class="package-price-footer">
+                        <div class="package-price-text">{{ $cruise['price'] }}/Person</div>
+                        <div class="package-price-original">{{ $cruise['original_price'] }}</div>
+                    </div>
+                    
+                    <div class="package-itinerary-container">
+                        <a href="{{ route('cruises') }}" class="package-itinerary-btn">Book Ferry</a>
                     </div>
                 </div>
             </div>
@@ -758,187 +1999,202 @@ $offerTypes = [
 
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <a href="{{ route('cruises') }}" class="view-all-btn">Explore All Cruises <i
-                        class="fas fa-chevron-right ms-2"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="hot-deals bg-light">
-    <div class="container">
-        <div class="row mb-2">
-            <div class="col-12 text-center">
-                <h2 class="section-heading mb-3">Explore Our <span class="text-gradient">Hot Deals</span></h2>
-                <p class="section-subheading pt-2">Discover amazing travel experiences at unbeatable prices</p>
-            </div>
-        </div>
-
-        <div class="position-relative">
-            <div class="scroll-indicator d-md-none">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="row hot-deals-grid mobile-scroll-row">
-
-            @foreach ($hotDeals as $deal)
-           @php
-    $rate = $deal['package_cost'] ?? 0;
-    $discountAmount = $deal['discount'] ?? 0;
-
-    $discountPercent = $rate > 0 ? round(($discountAmount / $rate) * 100) : 0;
-    $discount = $rate - $discountAmount;
-@endphp
-
-
-            <div class="col-md-6 mt-3">
-                <div class="card hot-deal-card border-0 shadow-sm  mt-3">
-                    <div class="row g-0 ">
-                        <div class="col-md-5 position-relative">
-                            <img src="{{ @$deal->tourPhotos[0]->file }}" class="img-fluid w-100 h-100 object-cover"
-                                alt="{{ Str::slug($deal['package_name']) }}">
-                            @if($discountAmount > 0)
-                            <div class="position-absolute top-0 end-0 m-3 bg-danger text-white px-3 py-1 rounded">
-                                {{ $discountAmount }}% OFF
-                            </div>
-                            @endif
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body d-flex flex-column h-100">
-                                <div class="flex-grow-1">
-                                    <h3 class="card-title fw-bold mb-2 fs-6">{{ $deal['package_name'] }} </h3>
-                                    <span class="fw-bold">{{ $deal['tourCategory']['name'] }}</span>
-                                    <!-- <p>
-                                        <i class="fa-solid fa-taxi icon-style" data-bs-toggle="tooltip"
-                                            data-bs-title="Cabs"></i>
-                                        <i class="fa-solid fa-hotel icon-style" data-bs-toggle="tooltip"
-                                            data-bs-title="Hotels"></i>
-                                        <i class="fa-solid fa-binoculars icon-style" data-bs-toggle="tooltip"
-                                            data-bs-title="sightseeing"></i>
-                                        <i class="fa-solid fa-ferry icon-style" data-bs-toggle="tooltip"
-                                            data-bs-title="Ferries"></i>
-                                    </p> -->
-                                    <ul class="d-flex gap-2 text-center mt-2 mb-2">
-                                        <li> <img src="{{ asset('site/img/hotel-1.svg') }}" class="img-fluid rounded"
-                                            alt="hotel"><span class="pkg-list-inclu">Hotels</span></li>
-                                        <li><img src="{{ asset('site/img/transfer-1.svg') }}" class="img-fluid rounded"
-                                            alt="Transfer">
-                                            <span class="pkg-list-inclu">Transfer</span></li>
-                                        <li><img src="{{ asset('site/img/sightseeing-1.svg') }}" class="img-fluid rounded"
-                                            alt="hotel">
-                                            <span class="pkg-list-inclu">Sightseeing</span></li>
-                                        <li><img src="{{ asset('site/img/meal-1.svg') }}" class="img-fluid rounded"
-                                            alt="Meal"> <span class="pkg-list-inclu">Meal</span></li>
-                                           
-                                    </ul>
-
-                                    <p class="card-text text-muted mb-3" style="text-align: justify">
-                                        <!-- {{ Str::words($deal['description'], 10, '...') }} -->
-                                    </p>
-                                </div>
-                                <div class="mt-auto">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            @if ($discountAmount > 0)
-                                            <span class="text-decoration-line-through text-muted me-2">
-                                                ₹{{ number_format($discount) }}
-                                            </span>
-                                            @endif
-                                            <span class="fw-bold text-andaman">
-                                                ₹{{ number_format($rate) }}
-                                            </span>
-                                        </div>
-                                        <div class="cruise-actions">
-                                            <a class="btn-book px-3 border-0"
-                                                href="{{ route('tour.dynamic.category', [
-    'slug' => $deal['tourCategory']['slug'], 
-    'subslug' => $deal['slug'] // fallback to slug if subslug missing
-]) }}">
-                                                Book Now <i class="fas fa-chevron-right ms-2"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @endforeach
-        </div>
-
-        </div>
-
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <a href="{{ url('andaman-tour-packages') }}" class="view-all-btn btn-lg rounded-pill px-3">
-                    View All Deals <i class="fas fa-chevron-right ms-2 "></i>
+                <a href="{{ route('cruises') }}" class="view-all-btn btn-lg rounded-pill px-3">
+                    Explore All Cruises <i class="fas fa-chevron-right ms-2"></i>
                 </a>
             </div>
         </div>
-
     </div>
 </section>
 
 
 
+
+<style>
+    .featured-hotels .hotel-card {
+        border: none;
+        border-radius: 15px; /* Match footer curve */
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        position: relative;
+        background: transparent !important; /* Ensure no background */
+        padding: 0 !important; /* Remove any padding causing the gap */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .featured-hotels .hotel-image-container {
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .featured-hotels .hotel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .featured-hotels .hotel-card:hover .hotel-image {
+        transform: scale(1.1);
+    }
+
+    .featured-hotels .hotel-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: #FF5722;
+        color: white;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        z-index: 2;
+    }
+
+    .featured-hotels .hotel-rating-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        text-align: right;
+        z-index: 2;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .featured-hotels .hotel-overlay-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        color: white;
+        z-index: 2;
+    }
+
+    .featured-hotels .hotel-location {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
+    }
+
+    .featured-hotels .hotel-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        line-height: 1.2;
+        color: white;
+    }
+
+    .featured-hotels .hotel-status {
+        font-size: 1.0rem;
+        font-weight: bold;
+        color: #ffc107;
+    }
+
+    .featured-hotels .hotel-footer {
+        background: rgb(17, 157, 213);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -1px; /* Fix potential sub-pixel gap */
+        gap:5px;
+        padding: 3px 5px;
+        border-radius: 3px;
+    }
+    .mobile-scroll-row .hotel-card{
+        margin-bottom: 0px !important;
+    }
+
+    .featured-hotels .hotel-footer .phone-icon {
+        color: white;
+        font-size: 1.2rem;
+        transform: rotate(90deg);
+    }
+
+    .featured-hotels .hotel-footer .btn-book {
+        background: white;
+        color: #333;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .featured-hotels .hotel-footer .btn-book:hover {
+        background: #f8f9fa;
+    }
+</style>
+
 <section class="featured-hotels pb-2 bg-light">
     <div class="container">
-        <div class="row mb-3">
+        <div class="row mb-5">
             <div class="col-12 text-center">
                 <h2 class=" section-heading mb-3">Your Perfect Stay <span class="text-gradient">in Andaman</span></h2>
-                <p class="section-subheading pt-2">Discover handpicked hotels that promise comfort, luxury, and unforgettable
+                <p class="section-subheading">Discover handpicked hotels that promise comfort, luxury, and unforgettable
                     experiences</p>
             </div>
         </div>
 
-        <div class="row mobile-scroll-row">
+        <div class="mobile-slider-wrapper">
+            <div class="row mobile-scroll-row">
             @foreach ($featuredHotels as $hotel)
-            <div class="col-md-3 mb-4">
-                <div class="hotel-card card border-0 shadow-sm h-100">
-                    <div class="hotel-image-wrapper position-relative">
-                  @php
-    $hotelGallery = !empty($hotel->hotel_gallery) 
-        ? json_decode($hotel->hotel_gallery, true) 
-        : [];
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="honeymoon-package-card">
+                    <div class="honeymoon-package-image">
+                        @php
+                            $hotelGallery = !empty($hotel->hotel_gallery) 
+                                ? json_decode($hotel->hotel_gallery, true) 
+                                : [];
 
-    $hotelPhoto = !empty($hotel->hotel_image)
-        ? $hotel->hotel_image
-        : (!empty($hotelGallery[0])
-            ? $hotelGallery[0]
-            : 'https://andamanbliss.com/site/img/hotel_image.png');
-@endphp
+                            $hotelPhoto = !empty($hotel->hotel_image)
+                                ? $hotel->hotel_image
+                                : (!empty($hotelGallery[0])
+                                    ? $hotelGallery[0]
+                                    : 'https://andamanbliss.com/site/img/hotel_image.png');
+                        @endphp
 
-<img src="{{ $hotelPhoto }}" 
-     alt="{{ $hotel->hotel_name ?? 'Hotel Image' }}" 
-     class="card-img-top hotel-image">
+                        <img src="{{ $hotelPhoto }}" 
+                             alt="{{ $hotel->hotel_name ?? 'Hotel Image' }}">
+                        
+                        <div class="package-discount-badge">FEATURED</div>
 
-                        <div class="hotel-rating position-absolute top-0 end-0 m-3 bg-white rounded-pill px-2 pb-1">
-                            @for($i=0; $i<=$hotel['hotel_rating']; $i++) <i class="fas fa-star text-warning me-1"></i>
-                                @endfor
+                        <div class="package-rating-badge">
+                            @for($i=0; $i<=$hotel['hotel_rating']; $i++) 
+                                <i class="fas fa-star text-warning"></i>
+                            @endfor
                         </div>
                     </div>
-                    <div class="card-body px-0">
-                        <h3 class="card-title fw-bold fs-6">{{ $hotel['hotel_name'] }}</h3>
-                        <p class="card-text text-muted hotel-loco mb-2">
-                            <i class="fas fa-map-marker-alt me-2 text-andaman"></i>{{ Str::limit($hotel['address'],70) }}
-                        </p>
-                       <div class="hotel-amenities mb-3">
-                
 
-                    </div> 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="hotel-price">
-                            <span class="fw-bold insta-book">Instant Booking</span>
+                    <div class="honeymoon-package-content">
+                        <div class="package-route">
+                            <i class="fas fa-map-marker-alt me-1"></i> {{ Str::limit($hotel['address'], 40) }}
                         </div>
-                        <div class="cruise-actions">
-                            <a href="{{ url('hotels') }}" class="btn-book btn-sm  rounded-pill px-4">Book Now</a>
-                        </div>
+                        
+                        <h3 class="package-title">{{ $hotel['hotel_name'] }}</h3>
+                    </div>
+
+                    <div class="package-price-footer mb-3">
+                        <div class="package-price-text" style="font-size: 1rem;">Instant Booking</div>
+                    </div>
+
+                    <div class="package-itinerary-container">
+                        <a href="{{ url('hotels') }}" class="package-itinerary-btn">Book Now</a>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 
     <div class="row mt-4">
@@ -951,99 +2207,909 @@ $offerTypes = [
     </div>
 </section>
 
+<!-- book your -dream-->
+ <style>
+.dream-holiday-slider {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.dream-holiday-header {
+    margin-bottom: 40px;
+}
+
+.dream-holiday-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.dream-holiday-subtitle {
+    font-size: 1rem;
+    color: #666;
+}
+
+.dream-slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dream-slider-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.dream-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.dream-slide {
+    min-width: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.dream-destination-card {
+    flex: 1;
+    position: relative;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.dream-destination-card:hover {
+    transform: translateY(-5px);
+}
+
+.dream-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dream-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dream-destination-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.dream-destination-subtitle {
+    font-size: 0.9rem;
+    color: white;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.dream-countries-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: white;
+}
+
+.dream-country-item {
+    padding: 3px 0;
+}
+
+.dream-popular-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #FF5722;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 3px 10px rgba(255,87,34,0.4);
+}
+
+.dream-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.dream-nav-btn:hover {
+    background: #FF5722;
+    color: white;
+}
+
+.dream-nav-btn.prev {
+    left: -20px;
+}
+
+.dream-nav-btn.next {
+    right: -20px;
+}
+
+@media (max-width: 768px) {
+    .dream-holiday-slider {
+        padding: 40px 0;
+    }
+    
+    .dream-slides {
+        flex-wrap: nowrap;
+    }
+    
+    .dream-slide {
+        flex-direction: row;
+        gap: 0;
+        min-width: 100%;
+        gap:20px;
+    }
+    
+    .dream-destination-card {
+        height: 150px;
+        min-height: 150px;
+        min-width: 100%;
+        flex: none;
+    }
+    
+    .dream-card-overlay {
+        padding: 15px;
+    }
+    
+    .dream-destination-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    
+    .dream-destination-subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+    
+    .dream-countries-list {
+        font-size: 0.65rem;
+        gap: 5px;
+    }
+    
+    .dream-popular-badge {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 0.65rem;
+    }
+    
+    .dream-nav-btn {
+        display: none;
+    }
+    
+    .dream-slider-wrapper {
+        padding: 0 5px;
+    }
+}
+</style>
+
+<section class="dream-holiday-slider">
+    <div class="container">
+        <div class="dream-holiday-header text-center">
+            <h2 class="section-heading fw-bolder mb-3">Book Your <span class="text-gradient">Dream Holiday</span> Today!</h2>
+            <p class="section-subheading">Unbeatable deals on incredible destinations—plan your next adventure now!</p>
+        </div>
+
+        <div class="dream-slider-wrapper">
+            <button class="dream-nav-btn prev" onclick="dreamPrevSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="dream-slider-container">
+                <div class="dream-slides" id="dreamSlides">
+                    <!-- Slide 1 -->
+                    <div class="dream-slide">
+                        <div class="dream-destination-card">
+                                                    <a href="{{ url('andaman-honeymoon-packages') }}">
+
+                            <img src= "{{asset('site/img/home/andaman_honey.jpeg')}}", alt="Andaman Honeymoon" class="dream-card-image">
+                            <div class="dream-card-overlay">
+                                <h3 class="dream-destination-title">Andaman Honeymoon</h3>
+                                <p class="dream-destination-subtitle">Romantic Escapes for Couples</p>
+                                <div class="dream-countries-list">
+                                    <span class="dream-country-item">Beach Resorts</span> |
+                                    <span class="dream-country-item">Candlelight Dinner</span> |
+                                    <span class="dream-country-item">Private Islands</span> |
+                                    <span class="dream-country-item">Sunset Cruise</span> |
+                                    <span class="dream-country-item">Couple Activities</span> |
+                                    <span class="dream-country-item">Luxury Stays</span>
+                                </div>
+                            </div>
+                            <div class="dream-popular-badge">POPULAR</div>
+                                                    </a>
+                        </div>
+                        
+                        <div class="dream-destination-card">
+                                                    <a href="andaman-group-packages">
+
+                            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=400&fit=crop" alt="Andaman Group Packages" class="dream-card-image">
+                            <div class="dream-card-overlay">
+                                <h3 class="dream-destination-title">Group Packages</h3>
+                                <p class="dream-destination-subtitle">Perfect for Friends & Corporate Groups</p>
+                                <div class="dream-countries-list">
+                                    <span class="dream-country-item">Island Hopping</span> |
+                                    <span class="dream-country-item">Water Sports</span> |
+                                    <span class="dream-country-item">Beach Camping</span> |
+                                    <span class="dream-country-item">Group Activities</span> |
+                                    <span class="dream-country-item">Team Building</span>
+                                </div>
+                            </div>
+                            <div class="dream-popular-badge">POPULAR</div>
+                                                    </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="dream-slide">
+                        <div class="dream-destination-card">
+                                                    <a href="andaman-family-packages">
+
+                            <img src="{{asset('site/img/home/andaman_family.jpeg')}}", alt="Andaman Family Package" class="dream-card-image">
+                            <div class="dream-card-overlay">
+                                <h3 class="dream-destination-title">Family Package</h3>
+                                <p class="dream-destination-subtitle">Fun-Filled Family Vacations</p>
+                                <div class="dream-countries-list">
+                                    <span class="dream-country-item">Kid-Friendly Beaches</span> |
+                                    <span class="dream-country-item">Family Resorts</span> |
+                                    <span class="dream-country-item">Sightseeing Tours</span> |
+                                    <span class="dream-country-item">Safe Activities</span> |
+                                    <span class="dream-country-item">Cultural Visits</span>
+                                </div>
+                            </div>
+                            <div class="dream-popular-badge">POPULAR</div>
+                                                    </a>
+                        </div>
+                        
+                        <div class="dream-destination-card">
+                                                    <a href="andaman-adventure-packages">
+
+                            <img src="{{asset('site/img/home/andaman_adventure1.jpeg')}}",alt="Andaman Adventure" class="dream-card-image">
+                            <div class="dream-card-overlay">
+                                <h3 class="dream-destination-title">Adventure Package</h3>
+                                <p class="dream-destination-subtitle">Thrilling Experiences Await</p>
+                                <div class="dream-countries-list">
+                                    <span class="dream-country-item">Scuba Diving</span> |
+                                    <span class="dream-country-item">Snorkeling</span> |
+                                    <span class="dream-country-item">Sea Walking</span> |
+                                    <span class="dream-country-item">Parasailing</span> |
+                                    <span class="dream-country-item">Jet Ski</span> |
+                                    <span class="dream-country-item">Kayaking</span>
+                                </div>
+                            </div>
+                            <div class="dream-popular-badge">POPULAR</div>
+                                                    </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="dream-nav-btn next" onclick="dreamNextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+let dreamCurrentSlide = 0;
+const dreamTotalSlides = 2;
+
+function dreamGoToSlide(index) {
+    dreamCurrentSlide = index;
+    const slidesContainer = document.getElementById('dreamSlides');
+    slidesContainer.style.transform = `translateX(-${dreamCurrentSlide * 100}%)`;
+}
+
+function dreamNextSlide() {
+    dreamCurrentSlide = (dreamCurrentSlide + 1) % dreamTotalSlides;
+    dreamGoToSlide(dreamCurrentSlide);
+}
+
+function dreamPrevSlide() {
+    dreamCurrentSlide = (dreamCurrentSlide - 1 + dreamTotalSlides) % dreamTotalSlides;
+    dreamGoToSlide(dreamCurrentSlide);
+}
+
+// Auto-play every 7 seconds
+setInterval(dreamNextSlide, 7000);
+</script>
 
 
-
-
+<!--popular beaches-->
 @php
 $popularBeaches = [
 [
 'name' => 'Radhanagar Beach',
 'island' => 'Havelock Island',
 'description' => 'Voted as Asia\'s Best Beach, known for pristine white sands',
-'image' => 'beach-slider4.webp',
+'image' => asset('site/img/home/h_radhanagar.jpeg'),
 'highlights' => ['Crystal Clear Waters', 'White Sand', 'Scenic Beauty'],
 'url' => url('islands/havelock-swaraj-dweep/radhanagar-beach'),
 ],
 [
 'name' => 'Elephant Beach',
 'island' => 'Havelock Island',
-'description' => 'Perfect for water sports and marine exploration',
-'image' => 'beach-slider3.webp',
-'highlights' => ['Snorkeling', 'Coral Reefs', 'Water Sports'],
+'description' => 'Perfect for witnessing breathtaking sunset views',
+'image' => asset('site/img/home/h_neil1.jpeg'),
+'highlights' => ['Sunset Views','Birdwatching','Scenic Beauty'],
 'url' => url('islands/havelock-swaraj-dweep/elephant-beach'),
+],
+[
+'name' => 'Chidiyatapu',
+'island' => 'Port Blair',
+'description' => 'Perfect for water sports and marine exploration',
+'image' => asset('site/img/home/h_chidiatapu.jpeg'),
+'highlights' => ['Snorkeling', 'Coral Reefs', 'Water Sports'],
+'url' => url('/islands/port-blair/chidiatapu'),
 ],
 [
 'name' => 'Sitapur Beach',
 'island' => 'Neil Island',
 'description' => 'Serene sunrise location with breathtaking natural beauty',
-'image' => 'beach-slider5.webp',
+'image' => asset('site/img/home/h_sitapur.jpeg'),
 'highlights' => ['Sunrise View', 'Tranquil', 'Natural Landscape'],
 'url' => url('islands/neil-shaheed-dweep/sitapur-beach'),
 ],
 [
-'name' => 'Corbyn\'s Cove',
+'name' => "Corbyns's Cove",
 'island' => 'Port Blair',
 'description' => 'Closest beach to Port Blair with scenic coconut palms',
-'image' => 'beach-slider1.webp',
+'image' => asset('site/img/home/h_corbyn.jpeg'),
 'highlights' => ['Coconut Groves', 'Proximity to City', 'Scenic'],
 'url' => url('islands/port-blair/corbyns-cove'),
+],
+[
+'name' => "Laxmanpur Beach",
+'island' => 'Neil Island',
+'description' => 'Closest beach to Neil Island with scenic coconut palms',
+'image' => asset('site/img/home/h_laxmapur1.jpeg'),
+'highlights' => ['Coconut Groves', 'Proximity to City', 'Scenic'],
+'url' => url('/islands/neil-shaheed-dweep/laxmanpur-beach/'),
+],
+[
+'name' => "Bharatpur Beach",
+'island' => 'Neil Island',
+'description' => 'Closest beach to Neil Island with scenic coconut palms',
+'image' => asset('site/img/home/h_bharatpur.jpeg'),
+'highlights' => ['Coconut Groves', 'Proximity to City', 'Scenic'],
+'url' => url('/islands/neil-shaheed-dweep/bharatpur-beach/'),
 ],
 ];
 @endphp
 
+<style>
+    .andaman-popular-beaches {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Fallback/Theme Gradient */
+        background-image: url('{{ asset("site/img/beach-bg-overlay.jpg") }}'); /* Placeholder if available */
+        background-size: cover;
+        background-position: center;
+        padding: 60px 0;
+        /* border-radius: 30px; Large rounded corners for the main container */
+        margin: 40px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Overlay to ensure text readability if bg is an image */
+    .andaman-popular-beaches::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 123, 255, 0.3); /* Blue tint */
+        z-index: 1;
+    }
+
+    .andaman-popular-beaches .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .beaches-content-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .beaches-left-panel {
+        flex: 0 0 30%;
+        max-width: 30%;
+        padding-right: 20px;
+        color: white;
+    }
+
+    .beaches-right-panel {
+        flex: 0 0 70%;
+        max-width: 70%;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        /* Hide scrollbar */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+    }
+    
+    .beaches-right-panel::-webkit-scrollbar { 
+        display: none;  /* Chrome Safari */
+    }
+
+    .beaches-title-small {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 0;
+        display: block;
+    }
+
+    .beaches-title-large {
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    .beaches-nav-btns {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .beaches-nav-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%; /* Pill shape container for buttons? Image shows a pill */
+        background: white;
+        color: #333;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .beaches-nav-pill {
+        background: white;
+        border-radius: 30px;
+        padding: 5px;
+        display: flex;
+        gap: 5px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    .beaches-nav-btn-inner {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    
+    .beaches-nav-btn-inner:hover {
+        background: #f0f0f0;
+    }
+
+    .beach-cards-row {
+        display: flex;
+        gap: 15px;
+        padding-left: 10px; /* Slight offset */
+    }
+
+    .beach-card-new {
+        flex: 0 0 220px; /* Fixed width for cards */
+        height: 350px;
+        border-radius: 0 0 0 50px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+        border: 2px solid white; /* White border as seen in image */
+    }
+
+    .beach-card-new:hover {
+        transform: translateY(-5px);
+    }
+
+    .beach-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .beach-card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%); /* Gradient on the right side */
+        pointer-events: none;
+    }
+
+    .beach-card-text-vertical {
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        transform: rotate(-90deg);
+        transform-origin: bottom right;
+        text-align: left;
+        width: 300px; /* Ensure enough width for text */
+        white-space: nowrap;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .beach-name-vertical {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0;
+        display: inline-block;
+        color: white;
+    }
+.beach-card-text-vertical p{
+    color: white;
+}
+    .beach-island-vertical {
+        font-size: 0.8rem;
+        font-weight: 400;
+        opacity: 0.9;
+        margin-left: 10px;
+        display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+        .beaches-content-wrapper {
+            flex-direction: column;
+        }
+        .beaches-left-panel {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-right: 0;
+        }
+        .beaches-right-panel {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        .beaches-nav-btns {
+            justify-content: center;
+        }
+        .beaches-title-large {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+
 <section class="andaman-popular-beaches">
     <div class="container">
-        <div class="row mb-3">
-            <div class="col-12 text-center">
-                <h2 class="section-heading mb-3">Popular <span class="text-gradient">Beaches</span></h2>
-                <p class="andaman-beaches-subtitle mt-2">Discover the most breathtaking beaches in Andaman</p>
-            </div>
-        </div>
-
-        <div class="andaman-beaches-grid">
-            <div class="row mobile-scroll-row">
-                @foreach ($popularBeaches as $beach)
-                <div class="col-md-3">
-                    <div class="andaman-beach-card">
-                        <div class="andaman-beach-image-wrapper">
-                            <img src="{{ asset('site/img/' . $beach['image']) }}" alt="{{ $beach['name'] }}"
-                                class="andaman-beach-image">
-                            <div class="andaman-beach-overlay">
-                                <h3 class="andaman-beach-name fs-5">{{ $beach['name'] }}</h3>
-                                <p class="andaman-beach-location">{{ $beach['island'] }}</p>
-                            </div>
-                        </div>
-                        <div class="andaman-beach-content">
-                            <p class="andaman-beach-description">{{ $beach['description'] }}</p>
-                            <div class="andaman-beach-highlights">
-                                @foreach ($beach['highlights'] as $highlight)
-                                <span class="andaman-beach-highlight">
-                                    <i class="fas fa-check-circle"></i> {{ $highlight }}
-                                </span>
-                                @endforeach
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="{{ $beach['url'] }}" class="btn-book ">
-                                    Explore Beach <i class="fas fa-chevron-right"></i>
-                                </a>
-                            </div>
-                        </div>
+        <div class="beaches-content-wrapper">
+            <!-- Left Panel: Text & Nav -->
+            <div class="beaches-left-panel">
+                <span class="beaches-title-small">Explore The Best</span>
+                <span class="beaches-title-large">ANDAMAN<br>BEACHES</span>
+                
+                <div class="beaches-nav-btns">
+                    <div class="beaches-nav-pill">
+                        <button class="beaches-nav-btn-inner prev-beach"><i class="fas fa-chevron-left"></i></button>
+                        <button class="beaches-nav-btn-inner next-beach"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
-                @endforeach
             </div>
-        </div>
 
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <a href="#" class="view-all-btn btn-lg rounded-pill px-5">
-                    View All Beaches <i class="fas fa-chevron-right"></i>
-                </a>
+            <!-- Right Panel: Slider -->
+            <div class="beaches-right-panel">
+                <div class="beach-cards-row">
+                    @foreach ($popularBeaches as $beach)
+                    <div class="beach-card-new">
+                        <img src="{{ $beach['image'] }}" alt="{{ $beach['name'] }}" class="beach-card-img">
+                        <div class="beach-card-overlay"></div>
+                        <div class="beach-card-text-vertical">
+                            <h3 class="beach-name-vertical">{{ $beach['name'] }}</h3><br>
+                            <p class="beach-island-vertical">{{ $beach['island'] }}</p>
+                        </div>
+                        <a href="{{ $beach['url'] }}" class="stretched-link"></a>
+                    </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const scrollContainer = document.querySelector('.beaches-right-panel');
+        const prevBtn = document.querySelector('.prev-beach');
+        const nextBtn = document.querySelector('.next-beach');
+
+        if(scrollContainer && prevBtn && nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                scrollContainer.scrollBy({ left: 240, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                scrollContainer.scrollBy({ left: -240, behavior: 'smooth' });
+            });
+        }
+    });
+</script>
+
+<!--popular place to vist-->
+
+<style>
+.popular-places-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.popular-places-section .places-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.popular-places-section .tourist-image {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.popular-places-section .places-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.popular-places-section .places-title .highlight {
+    color: rgb(17, 157, 213);
+}
+
+.popular-places-section .nav-arrows {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.popular-places-section .nav-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popular-places-section .nav-arrow:hover {
+    background: #FD6E0F;
+    color: white;
+    border-color: #FD6E0F;
+}
+
+.popular-places-section .places-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.popular-places-section .places-cards {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 20px 0;
+}
+
+.popular-places-section .places-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.popular-places-section .place-card {
+    flex: 0 0 250px;
+    height: 300px;
+    border-radius: 0 0 0 50px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.popular-places-section .place-card:hover {
+    transform: translateY(-10px);
+}
+
+.popular-places-section .place-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popular-places-section .place-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    padding: 20px;
+    color: white;
+}
+
+.popular-places-section .place-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    color:#fff;
+}
+
+@media (max-width: 768px) {
+    .popular-places-section .tourist-image {
+        max-width: 150px;
+    }
+    
+    .popular-places-section .places-title {
+        font-size: 1.5rem;
+    }
+    
+    .popular-places-section .place-card {
+        flex: 0 0 120px;
+        height: 250px;
+    }
+    .popular-places-section .places-cards{
+        gap: 10px;
+    }
+    .popular-places-section .place-name {
+        font-size: 0.8rem;
+    }
+}
+</style>
+
+@php
+$popularPlaces = [
+    [
+        'name' => 'Port Blair',
+        'image' => asset('site/img/home/h_portblair.jpeg'),
+        'url' => url('islands/ross-island')
+    ],
+    [
+        'name' => 'HAVELOCK',
+        'image' => asset('site/img/home/h_havelock.jpeg'),
+        'url' => url('islands/havelock-swaraj-dweep')
+    ],
+    [
+        'name' => 'NEIL',
+        'image' => asset('site/img/home/h_neil.jpeg'),
+        'url' => url('islands/neil-shaheed-dweep')
+    ],
+    [
+        'name' => 'BARATANG',
+        'image' => asset('site/img/home/h_baratang.jpeg'),
+        'url' => url('islands/baratang')
+    ],
+    [
+        'name' => 'DIGLIPUR',
+        'image' => asset('site/img/home/h_diglipur.jpeg'),
+        'url' => url('islands/diglipur')
+    ],
+    [
+        'name' => 'ROSS',
+        'image' => asset('site/img/home/h_ross_island.jpeg'),
+        'url' => url('islands/ross-island')
+    ],
+    [
+        'name' => 'NORTHBAY',
+        'image' => asset('site/img/home/h_northbay.jpeg'),
+        'url' => url('islands/north-bay-island')
+    ],
+];
+@endphp
+
+<section class="popular-places-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <div class="places-info">
+                    <img src="{{ asset('site/img/ad_girl.png') }}" alt="Tourist" class="tourist-image">
+                    <h2 class="places-title"><span class="highlight">MOST POPULAR</span> Places to Visit In Andaman</h2>
+                    <div class="nav-arrows">
+                        <button class="nav-arrow places-prev" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="nav-arrow places-next" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="places-slider">
+                    <div class="places-cards">
+                        @foreach($popularPlaces as $place)
+                        <a href="{{ $place['url'] }}" class="place-card text-decoration-none">
+                            <img src="{{ $place['image'] }}" alt="{{ $place['name'] }}">
+                            <div class="place-overlay">
+                                <h3 class="place-name">{{ $place['name'] }}</h3>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const placesContainer = document.querySelector('.places-cards');
+    const prevBtn = document.querySelector('.places-prev');
+    const nextBtn = document.querySelector('.places-next');
+    
+    if(placesContainer && prevBtn && nextBtn) {
+        const scrollAmount = 270; // card width + gap
+        
+        nextBtn.addEventListener('click', () => {
+            placesContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            placesContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+    }
+});
+</script>
 
 <!--card style-->
 <section class="trail-postcards">
@@ -1116,6 +3182,8 @@ $popularBeaches = [
         </div>
     </div>
 </section>
+
+
 
 @push('scripts')
 <script>
@@ -1221,6 +3289,9 @@ document.addEventListener('DOMContentLoaded', function () {
     margin-bottom: 1rem;
     color: #333;
     text-align: left;
+}
+ .lead-generation-section{
+    display:none;
 }
 
 .postcard-subtitle {
@@ -1400,6 +3471,9 @@ display: inline-flex;
     background: white;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
+.hotel-instant-book-span{
+    font-size:12px;
+}
 
 .card-footer h5 {
     margin: 0;
@@ -1451,6 +3525,9 @@ display: inline-flex;
         gap: 10px;
         padding: 0px;
     }
+     .lead-generation-section{
+    display:block;
+}
 
     .trail-card {
         flex: 0 0 280px;
@@ -1481,7 +3558,7 @@ display: inline-flex;
             <div class="col-md-6">
                 <div class="about-content">
                     <h2 class="section-heading mb-4">About <span class="text-gradient">Andaman Bliss</span></h2>
-                    <p class="section-subheading mb-4 pt-2">
+                    <p class="section-subheading mb-4">
                         We are more than just a travel agency. We are your gateway to the breathtaking Andaman Islands,
                         crafting personalized experiences that transform ordinary trips into extraordinary memories.
                     </p>
@@ -1492,7 +3569,7 @@ display: inline-flex;
                                     <div class="feature-icon mb-3">
                                         <i class="fas fa-compass text-andaman fs-2"></i>
                                     </div>
-                                    <h3 class="fw-bold mb-2 ">Expert Guidance</h3>
+                                    <h3 class="fw-bold mb-2 fs-6">Expert Guidance</h3>
                                     <p class="text-muted text-center">
                                         Our team of local experts ensures you explore the islands like a true
                                         adventurer.
@@ -1504,7 +3581,7 @@ display: inline-flex;
                                     <div class="feature-icon mb-3">
                                         <i class="fas fa-heart text-andaman fs-2"></i>
                                     </div>
-                                    <h3 class="fw-bold mb-2">Sustainable Tourism</h3>
+                                    <h3 class="fw-bold mb-2 fs-6">Sustainable Tourism</h3>
                                     <p class="text-muted text-center">
                                         We are committed to preserving the natural beauty and ecosystem of Andaman.
                                     </p>
@@ -1515,7 +3592,7 @@ display: inline-flex;
                                     <div class="feature-icon mb-3">
                                         <i class="fas fa-users text-andaman fs-2"></i>
                                     </div>
-                                    <h3 class="fw-bold mb-2">Personalized Experiences</h3>
+                                    <h3 class="fw-bold mb-2 fs-6">Personalized Experiences</h3>
                                     <p class="text-muted text-center">
                                         Every journey is unique. We tailor trips to match your dreams and preferences.
                                     </p>
@@ -1526,7 +3603,7 @@ display: inline-flex;
                                     <div class="feature-icon mb-3">
                                         <i class="fas fa-shield-alt text-andaman fs-2"></i>
                                     </div>
-                                    <h3 class="fw-bold mb-2">Safety First</h3>
+                                    <h3 class="fw-bold mb-2 fs-6">Safety First</h3>
                                     <p class="text-muted text-center">
                                         Your safety is our priority. We ensure top-notch security and support.
                                     </p>
@@ -1553,7 +3630,7 @@ display: inline-flex;
             <div class="col-12 text-center">
                 <h2 class="section-heading fw-bolder mb-3">Why Choose <span class="text-gradient">Andaman Bliss?</span>
                 </h2>
-                <p class="section-subheading pt-2">Discover what makes our travel experiences truly extraordinary</p>
+                <p class="section-subheading">Discover what makes our travel experiences truly extraordinary</p>
             </div>
         </div>
         <div class="row g-4">
@@ -1605,8 +3682,6 @@ display: inline-flex;
         </div>
     </div>
 </section>
-
-
 <section class="guest-review bg-light">
     <div class="container">
         <div class="row mb-5">
@@ -1617,15 +3692,12 @@ display: inline-flex;
         </div>
 
         <div class="row mobile-scroll-row g-4">
-             @foreach($reviews as $review)
-            <div class="col-md-3">
+            @foreach ($reviews->take(8) as $review)
+                 <div class="col-md-3">
                 <div class="card review-card border-0 shadow-sm h-100">
                     <div class="card-body d-flex flex-column h-100">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="{{ $review['reviewer_profile_photo_url'] }}" loading="lazy" alt="{{ $review['reviewer_name'] }}"
-                                class="rounded-circle me-3 review-avatar"
-                                style="width: 50px; height: 50px; object-fit: cover;">
-                           
+                            <img src="{{ $review['reviewer_profile_photo_url'] }}" alt="{{ $review['reviewer_name'] }}" loading="lazy" class="rounded-circle me-3 review-avatar" style="width: 50px; height: 50px; object-fit: cover;">
                             <div>
                                 <h3 class="mb-1 fw-bold fs-6">{{ $review['reviewer_name'] }}</h3>
                                 <p class="text-muted mb-0 small">Reviewed: {{ \Carbon\Carbon::parse($review['review_date'])->format('M Y') }}</p>
@@ -1637,12 +3709,10 @@ display: inline-flex;
                         </div>
                         <p class="card-text flex-grow-1 text-muted">
                             "{{ Str::words($review['comment'], 30, '...') }}"
-                        </p>
-                       
+                        </p>                        
                     </div>
                 </div>
             </div>
-
             @endforeach
         </div>
         <div class="row mt-5">
@@ -1655,6 +3725,7 @@ display: inline-flex;
         </div>
     </div>
 </section>
+
 @push('styles')
 <style>
     .insta-book{
@@ -1698,7 +3769,6 @@ display: inline-flex;
 
 }
 
-
 .experience-card:hover {
     transform: translateY(-5px);
 }
@@ -1710,7 +3780,7 @@ display: inline-flex;
 
 .card-title {
     color: rgb(17, 157, 213);
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 
@@ -1827,7 +3897,7 @@ display: inline-flex;
     transition: all 0.3s ease;
     height: 100%;
     position: relative;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .cruise-card:hover {
@@ -1968,7 +4038,6 @@ display: inline-flex;
 .rating-stars {
     display: flex;
     margin-right: 8px;
-    font-size:12px;
 }
 
 .rating-stars i {
@@ -2106,9 +4175,6 @@ display: inline-flex;
     overflow: hidden;
     z-index: 1;
 }
-.feature-item h3{
-    font-size:1rem !important;
-}
 
 .view-all-btn:before {
     content: '';
@@ -2171,9 +4237,6 @@ display: inline-flex;
     .cruise-content {
         padding: 15px;
     }
-    .privacyCondition{
-    font-size:10px !important;
-}
     
 
     .experience-card {
@@ -2216,9 +4279,6 @@ display: inline-flex;
         padding-top: 50px;
         padding-bottom: 17px;
     }
-    .feature-item h3{
-    font-size:11px !important;
-}
 
     .cruise-image {
         height: 260px;
@@ -2242,7 +4302,7 @@ display: inline-flex;
     }
 
     .section-subheading {
-        font-size:10px;
+        font-size: 0.9rem;
     }
 
     .view-all-btn {
@@ -2267,7 +4327,7 @@ display: inline-flex;
     } */
 
     .card-title {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .experience-icon {
@@ -2293,7 +4353,7 @@ display: inline-flex;
         padding-top: 30px;
     }
     .hot-deals {
-    padding-top: 15px;
+    padding-top: 30px;
     padding-bottom: 30px;
 }
 .tour-support-title{
@@ -2408,15 +4468,15 @@ input[type="month"]:invalid:not(:focus)+.placeholder-text {
         -webkit-overflow-scrolling: touch;
         margin-left: -0.75rem !important;
         margin-right: -0.75rem !important;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        padding-left: 7.5% !important; /* Center alignment padding */
+        padding-right: 7.5% !important;
         width: calc(100% + 1.5rem);
     }
     
     .mobile-scroll-row > * {
         flex: 0 0 85% !important;
         max-width: 85% !important;
-        scroll-snap-align: start;
+        scroll-snap-align: center !important;
         margin-bottom: 0 !important; /* Remove bottom margin in scroll view */
     }
 
@@ -2441,8 +4501,8 @@ input[type="month"]:invalid:not(:focus)+.placeholder-text {
         margin-bottom: 0.5rem !important;
     }
     .section-subheading {
-        font-size: 10px !important;
-        
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
     }
     
     /* Compact Cards */
@@ -2468,7 +4528,7 @@ input[type="month"]:invalid:not(:focus)+.placeholder-text {
     
     /* Adjust paddings */
     .popular-activities, .popular-cruise, .featured-hotels, .andaman-popular-beaches {
-        padding-top: 1rem !important;
+        padding-top: 2rem !important;
         padding-bottom: 1rem !important;
     }
 }
@@ -2585,10 +4645,10 @@ input[type="month"]:invalid:not(:focus)+.placeholder-text {
 
 <section class="our-blog">
     <div class="container">
-        <div class="row mb-3">
+        <div class="row mb-5">
             <div class="col-12 text-center">
                 <h2 class="section-heading">Our <span class="text-gradient">Blogs</span></h2>
-                <p class="section-subheading mt-2">Explore travel insights, local culture, and unforgettable experiences</p>
+                <p class="section-subheading">Explore travel insights, local culture, and unforgettable experiences</p>
             </div>
         </div>
 
@@ -2639,6 +4699,7 @@ input[type="month"]:invalid:not(:focus)+.placeholder-text {
         @endif
 
         <!-- Second row with 4 columns -->
+        <div class="mobile-slider-wrapper">
         <div class="row g-4 mobile-scroll-row">
             @foreach($remainingBlogs->skip(1)->take(4) as $blog)
             <div class="col-md-3 mb-4">
@@ -2662,6 +4723,7 @@ input[type="month"]:invalid:not(:focus)+.placeholder-text {
                 </div>
             </div>
             @endforeach
+        </div>
         </div>
 
 
@@ -2920,6 +4982,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize all sliders
     initCustomSliders();
+
+    // Mobile Slider Navigation Logic
+    document.querySelectorAll('.mobile-slider-wrapper').forEach(wrapper => {
+        const row = wrapper.querySelector('.mobile-scroll-row');
+        const prevBtn = wrapper.querySelector('.mobile-nav-btn.prev');
+        const nextBtn = wrapper.querySelector('.mobile-nav-btn.next');
+
+        if (row && prevBtn && nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const cardWidth = row.firstElementChild.offsetWidth;
+                row.scrollBy({ left: cardWidth + 16, behavior: 'smooth' }); // 16 is gap
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const cardWidth = row.firstElementChild.offsetWidth;
+                row.scrollBy({ left: -(cardWidth + 16), behavior: 'smooth' });
+            });
+        }
+    });
 });
 </script>
 @endpush

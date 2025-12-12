@@ -30,7 +30,7 @@
     </div>
   </div>
 </section>
-
+@include('common.login-modal')
 <section class="tour-dynamic-section">
     <section class="container-fluid tour_rela_slide">
         <div class="multiple-items" id="multiple-items">
@@ -129,7 +129,11 @@ $result[] = ['nights' => $count, 'accommodation' => $accommodations->last()];
                         </div>
                     </div>
                     <div class="tour-pricing-cta d-grid mb-3">
+                @if(Auth::check()) 
                         <button class="btn btn-primary fw-bold d-flex justify-content-center" id="bookNowBtn">SEARCH NOW</button>
+                @else
+                        <button type="button" class="btn btn-primary fw-bold d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">SEARCH NOW</button>
+                @endif
                     </div>
                     <h6 class=" mt-3 fs-6">Select Your Package</h6>
                     <div class="tour-pricing-emi p-3 bg-light rounded mb-3">
@@ -268,7 +272,11 @@ $result[] = ['nights' => $count, 'accommodation' => $accommodations->last()];
                                             </div>
                                         </div>
                                         <div class="hotel-search-button-group mt-4 col-2">
-                                            <button type="submit" class="hotel-search-btn">SEARCH NOW</button>
+                                        @if(Auth::check())
+                                        <button type="submit" class="hotel-search-btn">SEARCH NOW</button>
+                                        @else
+                                        <button type="button" class="hotel-search-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">SEARCH NOW</button>
+                                        @endif
                                         </div>
                                     </div>
                                 </form>

@@ -575,7 +575,7 @@
                 <p class=" mb-4 text-dark">{!! $activity->ctc_desc !!}</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="#booking" class="btn btn-light btn-lg rounded-pill">Book Now</a>
-                    <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill">Contact
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-light btn-lg rounded-pill">Contact
                         Us</a>
                 </div>
             </div>
@@ -586,7 +586,7 @@
 
 </div>
 
-
+@include('common.login-modal')
 
 <!-- Right Column - Booking Section -->
 <div class="col-lg-4">
@@ -667,11 +667,10 @@
         <div class="lightbox-counter" id="lightboxCounter">1/5</div>
     </div>
 </div>
-<a role="button" href="#booking"  id="activity-btn" 
-            class="stick-bottom position-fixed bottom-0 start-0 end-0 bg-info border-top py-2 d-md-none text-center"
-            style="z-index: 9999;">
+
+<a role="button" href="#booking"  id="activity-btn" class="stick-bottom position-fixed bottom-0 start-0 end-0 bg-info border-top py-2 d-md-none text-center" style="z-index: 9999;">
             <p class="w-100 text-white fw-bolder">Book Now</p>
-        </a>
+</a>
 
 <section class="container">
           <div class="rev-container mt-3">

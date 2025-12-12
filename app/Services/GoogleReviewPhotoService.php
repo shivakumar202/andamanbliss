@@ -31,31 +31,31 @@ class GoogleReviewPhotoService
 
         $saved = 0;
 
-        foreach ($photos as $photo) {
+        foreach ($photos as $index => $photo) {
 
             $photoRef = $photo['photo_reference'];
 
-            // prevent duplicate saving
-            if (ReviewImage::where('google_photo_reference', $photoRef)->exists()) {
-                continue;
-            }
-
-            // construct usable photo URL
-            $imageUrl =
-                "https://maps.googleapis.com/maps/api/place/photo?" .
-                http_build_query([
-                    'maxwidth'        => 1600,
-                    'photo_reference' => $photoRef,
-                    'key'             => $apiKey
-                ]);
-
-            ReviewImage::create([
-                'google_photo_reference' => $photoRef,
-                'image_url'              => $imageUrl,
+            $imageUrl = "https://maps.googleapis.com/maps/api/place/photo?" . http_build_query([
+                'maxwidth'        => 1600,
+                'photo_reference' => $photoRef,
+                'key'             => $apiKey,
             ]);
+
+            ReviewImage::updateOrCreate(
+                [
+                    'place_id' => $placeId,
+                    'photo_index' => $index,        // <-- UNIQUE
+                ],
+                [
+                    'google_photo_reference' => $photoRef,
+                    'image_url'              => $imageUrl,
+                ]
+            );
 
             $saved++;
         }
+
+
 
         return [
             'success' => true,

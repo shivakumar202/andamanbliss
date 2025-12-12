@@ -27,7 +27,7 @@
 @endsection
 @section('content')
 <!-- Hero Section with Modern Design -->
-<section class="hero-section position-relative overflow-hidden">
+<section class="hero-section position-relative overflow-hidden" id="lead-in-form">
     <div class="hero-background"></div>
     <div class="hero-overlay"></div>
     <div class="container position-relative z-2">
@@ -255,7 +255,7 @@ $block2 = $blocks['section_2'] ?? [];
                     <h2 class="cta-title">{!! $category['categorySection'][0]['cta_title'] ?? '' !!}</h2>
                     <p class="cta-description">{!! $category['categorySection'][0]['cta_desc'] ?? '' !!}</p>
                     <div class="cta-buttons">
-                        <a href="#contact" class="btn btn-light btn-lg">Contact Us</a>
+                        <a href="#lead-in-form" class="btn btn-light btn-lg">Contact Us</a>
                         <a href="tel:+919876543210" class="btn btn-outline-light btn-lg"><i
                                 class="fas fa-phone-alt me-2"></i>Call Now</a>
                     </div>

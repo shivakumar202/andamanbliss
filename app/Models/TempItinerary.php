@@ -71,4 +71,15 @@ class TempItinerary extends Model
     {
         return $this->hasOne(HotelBookings::class, 'booking_code', 'room_booking_code');
     }
+
+    public function bookedHotels()
+    {
+        return $this->hasMany(HotelBookings::class,'package_id','search_hash')->where('mode','package');
+    }
+    
+
+    public function paxangers()
+    {
+        return $this->hasMany(PassengerDetails::class,'booking_id','search_hash')->where('purpose','Package booking');
+    }
 }

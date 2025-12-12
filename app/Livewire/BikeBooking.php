@@ -308,7 +308,7 @@ class BikeBooking extends Component
 
         \Mail::send('emails.template', $mailData, function ($message) use ($mailData) {
             $message->subject($mailData['subject'])
-                ->to('shivakumar@andamanbliss.com');
+                ->to('info@andamanbliss.com');
         });
 
         // RentalBookings::create($data);

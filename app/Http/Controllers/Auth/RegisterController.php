@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Request;
 
 class RegisterController extends Controller
 {
@@ -66,9 +68,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-       $user = User::create([
+        $user = User::create([
             'name' => $data['name'],
-            'mobile' => $data['mobile'],
+            'mobile' => $data['mobile'] ?? null,
             'mobile_verified_at' => now(),
             'email' => $data['email'],
             'email_verified_at' => now(),
@@ -97,30 +99,30 @@ class RegisterController extends Controller
         return $user;
     }
 
+    public function googleCallback($googleUser)
+    {
+        $user = User::where('email', $googleUser->getEmail())->first();
 
-    public static function googleCallback($googleUser)
-{
-    // Example:
-    // dd($googleUser->getId()); // check what values you get
-    $user = User::firstOrCreate(
-        ['email' => $googleUser->getEmail()],
-        [
-            'profile' => $googleUser->getAvatar(),
-            'google_id' => $googleUser->getId(), 
+        if ($user) {
+            Auth::login($user);
+            return redirect()->intended(session('url.intended', '/'));
+        }
+
+        $user = User::create([
             'name' => $googleUser->getName(),
-            'mobile' => null,
+            'email' => $googleUser->getEmail(),
+            'password' => bcrypt(Str::random(16)),
+            'google_id' => $googleUser->getId(),
+            'profile' => $googleUser->getAvatar(),
             'mobile_verified_at' => now(),
             'email_verified_at' => now(),
             'username' => $googleUser->getEmail(),
-            'password' => \Illuminate\Support\Str::password(12)
-        ]
-    );
+        ]);
 
-    Auth::login($user);
+        Auth::login($user);
 
-    return redirect('/home');
-}
+        return redirect()->intended(session('url.intended', '/'));
+    }
 
 
-    
 }

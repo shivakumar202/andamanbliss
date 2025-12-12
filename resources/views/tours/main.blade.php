@@ -240,7 +240,7 @@
                     <h2 class="cta-title">{{$category->categorySection[0]->cta_title}}</h2>
                     <p class="cta-description">{{$category->categorySection[0]->cta_desc}}</p>
                     <div class="cta-buttons">
-                        <a href="#contact" class="btn btn-light btn-lg">Contact Us</a>
+                        <a href="{{ route('contact') }}" target="_blank" class="btn btn-light btn-lg">Contact Us</a>
                         <a href="tel:+919876543210" class="btn btn-outline-light btn-lg"><i
                                 class="fas fa-phone-alt me-2"></i>Call Now</a>
                     </div>

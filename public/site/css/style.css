@@ -24152,10 +24152,10 @@ input[type=number] {
     }
 
     /* Make sure content flows properly */
-    .col-md-8,
+    /* .col-md-8,
     .col-md-4 {
         width: 100%;
-    }
+    } */
 }
 
 @media (max-width: 768px) {
@@ -34500,4 +34500,193 @@ color: #444;
 }
 .bg-green {
     background-color: #25d366;
+}
+
+
+
+.cc-button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+.cc-button:active { transform: scale(0.95); }
+.cc-button:focus { outline: none; }
+.cc-button.cc-ghost { background-color: #f0f0f0; border-color: #000; color: #000; }
+
+.cc-form {
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+.cc-input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.cc-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.cc-form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.cc-sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+.cc-container.right-panel-active .cc-sign-in-container {
+    transform: translateX(100%);
+}
+
+.cc-sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.cc-container.right-panel-active .cc-sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: cc-show 0.6s;
+}
+
+@keyframes cc-show {
+    0%,49.99% { opacity: 0; z-index: 1; }
+    50%,100% { opacity: 1; z-index: 5; }
+}
+
+.cc-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+.cc-container.right-panel-active .cc-overlay-container {
+    transform: translateX(-100%);
+}
+
+.cc-overlay {
+    /* background: linear-gradient(to right, #FF4B2B, #FF416C); */
+    background: url('../img/login-banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+.cc-container.right-panel-active .cc-overlay {
+    transform: translateX(50%);
+}
+
+.cc-overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: transform 0.6s ease-in-out;
+}
+.cc-overlay-left { transform: translateX(-20%); }
+.cc-container.right-panel-active .cc-overlay-left { transform: translateX(0); }
+.cc-overlay-right { right: 0; }
+.cc-container.right-panel-active .cc-overlay-right { transform: translateX(20%); }
+
+.cc-social-container {
+    margin: 20px 0;
+}
+.cc-social-container a {
+    border: 1px solid #DDD;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.cc-mobile-switch {
+    background: none;
+    border: none;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #FF4B2B;
+    text-decoration: underline;
+    display: none;
+}
+@media (max-width: 768px) {
+    .cc-form-container {
+        display: none;
+    }
+    .cc-overlay-container {
+        display: none;
+    }
+    .cc-form-container {
+        position: relative;
+        width: 100%;
+        transform: none !important;
+        opacity: 1 !important;
+        z-index: 5 !important;
+    }
+    .cc-sign-in-container,
+    .cc-sign-up-container {
+        left: 0;
+        width: 100%;
+    }
+    .cc-mobile-switch {
+        display: block;
+    }
+    .cc-form-container.active-mobile {
+        display: block;
+    }
+     .cc-mobile-switch {
+        display: block;
+    }
+}
+.cc-text {
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: -2px 2px #756f6f;
 }

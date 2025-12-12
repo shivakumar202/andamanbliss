@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Andaman Tour Packages from Kolkata | Best Kolkata to Andaman Trips')
-@section('keywords', 'best Andaman tour packages from Kolkata, How to Reach Andaman from Kolkata, Andaman package from Kolkata price, Andaman Family  Package from Kolkata, Andaman Honeymoon Package from Kolkata, Andaman Group Tour Packages from Kolkata')
-@section('description', 'Book Andaman Tour Packages from Kolkata with flights, hotels, cruises, and island tours. Enjoy affordable, customizable Andaman trips for families, couples, and groups.')
+@section('title', 'Andaman Tour Packages from Madurai | Andaman Bliss')
+@section('keywords', 'Andaman Tour Package from Madurai, Madurai to Andaman package, How to reach Andaman from Madurai, Andaman Tour Package from Madurai Price, Best Time to Visit Andaman from Madurai')
+@section('description', 'Book your Andaman tour package from Madurai with customized plans for couples, families & groups.')
 @push('styles')
 <!-- Chennai specific CSS -->
 <!-- <link rel="stylesheet" href="{{ asset('site/css/chennai.css') }}"> -->
@@ -1613,10 +1613,10 @@ function toggleItinerary(dayNumber) {
                 <div class="hero-content">
                     <div class="hero-badge">Experience Comfort</div>
                     <h1 class="hero-title">
-                        Andaman Tour Package from Kolkata<span class="highlight">- Affordable Island Getaways</span>                     
+                        Andaman Holiday Packages from Madurai<span class="highlight"> | Best Deals, Itinerary & Price</span>                     
                     </h1>
                     <p class="hero-subtitle">
-                      Explore Andaman island beaches with budget friendly tour packages from Kolkata.
+                      Plan your Andaman tour package from Madurai with top hotels, sightseeings, ferries & water sports activities. Perfect for couples, families & groups with Tamil support.
                     </p>
                     <div class="hero-buttons">
                         <a href="#packages" class="hero-cta primary">Explore Packages</a>
@@ -1650,7 +1650,7 @@ function toggleItinerary(dayNumber) {
 <section id="packages" class="section-padding">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-title-h2 text-center">Andaman Tour <span> Packages</span></h2>
+            <h2 class="section-title-h2 text-center">Andaman Tour <span> Packages from Madurai</span></h2>
             <p>Everything you need to know about planning your trip to the Andaman Islands</p>
         </div>
         <div class="activity-grid">
@@ -1684,110 +1684,233 @@ function toggleItinerary(dayNumber) {
                     style="background: white; padding: 30px 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     <h2
                         style="color: #333; font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; line-height: 1.4;">
-                        Andaman Tour Packages from Kolkata<span style="color: #fd7e14;">| Quick Overview & Highlights</span> 
+                        Andaman Tour Package from Madurai<span style="color: #fd7e14;">| Honeymoon, Family & Group Friendly Packages</span> 
                     </h2>
                     <div>
                         <h2 class="fw-bold fs-6">Summary</h2>
                         <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">
-                      Escape from the busy schedule life of Kolkata and visit Andaman Island that offers a perfect mix of stunning beaches, clear blue water, lush greenery, delicious seafood, historical attractions and many exciting water sports activities. You can reach Andaman island by flight that takes around 2 hours 15 minutes or by ship from Kolkata. Package prices vary based on season, hotel category, ferry type, activities and duration, that starts from <em>INR 10,000 for budget trips</em>, <em>INR 18,000 to 45,000</em> per person for standard packages and INR 60,000 per person for luxury stays. The best time to visit Andaman Islands is from <em>October to May</em>, this duration is ideal for sightseeing and water activities. The major highlights include Port Blair, Havelock, Neil Island, Baratang and Ross & North Bay Islands. We offer family friendly, honeymoon, group, luxury, budget and adventure packages and all these are fully customizable. With <strong>Andaman Bliss</strong>, you enjoy expert planning, guaranteed ferry and hotel bookings, transparent pricing, safe travel arrangements, 24/7 support, and smooth coordination. Packages include beachside stays, breakfast, AC transfers, guided tours, airport pickup/drop, and ferry transfers, while airfare, personal expenses, insurance, and additional activities are excluded.</p>
+                      Looking for a fresh island vacation away from the temple city of Madurai. Well, the Andaman Islands which is known for its pristine beaches, clear bluish water, tropical forest and vibrant marine life make this destination a perfect for anyone who is dreaming of a peaceful yet exciting holiday. Our <strong>Andaman Tour Package from Madurai</strong> is beautifully designed especially for honeymoon couples, families, college friends and for groups of senior citizens who are looking for a smooth, memorable and well organized holiday in this tropical paradise.
+                    </p>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">
+                      Whether you want to experience romantic sunsets, family friendly beaches, thrilling water sports activities or a calm, safe and senior friendly sightseeing, Andaman Islands offers something new for every type of travelers. All these special facilities make Andaman Islands one of the India safest and most loved holiday destinations and that are ideal for all age groups.
+                    </p>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">
+                      Though flight tickets are not included in tour package, we would be happy to assist you with the best flight option and can even guide you throughout your trip. To make your experience even more comfortable and memorable, you can even hire a Tamil speaking guide who can support you throughout the journey and make sure you have a stress free and enjoyable experience.
+                    </p>
+                    <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">
+                      Andaman Islands is perfect destination for a romantic vacation, family holiday, thrilling adventure trips or group tours, this <strong>Madurai to Andaman package</strong> offers you a holiday with a perfect blend of beauty, comfort and unforgettable experiences.
+                    </p>
+                    
                     </div>
                     <a href="#" id="readMoreToggle" class="read-more-toggle">Read More</a>
                     <div id="readMoreContent" class="read-more-content">
-                        <h3 class="fs-6 mt-3 fw-bold">Andaman Tour Package from Kolkata | Your Perfect Island Getaway
+                        <h3 class="fs-6 mt-3 fw-bold">Why Andaman is a Top Choice for Madurai Travelers
                         </h3>
-                        <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">If you are living in Kolkata and dreaming of a vacation where you can just relax and enjoy the natural beauty and beaches, then <strong>Andaman Island</strong> is the destination that you need to visit. Andaman Island is located about 1,300 km away from Kolkata and this island is known as paradise that offers pristine beaches, crystal clear water, lush greenery forest, <a href="https://andamanbliss.com/blogs/top-seafood-restaurants-in-andaman-islands" target="_blank">delicious seafoods</a> and many <a href="https://andamanbliss.com/activities/" target="_blank">thrilling water activities</a>. Whether you are planning a perfect family vacation, a romantic honeymoon trip, a group tour or an adventure trip, we at Andaman Bliss bring one of the <strong>best Andaman tour packages from Kolkata</strong> that offers a perfect mix of comfort, excitement and unforgettable experience.</p>
+                        <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">Travelers from Madurai mostly choose the Andaman Islands for their vacation because it offers an international style beach vacation.</p>
 
-                        <h3 class="fs-6 mt-3 fw-bold">Why Visit Andaman from Kolkata?
-                        </h3>
-                        <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align:justify">The Andaman Island offers something special for every type of traveler. If we talk about <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/radhanagar-beach" target="_blank">Radhanagar</a> and <a href="https://andamanbliss.com/islands/neil-shaheed-dweep/laxmanpur-beach" target="_blank">Laxmanpur Beach</a>, these beaches are known for their soft white sandy beaches and breathtaking sunsets. On the other hand, <a href="https://andamanbliss.com/islands/port-blair/cellular-jail" target="_blank">Cellular Jail</a> is known for its historical sites of India freedom fighters. If you are looking for some adventure activities, then you can enjoy world famous <a href="https://andamanbliss.com/activities/scuba-diving" target="_blank">scuba diving</a> and <a href="https://andamanbliss.com/activities/snorkeling" target="_blank">snorkeling</a> and many other activities where you can enjoy the coral reefs and vibrant marine life underwater. If you are looking for a vacation where you just want to relax on the beaches and want a short break from the busy city life of Kolkata, then you need to visit the Andaman islands.</p>
-                        <p>And especially for the Bengali food lover, your trip will become more delightful because you will love local seafood that includes fresh fish, prawns and crabs. Andaman island truly feels like a home away from home for travelers from Kolkata.</p>
-                       
-                        <h3 class="fs-6 fw-bold pt-3">How to Reach Andaman from Kolkata</h3>
-                        <strong>By flight:</strong> 
+                        <p><strong>International Vibes Within India</strong></p>
                         <ul class="packages-list-style">
-                           <li> Many airlines operate direct flights from Kolkata to Port Blair.</li>
-                            <li> It will take around 2 hours 15 minutes to reach Andaman Islands.</li>
-                        <p>The air transport is mainly famous among families, honeymooners, senior citizens and travelers who are coming for a short trip.</p>
+                            <li>Andaman Island features white sandy beaches and crystal-blue waters that feel just like Maldives or Bali.</li>
                         </ul>
 
-                        <strong>By Ship:</strong> 
+                        <p><strong>Easy Connectivity</strong></p>
                         <ul class="packages-list-style">
-                           <li>The ship operates from Kolkata Port to Port Blair.</li>
-                            <li>It will take around 3 to 4 days to reach your destination.</li>
-                            <li>Ship transportation is less available, so kindly keep the update regarding the ship schedule.</li>
-                        <p>The sea transportation is perfect for those travelers who want to get a unique sea experience and for budget travelers as well.</p>
+                            <li>Reaching Andaman is simple with convenient connecting flights via Chennai or Bangalore.</li>
                         </ul>
-                        
-                        <h3 class="fs-6 fw-bold mt-3">What is the cost of the Andaman Tour Package from Kolkata?</h3>
-                        <p>The <strong>Andaman package from Kolkata price</strong> depends on a few factors like season and the type of package you choose, hotel category, ferry type, activities that you will include and duration of your package.</p>
-                        
+
+                        <p><strong>Comfortable Weather</strong></p>
+                        <ul class="packages-list-style">
+                            <li>The climate closely matches Tamil Nadu weather, making it a comfortable destination for Madurai travelers.</li>
+                        </ul>
+
+                        <p><strong>Budget-Friendly Trip</strong></p>
+                        <ul class="packages-list-style">
+                            <li>Andaman is more affordable compared to Maldives, Bali, or Thailand while offering equally stunning views and experiences.</li>
+                        </ul>
+
+                        <p><strong>Great for Honeymooners & Adventure</strong></p>
+                        <ul class="packages-list-style">
+                            <li>Perfect for romantic holidays and thrill-seekers with beautiful beaches, great photography spots, and a wide range of water sports.</li>
+                        </ul>
+
+                        <h3 class="fs-6 fw-bold mt-3">How to Reach Andaman from Madurai</h3>
+                        <p>Currently, there are no direct flights from Madurai to Andaman. You will need to take a one-stop connecting flight via the nearest major cities.</p>
+
+                         <p class="mt-2"><strong>Available Flight Routes:</strong></p>
+                        <ul class="packages-list-style">
+                            <li>Madurai → Chennai → Port Blair</li>
+                            <li>Madurai → Bangalore → Port Blair</li>
+                        </ul>
+
+                         <p class="mt-2"><strong>Flight Tickets Are Not Included, But We Assist With:</strong></p>
+                        <ul class="packages-list-style">
+                            <li>Best flight timings</li>
+                            <li>Cheapest flight combinations</li>
+                            <li>Airline recommendations</li>
+                            <li>Layover suggestions</li>
+                        </ul>
+                        <p>This flexibility allows you to choose the airline and timing that best fits your budget.</p>
+
+                        <h3 class="fs-6 fw-bold mt-3">Andaman Tour Package from Madurai Price (Without Flights)</h3>
+                        <p>The cost of an Andaman tour package from Madurai (excluding flights) basically depends on the type of accommodation you choose, season of travel, ferry you prefer and the number of sightseeings and activities you are going to include in your Andaman tour itinerary.</p>
+                        <p class="mt-2"><strong>Per Person Price Range (Without Flights)</strong></p>
+                            <p class="mt-2"><strong>Budget Package: INR 12,000 to INR 18,500</strong></p>
                             <ul class="packages-list-style">
-                                <li><strong>Starting Cost:</strong> If you are choosing a budget friendly package, it will cost you nearly INR 10,000 per person for 3 Nights and 4 Days.</li>
-                                <li><strong>Average Cost:</strong> If you are looking for a standard package, it will cost you nearly INR 18,000 to 45,000 per person for 4 nights and 5 Days.</li>
-                                <li><strong>Luxury Packages:</strong> If you are choosing a luxury package, it will cost you around INR 60,000 and above per person.</li>
-                            
-                        <p><strong>Please Note:</strong> The costs that are mentioned above are only for your reference and it varies as per your requirement, hotel category and customization. The final price may increase or decrease on the basis of the inclusion you choose. For more information regarding the package, you can directly contact our <strong>Andaman Bliss</strong> via mail or phone call.</p>
-                            
+                                <li>Ideal for backpackers or travelers looking for a simple and affordable Andaman experience.</li>
+                            </ul>
+
+                            <p class="mt-2"><strong>Standard Package: INR 15,500 to INR 25,000</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Includes comfortable stays and essential sightseeing tours—perfect for couples and families.</li>
+                            </ul>
+
+                            <p class="mt-2"><strong>Premium Package: INR 28,000 to INR 45,000</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Offers better accommodation, private ferries, and a smooth travel experience.</li>
+                            </ul>
+
+                            <p class="mt-2"><strong>Luxury Package: INR 45,000 to INR 70,000 and above</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Features beachside resorts, premium transfers, and a luxurious holiday experience.</li>
                             </ul>
                         
-                        <h3 class="fs-6 fw-bold mt-3">Best Time To Visit Andaman Island</h3>
-                        <ul class="packages-list-style">
-                            <li>The best time to visit Andaman & Nicobar Island is between <em>October and May</em>. During these months, the weather is pleasant with calm seas. This time is perfect for sightseeing and water sports activities.</li>
-                            <li>AThe monsoon month that starts from <em>June to September</em> is not recommended as it causes heavy rainfall and might affect ferry schedules and water activities. </li>
-                        </ul>
+                        <h3 class="fs-6 fw-bold mt-3">Best Time to Visit Andaman from Madurai</h3>
+                            <p><strong>October to May</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Perfect months for sightseeing, beaches, photography, and all water activities.</li>
+                            </ul>
 
-                        <h3 class="fs-6 fw-bold mt-3">Top Attractions to see in Andaman Island</h3>
-                        
-                       <ul class="packages-list-style">
-                             <li><strong><a href="https://andamanbliss.com/islands/port-blair" target="_blank" rel="noopener noreferrer">Port Blair:</a></strong> Cellular Jail, Corbyn’s Cove Beach, Light and Sound Show</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/havelock-swaraj-dweep" target="_blank" rel="noopener noreferrer">Havelock</a></strong> Radhanagar Beach, Elephant Beach, Kalapathar Beach</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/neil-shaheed-dweep" target="_blank" rel="noopener noreferrer">Neil Island:</a></strong> Laxmanpur Beach, Natural Rock Formation, Bharatpur Beach</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/baratang" target="_blank" rel="noopener noreferrer">Baratang Island:</a></strong> Limestone Cave, Mud Volcano, Parrot Island</li>
-                            <li><strong><a href="https://andamanbliss.com/islands/port-blair/ross-island" target="_blank" rel="noopener noreferrer">North Bay & Ross Island:</a></strong> Colonial ruins at Ross Island, Water sports at North Bay Island</li>
-                        </ul>
+                            <p><strong>June to September</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Ideal for a budget-friendly trip with great discounts and suitable for relaxed holidays.</li>
+                            </ul>
+
+                        <h3 class="fs-6 fw-bold mt-3">Ferry Options Included in Your Package</h3>
+                            <p>You will travel between the islands in comfortable AC cruise ferries such as:</p>
+
+                            <ul class="packages-list-style">
+                                <li>Makruzz</li>
+                                <li>Nautika</li>
+                                <li>Green Ocean</li>
+                                <li>ITT Majestic</li>
+                            </ul>
+                            <p>All these ferries are comfortable, safe, and offer a scenic travel experience.</p>
+
+                        <h3 class="fs-6 fw-bold mt-3">Top Attractions Covered in Your Andaman Tour</h3>
+                                <p><strong>Port Blair</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Cellular Jail</li>
+                                    <li>Ross Island (Netaji Subhash Island)</li>
+                                    <li>North Bay Coral Island</li>
+                                    <li>Corbyn’s Cove Beach</li>
+                                    <li>Anthropological Museum</li>
+                                </ul>
+
+                                <p><strong>Havelock Island</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Radhanagar Beach</li>
+                                    <li>Kalapathar Beach</li>
+                                    <li>Elephant Beach</li>
+                                    <li>Water Sports Hub of Andaman</li>
+                                </ul>
+
+                                <p><strong>Neil Island</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Natural Rock Formation</li>
+                                    <li>Laxmanpur Beach</li>
+                                    <li>Sitapur Beach</li>
+                                    <li>Bharatpur Beach</li>
+                                </ul>
+
+                                <p><strong>Baratang</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Mud Volcano</li>
+                                    <li>Limestone Caves</li>
+                                </ul>
+
+                                <p><strong>Diglipur</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Ross & Smith Twin Islands</li>
+                                    <li>Saddle Peak</li>
+                                </ul>
+
+                        <h3 class="fs-6 fw-bold mt-3">Water Sports & Activities in Andaman</h3>
+                        <p>The Andaman Islands are known as the adventure capital of India because of their clean blue waters, vibrant coral reefs, and variety of thrilling activities. Whether you are a thrill-seeker or a nature lover, you can add a wide range of water sports to your Andaman package based on your preferences.</p>
+                                <p class="mt-2"><strong>Popular Water Sports in Andaman</strong></p>
+                                <p><strong>Scuba Diving</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Experience colorful corals, tropical fish, sea turtles, and rich marine life at Elephant Beach and North Bay Island.</li>
+                                </ul>
+
+                                <p><strong>Snorkeling</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Perfect for beginners—enjoy vibrant fishes and corals near the shoreline without needing professional training.</li>
+                                </ul>
+
+                                <p><strong>Jet Ski Ride</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>An exciting high-speed adventure ride, popular at beaches like Corbyn’s Cove.</li>
+                                </ul>
+
+                                <p><strong>Sea Walking</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Walk on the ocean floor and witness marine life up close—no swimming skills required.</li>
+                                </ul>
+
+                                <p><strong>Parasailing</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Soar above crystal-clear waters and enjoy breathtaking aerial views of nearby islands.</li>
+                                </ul>
+
+                                <p><strong>Glass Bottom Boat Ride</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>Perfect for families and kids—you can explore the underwater world without getting wet.</li>
+                                </ul>
+
+                                <p><strong>Kayaking in Mangroves</strong></p>
+                                <ul class="packages-list-style">
+                                    <li>A peaceful and scenic activity ideal for nature lovers.</li>
+                                </ul>
  
-                            <h3 class="fs-6 fw-bold mt-3">Sample 6 Nights 7 Days Tour Itinerary </h3>
-                        <ul>
-                            <li><strong>Day 1:</strong> Arrive in Port Blair and visit the historical site like <a href="https://andamanbliss.com/islands/port-blair/cellular-jail" target="_blank">Cellular Jail</a> and witness the Light & sound show in the evening.</li>
-                            <li><strong>Day 2:</strong> Take a ferry ride to <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep"target="_blank">Havelock island</a> and enjoy the world famous <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/radhanagar-beach"target="_blank">Radhanagar beach</a>. In the evening, explore Kalapathar beach where you can relax and unwind.</li>
-                            <li><strong>Day 3:</strong> On the next day, take a short boat ride to <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/elephant-beach"target="_blank">Elephant beach</a> and enjoy a variety of water sports activities like scuba diving, snorkeling and glass bottom boat rides.</li>
-                            <li><strong>Day 4:</strong> Take a boat ride to <a href="https://andamanbliss.com/islands/neil-shaheed-dweep"target="_blank">Neil island</a> and visit Laxmanpur beach and <a href="https://andamanbliss.com/islands/neil-shaheed-dweep/natural-rock"target="_blank">Natural Bridge</a>. On the same day, visit Bharatpur beach and take part in a variety of water activities.</li>
-                            <li><strong>Day 5:</strong> On the fifth day, get back to Port Blair and visit Ross and <a href="https://andamanbliss.com/islands/port-blair/north-bay-island"target="_blank">North bay island</a>. In the evening, visit Chidiyatapu beach and enjoy birdwatching.</li>
-                            <li><strong>Day 6:</strong> Visit <a href="https://andamanbliss.com/islands/baratang"target="_blank">Baratang island</a> and explore <a href="https://andamanbliss.com/islands/baratang/lime-stone-caves"target="_blank">Limestone cave</a> and <a href="https://andamanbliss.com/islands/baratang/mud-volcano"target="_blank">Mud volcano</a>.</li>
-                            <li><strong>Day 7:</strong> Departure</li>
-                        </ul>
-
-                        <h3 class="fs-6 fw-bold mt-3">Best Andaman Tour Packages from Kolkata</h3>
-                        
+                            <h3 class="fs-6 fw-bold mt-3">Popular Itinerary - Andaman Tour Package from Madurai</h3>
+                            <p class="mt-2"><strong>5 Nights / 6 Days Itinerary</strong></p>
+                            <p><strong>Day 1 – Port Blair City Tour</strong></p>
                             <ul class="packages-list-style">
-                            <p><strong>Andaman Family Package from Kolkata</strong></p>
-                            <p>Our <a href="https://andamanbliss.com/andaman-family-packages" target="_blank">family friendly packages</a> are designed for both parents and children. You can stay in a family friendly hotel, safe and smooth ferry transfer and a comfortable sightseeing experience. Your kids will enjoy activities like glass bottom boat rides and beach playtime.</p>
+                                <li>Cellular Jail</li>
+                                <li>Light & Sound Show</li>
+                                <li>Corbyn’s Cove Beach</li>
                             </ul>
 
+                            <p><strong>Day 2 – Havelock Island</strong></p>
                             <ul class="packages-list-style">
-                            <p><strong>Andaman Honeymoon Package from Kolkata</strong></p>
-                            <p>Our <a href="https://andamanbliss.com/andaman-honeymoon-packages" target="_blank">Andaman honeymoon package</a> will surely give you a dreamy experience. You will be staying at beautiful beachside resorts, enjoy candlelight dinner with your partner, travel comfortably with private cab transfers and capture every moment together. If you choose a honeymoon package with Andaman Bliss, you will surely get an unforgettable experience.</p>
+                                <li>Cruise to Havelock</li>
+                                <li>Radhanagar Beach (Asia’s Best Beach)</li>
                             </ul>
 
+                            <p><strong>Day 3 – Adventure Day</strong></p>
                             <ul class="packages-list-style">
-                            <p><strong>Andaman Group Tour Packages from Kolkata</strong></p>
-                            <p>Get the chance to enjoy a special group discount, comfortable AC coach transfers and sightseeing tours that are customized to suit your group's interest in our <a href="https://andamanbliss.com/andaman-group-packages" target="_blank">Andaman group tour packages</a>. Whether its a college trip or a corporate tour, this package will give you a memorable experience together.</p>
+                                <li>Scuba Diving</li>
+                                <li>Snorkeling</li>
+                                <li>Kayaking</li>
+                                <li>Visit Elephant Beach</li>
                             </ul>
 
+                            <p><strong>Day 4 – Neil Island</strong></p>
                             <ul class="packages-list-style">
-                            <p><strong>Luxury Andaman Tour Package from Kolkata</strong></p>
-                            <p>If you want to stay at premium 4 and 5 star beach resorts, sail on royal class cruises or want to enjoy a fine dining experience, then our luxury package is the best choice for you. Every moment of your trip will feel exclusive and luxurious.</p>
+                                <li>Bharatpur Beach</li>
+                                <li>Natural Rock Formation</li>
+                                <li>Laxmanpur Beach Sunset</li>
                             </ul>
 
+                            <p><strong>Day 5 – Port Blair Excursions</strong></p>
                             <ul class="packages-list-style">
-                            <p><strong>Budget Andaman Tour Package from Kolkata</strong></p>
-                            <p>Our budget friendly package offers you clean and comfortable hotels, ferry transfers and major sightseeing. It is a great choice for those travelers who want a memorable holiday experience while staying within their budget.</p>
+                                <li>Ross Island</li>
+                                <li>North Bay Coral Island</li>
+                                <li>Local Market Shopping</li>
                             </ul>
 
-                            <ul class="packages-list-style">
-                            <p><strong>Andaman Adventure Package from Kolkata</strong></p>
-                            <p>If you want to experience thrilling and adventurous activities, then Andaman Island is the best choice for you. You can choose our <a hrf="https://andamanbliss.com/andaman-adventure-packages" target="_blank">Andaman adventure package</a> that offers a perfect mix of adventure and excitement.</p>
-                            </ul>
+                            <p><strong>Day 6 – Departure</strong></p>
+                            <p>We also customize additional itineraries for honeymooners, families, groups, luxury travelers, and senior citizens upon request.</p>
                         
                         <h3 class="fs-6 fw-bold mt-3">How Many Days Are Sufficient for an Andaman Tour Package</h3>
                         <ul class="packages-list-style">
@@ -1796,20 +1919,58 @@ function toggleItinerary(dayNumber) {
                         </ul>
 
 
-                        <h3 class="fs-6 fw-bold mt-3">Why Book Your Andaman Tour Package with Andaman Bliss?</h3>
-                        <ul class="packages-list-style">
-                            <ul class="styled_li">
-                                <li>We are local Andaman experts with 8 years of experience.</li>
-                                <li>We provide customized tour itineraries as per your requirements.</li>
-                                <li>Guaranteed ferry and hotel bookings.</li>
-                                <li>We offer safe and secure travel arrangements.</li>
-                                <li>Transparent pricing with no hidden charges.</li>
-                                <li>Hassle free airport, hotel and ferry coordination.</li>
-                                <li>24x7 customer support.</li>
-                                <li>Professional team based in Andaman.</li>
-                                <li>Excellent customer review and repeat travelers.</li>
+                        <h3 class="fs-6 fw-bold">Honeymoon Benefits for Madurai Travelers</h3>
+                            <p><strong>Honeymoon Benefits</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Candlelight dinner</li>
+                                <li>Flower bed decoration</li>
+                                <li>Beachside photoshoot</li>
+                                <li>Private cab transfers</li>
+                                <li>Custom island experiences</li>
+                                <li>Perfect for couples looking for a romantic escape.</li>
                             </ul>
-                        </ul>
+
+                            <p><strong>Family-Friendly Advantages</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Kids-friendly beaches</li>
+                                <li>Comfortable hotels</li>
+                                <li>Safe and easy travel</li>
+                                <li>Flexible itineraries</li>
+                                <li>Activities suitable for all ages</li>
+                            </ul>
+
+                        <h3 class="fs-6 fw-bold mt-3">Travel Tips for Andaman Visitors</h3>
+                        <p>You can make your Andaman holiday easy and more enjoyable by following these simple tips:</p>
+                            <p><strong>Carry Sunscreen & Comfortable Cotton Clothes</strong></p>
+                            <ul class="packages-list-style">
+                                <li>The islands have sunny tropical weather, so wear light, comfortable clothes and apply good sunscreen.</li>
+                            </ul>
+
+                            <p><strong>Pre-Book Ferry Tickets</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Ferries between Port Blair, Havelock, and Neil Island require advance booking to avoid last-minute stress.</li>
+                            </ul>
+
+                            <p><strong>BSNL Works Best on Remote Islands</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Network coverage is limited in remote areas, and BSNL tends to work more reliably than other operators.</li>
+                            </ul>
+
+                            <p><strong>Avoid Touching Corals</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Corals are sensitive and protected by law. Enjoy marine life without touching or disturbing them while snorkeling or diving.</li>
+                            </ul>
+
+                            <p><strong>Respect Local Rules at Beaches</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Follow safety instructions, swimming guidelines, and signboards to ensure a safe experience.</li>
+                            </ul>
+
+                            <p><strong>Carry Cash for Small Purchases</strong></p>
+                            <ul class="packages-list-style">
+                                <li>Many local shops and eateries may not accept digital payments, especially on smaller islands. Carry sufficient cash for convenience.</li>
+                            </ul>
+
 
                         <div class="row mt-3">
                             <div class="col-md-6">
@@ -1852,7 +2013,7 @@ function toggleItinerary(dayNumber) {
             <div class="col-12 text-center">
                 <div class="faq-header mb-5">
                     <h2 class="section-title-h2 text-center">Frequently Asked <span> Questions</span></h2>
-                    <p class="faq-subtitle">Everything you need to know about planning your trip to Andaman Islands From Kolkata</p>
+                    <p class="faq-subtitle">Everything you need to know about planning your trip to Andaman Islands From Madurai</p>
                 </div>
             </div>
         </div>
@@ -1865,14 +2026,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-route"></i>
                         </div>
-                        <h3>Why Andaman island is called as an ideal destination for a gateway from Kolkata?</h3>
+                        <h3>Is there any direct flight to reach Andaman from Madurai?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="faq-answer collapse show" id="faqAnswer1" style="">
-                        <p>Andaman island offers an unbeatable combination of stunning beaches, clear water and peace. This destination is perfect for a quick escape from Kolkata hustle. Whether you are seeking for an adventure or relaxation, Andaman is the ultimate destination to immerse yourself in the beauty of nature of Andaman and Nicobar island.</p>
+                        <p>No, there are no direct flights from Madurai to Port Blair. Travelers usually take a one stop connecting flight via Chennai or Bangalore because these destinations operate flights daily to the Andaman Islands.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq2">
@@ -1881,14 +2042,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-map-marked-alt"></i>
                         </div>
-                        <h3>What does the Andaman tour package from Kolkata include?</h3>
+                        <h3>What is the cost of an Andaman tour package from Madurai?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer2">
-                        <p>Our kolkata to Andaman packages are designed to make your holiday stress free from start to finish. Our team will take care of airport transfers, comfortable stays, sightseeing tours and private inter island ferry transfers. We also provide complimentary snorkeling and breakfast. If you want to add ons or want to upgrade your package, you can just contact our team and they will customize the inclusions accordingly to match your travel style and budget.</p>
+                        <p>The Andaman tour package from Madurai usually starts from INR 12,500 per person (without flights). The final cost of your tour package depends on the hotel category, ferry type, season and additional inclusion in your itinerary.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq3">
@@ -1897,14 +2058,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <h3>What destination can I explore in my Kolkata to Andaman package?</h3>
+                        <h3>How many days are enough for an Andaman trip?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer3">
-                        <p>Our Andaman tour package covers iconic locations like Port Blair (Cellular jail, Corbyn cove beach, Ross island and North Bay), Havelock island (Radhanagar beach and Elephant beach), Neil island (Laxmanpur beach and Bharatpur beach) and Baratang (Limestone cave and Mud volcano). Each destination from your tour package offers unique and unforgettable experiences.</p>
+                        <p>A 5 to 6 Andaman tour is perfect to cover all the major attractions like Port Blair, Havelock and Neil Island.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq5">
@@ -1913,14 +2074,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <h3>Can you suggest what is the best time to visit Andaman island??</h3>
+                        <h3>Is Andaman safe for families and couples?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer5">
-                        <p>The best time to visit Andaman island is between October to May as it is considered to be the best season. This month offers pleasant weather, smooth seas and you can even participate in many water sports activities as well. The monsoon season that starts from June to September is less recommended as it may cause heavy rainfall and there might be chances of ferry cancellations due to rough weather conditions.</p>
+                        <p>Yes, Andaman Islands are considered as one of the best and safest tourist destinations in India because it offers friendly locals and well managed tourism services.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq6">
@@ -1929,14 +2090,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Is Andaman tour package customizable?</h3>
+                        <h3>What is the best islands in the Andaman Islands?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer6">
-                        <p>Yes, we totally understand that every traveler is different. You can customize your tour package as per your preferences and choice. Whether you are looking for a family friendly vacation, a honeymoon couple or a solo adventure. You can contact our Andaman Bliss team and let us know about your vision and we will create the perfect itinerary for you.</p>
+                        <p>Havelock Island is still considered as one of the most popular choice because of its stunning beaches, variety of water sports activities and scenic beauty.</p>
                     </div>
                     
                 </div>
@@ -1948,14 +2109,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-car"></i>
                         </div>
-                        <h3>What is the best time to book Andaman tour package?</h3>
+                        <h3>Do you include flight tickets in the Andaman tour package?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer4">
-                        <p>The best time to visit Andaman island is between October to May, when the weather is perfect for beach activities and sightseeings. The sea is usually calm and the temperature is perfect for a relaxing vacation. We totally understand that your plan might not always fit within this month, so that is why we offer flexible packages throughout the year. So, whether you want a trip during the monsoon season or off season, we have got you covered.</p>
+                        <p>Flight tickets are not included in our package, but we are happy to assist you by providing guidance on booking the best and affordable flight options from Madurai.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq7">
@@ -1964,14 +2125,15 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>How can I book my Andaman tour package from Kolkata with Andaman Bliss?</h3>
+                        <h3>When is the best time to visit the Andaman Islands?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer7">
-                        <p>Booking your package is very simple. You just need to visit our website and fill out the booking form or you can either contact our Andaman Bliss team at +91 89009 09900 and you can customize your package as per your preference. Our team will take care of every single detail from accommodation to sightseeings, ensuring a safe and memorable vacation.</p>
+                        <p>The perfect time to visit Andaman Island is from October to May. During these months, the weather is pleasant, seas are calm and water sports activities like snorkeling and scuba diving can be enjoyed at their best.
+                        </p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq8">
@@ -1980,14 +2142,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Are the Kolkata tour package for Andaman affordable for all travelers?</h3>
+                        <h3>Do I need any permit to visit the Andaman Islands?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer8">
-                        <p>Yes, absolutely! We provide a variety of packages that are suitable for all types of budgets. Whether you are looking for a cost effective gateway or a luxurious package, you can trust Andaman Bliss as we offer you an amazing Andaman experience that does not compromise on quality or enjoyment. </p>
+                        <p>Yes, Indian nationals need a permit for restricted islands and all these permits are usually arranged by tour operators.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq9">
@@ -1996,14 +2158,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>Is the Andaman package from Kolkata suitable for families and children?</h3>
+                        <h3>Can I customize my Andaman itinerary?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer9">
-                        <p>Yes. Our Andaman package from Kolkata is specially designed for families. From relaxing beach days and exploring historical sites like the Cellular jail to exciting boat rides, this package has something for everyone. Your little ones will have a blast enjoying the beauty of Andaman island as we make sure that all the ferry rides and accommodations are safe, comfortable and family friendly.</p>
+                        <p>Yes, all our Andaman tour packages are customized as per your preferences.</p>
                     </div>
                 </div>
                 <div class="faq-item" id="faq10">
@@ -2012,14 +2174,14 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>How far in advance should I book my Andaman tour package from Kolkata?</h3>
+                        <h3>What are the must visit beaches in Andaman Islands?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
                         </div>
                     </div>
                     <div class="collapse faq-answer" id="faqAnswer10">
-                        <p>While would be happy to accommodate last-minute bookings (subject to availability), but we recommend booking your Andaman tour 2-3 months well in advance. This ensures you get the best deals as well as your preferred travel dates and accommodations, that makes your trip even more stress free.</p>
+                        <p>Some of the most popular beaches include Radhanagar Beach, Elephant Beach, Corbyn Cove Beach, Chidiyatapu, Laxmanpur Beach. All these beaches are perfect for swimming, photography and water sports activities.</p>
                     </div>
                 </div>
             </div>

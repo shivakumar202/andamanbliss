@@ -21,7 +21,7 @@
 
 
     @include('common.search2')
-
+    @include('common.login-modal')
     @if (count($cabPrices) > 0)
         <section class="cab-listing container mt-2">
             <div class="row">
@@ -135,11 +135,18 @@
                                             <small class="mb-1 city-limit">within city limits</small>
                                         </div>
                                         <div class="text-end">
+                                           
+                                            @if(Auth::check())
                                             <form action="{{ route('cab.checkout') }}" method="POST" class="d-inline">
                                                 @csrf
                                                 <input type="hidden" name="request" id="request" value='@json($cab)'>
                                                 <button type="submit" class="btn btn-primary">Book Now</button>
                                             </form>
+                                            @else 
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                Book Now 
+                                            </button>
+                                            @endif
                                         </div>
 
                                     </div>
