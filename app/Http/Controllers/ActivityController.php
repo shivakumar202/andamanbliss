@@ -55,7 +55,7 @@ class ActivityController extends Controller
                 })->when(!empty($request->category) && empty($request->categories), function ($q) use ($request) {
                     $q->where('slug', $request->category);
                 });
-            })           
+            })
             ->when(!empty($request->keyword), function ($query) use ($request) {
                 $query->where(function ($q) use ($request) {
                     $q->where('service_name', 'like', "%{$request->keyword}%")
@@ -67,7 +67,7 @@ class ActivityController extends Controller
         if ($request->ajax()) {
             try {
                 return response()->json([
-                    'activities' => $activities->items() ,
+                    'activities' => $activities->items(),
                     'next_page' => $activities->nextPageUrl(),
                     'has_more' => $activities->hasMorePages()
                 ]);
@@ -212,7 +212,7 @@ class ActivityController extends Controller
             $addonIds = explode(',', $activity->addons);
             $activity->addon_names = Addon::whereIn('id', $addonIds)->get();
         }
-        
+
         $activities = Service::with(['activityPhotos'])
             ->whereHas('category', function ($query) use ($slug) {
                 $query->where('type', 'activity')
@@ -361,8 +361,8 @@ class ActivityController extends Controller
         $activities = Activities::with(['category', 'activityPhotos', 'facilities'])
             ->where('category_id', $category->id)
             ->get();
-        
-        $reviews = GoogleReview::orderBy('review_date','DESC')->where('comment','!=',null)->where('rating',5)->take(10)->get();
+
+        $reviews = GoogleReview::orderBy('review_date', 'DESC')->where('comment', '!=', null)->where('rating', 5)->take(10)->get();
         $review_images = ReviewImage::all();
 
         $review = GoogleReview::all();
@@ -377,7 +377,7 @@ class ActivityController extends Controller
         ];
 
 
-        return view("activities.dev.index", compact('category', 'activities','reviews','rating','review_images'));
+        return view("activities.dev.index", compact('category', 'activities', 'reviews', 'rating', 'review_images'));
     }
 
     public function dynamic(string $url)
@@ -389,7 +389,7 @@ class ActivityController extends Controller
             $activity->addon_names = Addon::whereIn('id', $addonIds)->get();
         }
 
-        $reviews = GoogleReview::orderBy('review_date','DESC')->where('comment','!=',null)->where('rating',5)->take(10)->get();
+        $reviews = GoogleReview::orderBy('review_date', 'DESC')->where('comment', '!=', null)->where('rating', 5)->take(10)->get();
         $review_images = ReviewImage::all();
 
         $review = GoogleReview::all();
@@ -403,7 +403,7 @@ class ActivityController extends Controller
             '1' => $review->where('rating', 1)->count(),
         ];
 
-        return view("activities.dev.show", compact('activity', 'reviews','rating','review_images'));
+        return view("activities.dev.show", compact('activity', 'reviews', 'rating', 'review_images'));
     }
 
     public function PaymentReview(Request $request)
@@ -562,19 +562,17 @@ class ActivityController extends Controller
             ]);
 
 
-            $response = response()->json(['success' => true]);
+            $lastTwoDigits = substr($booking->mobile, -2);
+            $bdate = \Carbon\Carbon::parse($booking->start_date)->format('dm');
 
-            // Immediately return response to browser
-            $response->send();
-            flush();
-
-            // Safely continue background work
-            if (function_exists('fastcgi_finish_request')) {
-                fastcgi_finish_request();
-            }
-
-            // Now queue the job (this won't delay the response)
+            $prefix = 'AB';
+            $ticketcode = $prefix . $bdate . $lastTwoDigits . $booking->id;
             SendActivityConfirmation::dispatch($booking->id);
+
+            return response()->json([
+                'success'    => true,
+                'ticketcode' => $ticketcode
+            ]);
         } catch (\Exception $e) {
             Log::error('Payment verification failed', [
                 'error' => $e->getMessage(),
@@ -698,7 +696,7 @@ class ActivityController extends Controller
 
         $activity = Activities::find($booking->table_id);
         $payment = RazorpayTransactions::where('booking_id', $booking->booking_id)->first();
-        
+
         $pdf = $this->generateVoucher($booking->id);
 
         // 🟡 Update: subject includes activity name and ticket code
@@ -784,7 +782,7 @@ class ActivityController extends Controller
 
     public function SendEnquiry(Request $request)
     {
-        $endata = json_decode($request->data,true);
+        $endata = json_decode($request->data, true);
         $activity = Activities::find($request->input('activity'))->first();
         $data = [
             'activity' => $activity->service_name,
@@ -794,18 +792,18 @@ class ActivityController extends Controller
             'activity_date' => $endata['arrival_date'],
             'time_slot' => $endata['time_slot'],
             'total_cost' => $endata['total_cost'],
-            'name' => $request->input('first_name') . ' '. $request->input('last_name'),
+            'name' => $request->input('first_name') . ' ' . $request->input('last_name'),
             'mobile' => $request->input('mobile'),
             'email' => $request->input('email'),
             'amount' => $request->input('total_cost'),
         ];
 
         $mailData['subject'] = $data['activity'] . ' - Activity Booking Enquiry';
-        $mailData['email'] = env('MAIL_FROM_ADDRESS','info@andamanbliss.com');
-        $mailData['name'] = env('MAIL_FROM_NAME','Andaman Bliss');
+        $mailData['email'] = env('MAIL_FROM_ADDRESS', 'info@andamanbliss.com');
+        $mailData['name'] = env('MAIL_FROM_NAME', 'Andaman Bliss');
         $mailData['body'] = "";
 
-       $mailData['body'] .= "<strong>Activity Name:</strong> {$data['activity']}<br/>";
+        $mailData['body'] .= "<strong>Activity Name:</strong> {$data['activity']}<br/>";
         $mailData['body'] .= "<strong>Location:</strong> {$data['location']}<br/>";
         $mailData['body'] .= "<strong>Name:</strong> {$data['name']}<br/>";
         $mailData['body'] .= "<strong>Email:</strong> {$data['email']}<br/>";
@@ -815,14 +813,13 @@ class ActivityController extends Controller
         $mailData['body'] .= "Guest: Adult: {$data['adult']}, Infant: {$data['infant']}<br/><br/> <hr/>";
 
         $mailData['info'] = "Note: Live booking is disabled for this activity.";
-       \Mail::send('emails.template', $mailData, function($message) use ($mailData) {
-    $message->subject($mailData['subject'])->to('info@andamanbliss.com')->cc('amitmandal@andamanbliss.com');
-});
+        \Mail::send('emails.template', $mailData, function ($message) use ($mailData) {
+            $message->subject($mailData['subject'])->to('info@andamanbliss.com')->cc('amitmandal@andamanbliss.com');
+        });
 
-return response()->json([
-    'success' => true,
-    'redirect_url' => route('activities.index')
-]);
-
+        return response()->json([
+            'success' => true,
+            'redirect_url' => route('activities.index')
+        ]);
     }
 }

@@ -416,14 +416,18 @@ class TourController extends Controller
             })->first();
 
 
+            $categories = Category::where('type', 'tour')->pluck('id');
+
             $tours = TourPackages::with(['tourPhotos', 'tourCategory', 'subCategories'])
-                ->whereHas('tourCategory', function ($query) use ($slug) {
-                    $query->where('type', 'tour');
-                })
+                ->whereIn('category_id', $categories)
                 ->where('status', 1)
-                ->where('best_seller',1)
-                ->inRandomOrder()
-                ->get();
+                ->where('best_seller', 1)
+                ->get()
+                ->groupBy('category_id')
+                ->map(function ($group) {
+                    return $group->random(1)->first();
+                })
+                ->values();
         } else {
             $tour = TourPackages::with([
                 'tourPhotos',
@@ -1089,6 +1093,7 @@ class TourController extends Controller
             '1' => $review->where('rating', 1)->count(),
         ];
 
+           
 
         return view('tours.show')->with(compact('tour', 'itineraries', 'tours', 'inputs', 'totalCosts', 'guests', 'cat', 'priceBreakdown', 'livebook', 'reviews', 'review_images', 'rating', 'hotelcost', 'whcost'));
     }

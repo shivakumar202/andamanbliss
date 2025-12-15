@@ -39,10 +39,10 @@ class CabController extends Controller
     /**
      * Display a listing of the resource.
      */
-public function index(Request $request)
+    public function index(Request $request)
     {
         $type = $request->input('cabtripType');
-        $reviews = GoogleReview::orderBy('review_date','DESC')->where('comment','!=',null)->take(10)->get();
+        $reviews = GoogleReview::orderBy('review_date', 'DESC')->where('comment', '!=', null)->take(10)->get();
 
         $cabPrices = [];
         switch ($type) {
@@ -84,27 +84,24 @@ public function index(Request $request)
 
             default:
 
-           $reviews = GoogleReview::orderBy('review_date','DESC')->where('comment','!=',null)->where('rating',5)->take(10)->get();
-        $review_images = ReviewImage::all();
+                $reviews = GoogleReview::orderBy('review_date', 'DESC')->where('comment', '!=', null)->where('rating', 5)->take(10)->get();
+                $review_images = ReviewImage::all();
 
-        $review = GoogleReview::all();
-        $rating = [
-            'total_reviews' => $review->count(),
-            'average_rating' => $review->avg('rating'),
-            '5' => $review->where('rating', 5)->count(),
-            '4' => $review->where('rating', 4)->count(),
-            '3' => $review->where('rating', 3)->count(),
-            '2' => $review->where('rating', 2)->count(),
-            '1' => $review->where('rating', 1)->count(),
-        ];
+                $review = GoogleReview::all();
+                $rating = [
+                    'total_reviews' => $review->count(),
+                    'average_rating' => $review->avg('rating'),
+                    '5' => $review->where('rating', 5)->count(),
+                    '4' => $review->where('rating', 4)->count(),
+                    '3' => $review->where('rating', 3)->count(),
+                    '2' => $review->where('rating', 2)->count(),
+                    '1' => $review->where('rating', 1)->count(),
+                ];
 
-                return view('cabs.bookings.index', compact('cabPrices','reviews','review_images','rating'));
-
+                return view('cabs.bookings.index', compact('cabPrices', 'reviews', 'review_images', 'rating'));
         }
 
-        $rawpacks = Cache::rememberForever('cab_pricing', function () {
-            return CabPricing::with('cabs')->get();
-        });
+        $rawpacks = CabPricing::with('cabs.cabPhotos')->get();
 
         $packages = $rawpacks->filter(function ($pricing) use ($type, $location, $transfer_type, $drop_location) {
             return $pricing->location === $location
@@ -131,6 +128,7 @@ public function index(Request $request)
                 return $cab;
             }
         })->filter();
+
 
         return view('cabs.bookings.index', compact('cabPrices'));
     }
@@ -281,7 +279,7 @@ public function index(Request $request)
     /**
      * Store a newly created resource in storage.
      */
-  public function store(Request $request)
+    public function store(Request $request)
     {
         $cab = json_decode($request->input('cabs'), true);
         $paying = $request->input('payment');
@@ -368,7 +366,7 @@ public function index(Request $request)
         //
     }
 
-  
+
 
     public function booking(Request $request)
     {
@@ -449,7 +447,7 @@ public function index(Request $request)
 
 
 
-     public function paymentConfirm(Request $request)
+    public function paymentConfirm(Request $request)
     {
         if ($request->isMethod('post')) {
             $orderId = $request->input('order_id');
@@ -512,7 +510,6 @@ public function index(Request $request)
                     'success' => true,
                     'redirect_url' => route('cab.confirm')
                 ]);
-
             } catch (SignatureVerificationError $e) {
                 Log::error('Invalid signature', ['exception' => $e->getMessage()]);
                 return response()->json(['success' => false, 'message' => 'Invalid signature passed'], 400);
@@ -523,7 +520,7 @@ public function index(Request $request)
         if ($billingId) {
             $billingDetails = CabBookings::with('payment')->find($billingId);
             $cab = Cabs::find($billingDetails->cab_id);
-            return view('cabs.bookings.confirm', compact('billingDetails','cab'));
+            return view('cabs.bookings.confirm', compact('billingDetails', 'cab'));
         }
 
         Log::warning('No billing ID in session, redirecting to home');
@@ -531,7 +528,20 @@ public function index(Request $request)
     }
 
 
-     protected function sendPaymentConfirmation($booking)
+
+    // public function bookingSuccess($id)
+    // {
+    //     $booking = CabBookings::with('payment')->findOrFail($id);
+
+    //     $this->sendPaymentConfirmation($booking);
+    //     $this->sendBookingConfirmationEmail($booking);
+
+    //     SendCabBookingMail::dispatch($booking->id)->delay(now()->addMinutes(2));
+    // }
+
+
+
+    protected function sendPaymentConfirmation($booking)
     {
         $billingDetails = CabBookings::with(['payment'])
             ->find($booking->id);
@@ -556,7 +566,7 @@ public function index(Request $request)
 
 
 
-     protected function sendBookingConfirmationEmail($booking)
+    protected function sendBookingConfirmationEmail($booking)
     {
         if (is_string($booking->name) && preg_match('/<[^>]*>/', $booking->name)) {
             session()->flash('error', 'Spam detected. HTML tags are not allowed in the name field.');
@@ -568,7 +578,7 @@ public function index(Request $request)
 
         $billingDetails = CabBookings::with(['payment'])->find($bookingId);
 
-        
+
         $pdf = Pdf::loadView('cabs.bookings.bill', compact('billingDetails'))
             ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
 
@@ -588,7 +598,7 @@ public function index(Request $request)
         $mailData['body'] .= "Pickup Date & Time: " . $booking->pickup_date . "<br/>";
         $mailData['body'] .= "Pickup Location: " . $booking->pickup_location . "<br/>";
         $mailData['body'] .= "Drop Location: " . $booking->drop_location . "<br/>";
-        
+
         $mailData['body'] .= "Total Fare: INR " . $booking->total_amt . "<br/>";
         $mailData['body'] .= "Paid Amount: INR " . $booking->paid . "<br/>";
         $mailData['body'] .= "Booking ID: " . $booking->id . "<br/>";
@@ -605,22 +615,22 @@ public function index(Request $request)
         session()->flash('success', 'Booking confirmed and email sent successfully!');
     }
 
-        public function cabVoucher($bookingId)
-        {
-            $billingDetails = CabBookings::with(['payment'])->find($bookingId);
+    public function cabVoucher($bookingId)
+    {
+        $billingDetails = CabBookings::with(['payment'])->find($bookingId);
 
-            if (!$billingDetails) {
-                abort(404, 'Booking not found');
-            }
-
-            $pdf = Pdf::loadView('cabs.bookings.bill', compact('billingDetails'))
-                ->setOptions([
-                    'isHtml5ParserEnabled' => true,
-                    'isRemoteEnabled' => true
-                ]);
-
-            return $pdf->stream('cab-booking-voucher.pdf');
+        if (!$billingDetails) {
+            abort(404, 'Booking not found');
         }
+
+        $pdf = Pdf::loadView('cabs.bookings.bill', compact('billingDetails'))
+            ->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true
+            ]);
+
+        return $pdf->stream('cab-booking-voucher.pdf');
+    }
 
 
 
@@ -635,83 +645,84 @@ public function index(Request $request)
     }
 
 
-    
-public function checkout(Request $request)
-{
 
-    if ($request->isMethod('post')) {
+    public function checkout(Request $request)
+    {
 
-        $logged = null;
+        if ($request->isMethod('post')) {
 
-        if(auth()->check())
-        {
-            $name = explode(' ', auth()->user()->name);
-            $logged = [
-                'f_name' => $name[0],
-                'l_name' => $name[1] ?? '',
-                'mobile' => auth()->user()->mobile,
-                'email' => auth()->user()->email
+            $logged = null;
 
-            ];
+            if (auth()->check()) {
+                $name = explode(' ', auth()->user()->name);
+                $logged = [
+                    'f_name' => $name[0],
+                    'l_name' => $name[1] ?? '',
+                    'mobile' => auth()->user()->mobile,
+                    'email' => auth()->user()->email
 
-        }
-
-        $cabs = json_decode($request->input('request'));
-        $pricing_id = CabPricing::find($cabs->pricing_id);
-        $type = $cabs->type;
-        $locations = Cache::rememberForever('island_locations', function () {
-            return IslandLocation::get();
-        });
-
-        switch ($type) {
-            case 'airport':
-            case 'jetty':
-                $transfer_type = $cabs->trip_type;
-                $location = $cabs->location;
-                $drop_location = $transfer_type === 'pickup' ? $cabs->drop_location : $cabs->pick_up;
-                break;
-            default:
-                $drop_location = null;
-        }
-
-        if (in_array($cabs->type, ['airport', 'jetty'])) {
-            $drop_dist = $locations->first(fn($loc) => stripos($loc->name, $drop_location) !== false);
-
-            if (!$drop_dist) {
-                abort(404, 'Drop location not found');
+                ];
             }
 
-            $base_payable = property_exists($cabs, 'payable') ? $cabs->payable : ($cabs->base_price ?? 0);
-            $additional_charge = $pricing_id->extra_fare ?? 0;
-            $extra_km = max(0, $drop_dist->distance_km - 5);
-            $total_amount = $base_payable + ($additional_charge * $extra_km);
+
+            $cabs = json_decode($request->input('request'));
+            $pricing_id = CabPricing::find($cabs->pricing_id);
+            $cab = Cabs::with('cabPhotos')->find($cabs->id);
+            $type = $cabs->type;
+            $locations = Cache::rememberForever('island_locations', function () {
+                return IslandLocation::get();
+            });
+
+            switch ($type) {
+                case 'airport':
+                case 'jetty':
+                    $transfer_type = $cabs->trip_type;
+                    $location = $cabs->location;
+                    $drop_location = $transfer_type === 'pickup' ? $cabs->drop_location : $cabs->pick_up;
+                    break;
+                default:
+                    $drop_location = null;
+            }
+
+            if (in_array($cabs->type, ['airport', 'jetty'])) {
+                $drop_dist = $locations->first(fn($loc) => stripos($loc->name, $drop_location) !== false);
+
+                if (!$drop_dist) {
+                    abort(404, 'Drop location not found');
+                }
+
+                $base_payable = property_exists($cabs, 'payable') ? $cabs->payable : ($cabs->base_price ?? 0);
+                $additional_charge = $pricing_id->extra_fare ?? 0;
+                $extra_km = max(0, $drop_dist->distance_km - 5);
+                $total_amount = $base_payable + ($additional_charge * $extra_km);
+            } else {
+                $drop_dist = null;
+                $base_payable = $cabs->base_price ?? 0;
+                $additional_charge = 0;
+                $extra_km = 0;
+                $total_amount = $base_payable;
+            }
+
+            $tax = 1.07;
+            $total_amount_with_tax = $total_amount * $tax;
+
+            $cabs->extra_fare = $additional_charge;
+            $cabs->payable = 200;
+            $cabs->tax = $tax;
+            $cabs->drop = $drop_dist ?? $pricing_id->distance_covered;
+            $cabs->total_amount = $total_amount_with_tax;
+            $cabs->additional_charge = $additional_charge * $extra_km;
+
+
+            return view('cabs.bookings.show', compact('cabs', 'cab', 'logged'));
         } else {
-            $drop_dist = null;
-            $base_payable = $cabs->base_price ?? 0;
-            $additional_charge = 0;
-            $extra_km = 0;
-            $total_amount = $base_payable;
+            $imagePath = public_path('site/img/etc/slipper-beat.gif');
+
+            if (!file_exists($imagePath)) {
+                abort(404);
+            }
+
+            return response()->file($imagePath);
         }
-
-        $tax = 1.07;
-        $total_amount_with_tax = $total_amount * $tax;
-
-        $cabs->extra_fare = $additional_charge;
-        $cabs->payable = 200;
-        $cabs->tax = $tax;
-        $cabs->drop = $drop_dist ?? $pricing_id->distance_covered;
-        $cabs->total_amount = $total_amount_with_tax;
-        $cabs->additional_charge = $additional_charge * $extra_km;
-
-        return view('cabs.bookings.show', compact('cabs','logged'));
-    } else {
-        $imagePath = public_path('site/img/etc/slipper-beat.gif');
-
-        if (!file_exists($imagePath)) {
-            abort(404);
-        }
-
-        return response()->file($imagePath);
     }
-}
 }

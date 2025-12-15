@@ -565,15 +565,6 @@ class TboHotelService
     }
 
 
-
-
-
-
-
-
-
-
-
     private function getClientIPv4()
     {
         $ip = request()->ip();

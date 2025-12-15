@@ -89,7 +89,7 @@
                         <div class="cp-car-section">
                             <div class="cp-car-image-box">
                                 <div class="cp-car-img">
-                                    <img src="https://transfer.EaseMyTrip.com/assets/img/dezire.png" alt="Car">
+                                    <img src="{{$cab->cabPhotos[0]->file}}" alt="Car">
                                 </div>
                                 <div class="cp-car-badge">{{ $cabs->category }}</div>
                             </div>

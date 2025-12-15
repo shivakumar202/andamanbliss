@@ -58,7 +58,6 @@ class CheckTboHotelBookingStatus implements ShouldQueue
                 Log::info("TBO response received with BookingId", ['response' => $response]);
             }
 
-            // If no response or empty or invalid, fallback to TraceId + TokenId (timeout case)
             if (!$response || !isset($response['GetBookingDetailResult'])) {
                 $token = Cache::get('tbo_token_id');
                 if ($booking->TraceId && $token) {

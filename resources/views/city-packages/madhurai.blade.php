@@ -1684,7 +1684,7 @@ function toggleItinerary(dayNumber) {
                     style="background: white; padding: 30px 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     <h2
                         style="color: #333; font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; line-height: 1.4;">
-                        Andaman Tour Package from Madurai<span style="color: #fd7e14;">| Honeymoon, Family & Group Friendly Packages</span> 
+                        Andaman Tour Package from Madurai<span style="color: #fd7e14;"> | Honeymoon, Family & Group Friendly Packages</span> 
                     </h2>
                     <div>
                         <h2 class="fw-bold fs-6">Summary</h2>
@@ -1752,7 +1752,7 @@ function toggleItinerary(dayNumber) {
                         <p>This flexibility allows you to choose the airline and timing that best fits your budget.</p>
 
                         <h3 class="fs-6 fw-bold mt-3">Andaman Tour Package from Madurai Price (Without Flights)</h3>
-                        <p>The cost of an Andaman tour package from Madurai (excluding flights) basically depends on the type of accommodation you choose, season of travel, ferry you prefer and the number of sightseeings and activities you are going to include in your Andaman tour itinerary.</p>
+                        <p>The cost of an <strong>Andaman tour package from Madurai (excluding flights)</strong> basically depends on the type of accommodation you choose, season of travel, ferry you prefer and the number of sightseeings and activities you are going to include in your Andaman tour itinerary.</p>
                         <p class="mt-2"><strong>Per Person Price Range (Without Flights)</strong></p>
                             <p class="mt-2"><strong>Budget Package: INR 12,000 to INR 18,500</strong></p>
                             <ul class="packages-list-style">
@@ -1797,7 +1797,7 @@ function toggleItinerary(dayNumber) {
                             <p>All these ferries are comfortable, safe, and offer a scenic travel experience.</p>
 
                         <h3 class="fs-6 fw-bold mt-3">Top Attractions Covered in Your Andaman Tour</h3>
-                                <p><strong>Port Blair</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/islands/port-blair/" target="_blank">Port Blair</a></p></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Cellular Jail</li>
                                     <li>Ross Island (Netaji Subhash Island)</li>
@@ -1806,7 +1806,7 @@ function toggleItinerary(dayNumber) {
                                     <li>Anthropological Museum</li>
                                 </ul>
 
-                                <p><strong>Havelock Island</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/" target="_blank">Havelock Island</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Radhanagar Beach</li>
                                     <li>Kalapathar Beach</li>
@@ -1814,7 +1814,7 @@ function toggleItinerary(dayNumber) {
                                     <li>Water Sports Hub of Andaman</li>
                                 </ul>
 
-                                <p><strong>Neil Island</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/islands/neil-shaheed-dweep/" target="_blank">Neil Island</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Natural Rock Formation</li>
                                     <li>Laxmanpur Beach</li>
@@ -1822,13 +1822,13 @@ function toggleItinerary(dayNumber) {
                                     <li>Bharatpur Beach</li>
                                 </ul>
 
-                                <p><strong>Baratang</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/islands/baratang/" target="_blank">Baratang</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Mud Volcano</li>
                                     <li>Limestone Caves</li>
                                 </ul>
 
-                                <p><strong>Diglipur</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/islands/diglipur/" target="_blank">Diglipur</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Ross & Smith Twin Islands</li>
                                     <li>Saddle Peak</li>
@@ -1837,37 +1837,37 @@ function toggleItinerary(dayNumber) {
                         <h3 class="fs-6 fw-bold mt-3">Water Sports & Activities in Andaman</h3>
                         <p>The Andaman Islands are known as the adventure capital of India because of their clean blue waters, vibrant coral reefs, and variety of thrilling activities. Whether you are a thrill-seeker or a nature lover, you can add a wide range of water sports to your Andaman package based on your preferences.</p>
                                 <p class="mt-2"><strong>Popular Water Sports in Andaman</strong></p>
-                                <p><strong>Scuba Diving</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activities/scuba-diving/" target="_blank">Scuba Diving</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Experience colorful corals, tropical fish, sea turtles, and rich marine life at Elephant Beach and North Bay Island.</li>
                                 </ul>
 
-                                <p><strong>Snorkeling</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activities/snorkeling/" target="_blank">Snorkeling</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Perfect for beginners—enjoy vibrant fishes and corals near the shoreline without needing professional training.</li>
                                 </ul>
 
-                                <p><strong>Jet Ski Ride</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activities/jet-ski/" target="_blank">Jet Ski Ride</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>An exciting high-speed adventure ride, popular at beaches like Corbyn’s Cove.</li>
                                 </ul>
 
-                                <p><strong>Sea Walking</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activities/sea-walk/" target="_blank">Sea Walking</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Walk on the ocean floor and witness marine life up close—no swimming skills required.</li>
                                 </ul>
 
-                                <p><strong>Parasailing</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activities/parasailing/" target="_blank">Parasailing</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Soar above crystal-clear waters and enjoy breathtaking aerial views of nearby islands.</li>
                                 </ul>
 
-                                <p><strong>Glass Bottom Boat Ride</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activity/andaman-dolphin-glass-bottom-luxury-boat-ride/" target="_blank">Glass Bottom Boat Ride</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>Perfect for families and kids—you can explore the underwater world without getting wet.</li>
                                 </ul>
 
-                                <p><strong>Kayaking in Mangroves</strong></p>
+                                <p><strong><a href="https://andamanbliss.com/activity/andaman-dolphin-glass-bottom-luxury-boat-ride/" target="_blank">Kayaking in Mangroves</a></strong></p>
                                 <ul class="packages-list-style">
                                     <li>A peaceful and scenic activity ideal for nature lovers.</li>
                                 </ul>
@@ -1914,8 +1914,8 @@ function toggleItinerary(dayNumber) {
                         
                         <h3 class="fs-6 fw-bold mt-3">How Many Days Are Sufficient for an Andaman Tour Package</h3>
                         <ul class="packages-list-style">
-                            <li><strong>5 - 7 Days:</strong> Explore Port Blair, Havelock, and Neil Island</li>
-                            <li><strong>7 - 10 Days:</strong> Add Baratang, Rangat, and Long Island to your itinerary</li>
+                            <li><strong>5 - 7 Days:</strong> Explore <a href="https://andamanbliss.com/islands/port-blair/" target="_blank">Port Blair</a>, <a href="https://andamanbliss.com/islands/havelock-swaraj-dweep/" target="_blank">Havelock</a>, and <a href="https://andamanbliss.com/islands/neil-shaheed-dweep/" target="_blank">Neil Island</a></li>
+                            <li><strong>7 - 10 Days:</strong> Add <a href="https://andamanbliss.com/islands/baratang/" target="_blank">Baratang</a>, <a href="https://andamanbliss.com/islands/rangat/" target="_blank">Rangat</a>, and <a href="https://andamanbliss.com/islands/long-island/" target="_blank">Long Island</a> to your itinerary</li>
                         </ul>
 
 

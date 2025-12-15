@@ -4,12 +4,14 @@ namespace App\Livewire;
 
 use App\Jobs\SendBikeRentConfirmation;
 use App\Models\BikePickLocation;
+use App\Models\IslandLocation;
 use App\Models\RazorpayTransactions;
 use App\Models\RentalBookings;
 use App\Models\Service;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 use Livewire\Component;
 use Razorpay\Api\Api;
 
@@ -27,7 +29,7 @@ class BikeBooking extends Component
     public $email = '';
     public $bikeQuantity = 1;
     public $pickupOption = 'self';
-    public $pickupLocation = '';
+    // public $pickupLocation = '';
     public $showPickupLocation = false;
     public $baseCost;
     public $totalCost;
@@ -35,6 +37,8 @@ class BikeBooking extends Component
     public $mapcordinate;
     public $distance = 0;
     public $params;
+    public $pickupLocation = null;
+    public $locations = [];
 
     public $payLater = 1400;
     public $photo;
@@ -92,13 +96,19 @@ class BikeBooking extends Component
 
     public function mount($params)
     {
-        $param = json_decode($params,true);
+        $param = json_decode($params, true);
+
 
         // Initialize booking details from query parameters
         $this->bikeId = $param['bikeId'];
         $this->location = $param['location'];
+
         $this->pickupDate = $param['pickupdate'];
         $this->dropoffDate = $param['dropoffdate'];
+
+        $searchLoc = $this->LocationNames($this->location);
+
+        $this->locations = IslandLocation::where('island_name', $searchLoc)->orderBy('distance_km', 'ASC')->get(['id', 'name', 'latitude', 'longitude', 'distance_km'])->toArray();
 
         // Normalize location for search
         $locationSearch = str_replace('Port Blair', 'Portblair', $this->location);
@@ -132,14 +142,24 @@ class BikeBooking extends Component
             }
         }
 
-        if(auth()->check())
-        {
+        if (auth()->check()) {
             $this->fullName = auth()->user()->name;
             $this->contact = auth()->user()->mobile;
             $this->email = auth()->user()->email;
         }
     }
 
+
+    public function LocationNames($location)
+    {
+        $locations = [
+            'Port Blair' => 'Port Blair',
+            'Neil Island' => 'Neil',
+            'Havelock Island' => 'Havelock',
+        ];
+
+        return $locations[$location] ?? null;
+    }
 
 
     public function resetForm()
@@ -155,6 +175,35 @@ class BikeBooking extends Component
         $this->activeSlot = 'morning';
         $this->selectedTime = $this->times['morning']['times'][0] ?? null;
         $this->updateDropTime($this->selectedTime);
+        $this->updateCost();
+    }
+
+    public function locationSelected()
+    {
+        if (!$this->pickupLocation) return;
+
+        $loc = collect($this->locations)
+            ->firstWhere('id', (int)$this->pickupLocation);
+
+        if (!$loc) return;
+
+        $originLat = $this->maps['latitude'];
+        $originLng = $this->maps['longitude'];
+
+        $distance = 6371 * acos(
+            cos(deg2rad($originLat)) *
+                cos(deg2rad($loc['latitude'])) *
+                cos(deg2rad($loc['longitude']) - deg2rad($originLng)) +
+                sin(deg2rad($originLat)) *
+                sin(deg2rad($loc['latitude']))
+        );
+
+        if ($distance > $this->maps['range_km']) {
+            $this->addError('pickupLocation', 'Delivery not available for this location');
+            return;
+        }
+
+        $this->distance = round($distance, 2);
         $this->updateCost();
     }
 
@@ -223,6 +272,10 @@ class BikeBooking extends Component
 
     public function updatePickup($location, $distance)
     {
+        $location = trim(preg_replace('/\s+/', ' ', $location));
+
+
+
         $this->pickupLocation = $location;
         $this->distance = $distance;
     }
@@ -278,10 +331,10 @@ class BikeBooking extends Component
             'total_fare' => $this->totalCost,
         ];
 
-        
+
         // Enquiry MAil function 
 
-          $mailData = [
+        $mailData = [
             'subject' => '📩 Bike Rental Booking Enquiry',
             'email' => env('MAIL_FROM_ADDRESS', 'info@andamanbliss.com'),
             'name' => env('MAIL_FROM_NAME', 'AndamanBliss'),
@@ -351,7 +404,7 @@ class BikeBooking extends Component
         //     'userDetails' => $UserDeta,
         // ]);
         session()->flash('message', 'Booking submitted successfully.');
-        return redirect('bikes')->with('success','Enquiry Submitted');
+        return redirect('bikes')->with('success', 'Enquiry Submitted');
     }
     public function paymentFailedSessionAlert()
     {
@@ -525,10 +578,22 @@ class BikeBooking extends Component
     }
 
 
+    public function getLocations($search)
+    {
+        if (!$search || strlen($search) < 2) {
+            $this->locations = [];
+            return;
+        }
+
+        $this->locations = IslandLocation::where('name', 'LIKE', "%{$search}%")
+            ->limit(10)
+            ->get(['id', 'name', 'latitude', 'longitude'])
+            ->toArray();
+    }
 
 
 
-    
+
 
 
 

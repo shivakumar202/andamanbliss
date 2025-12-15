@@ -164,15 +164,18 @@
                                                             class="form-select position-relative shadow-none rounded-0 border-dark-subtle"
                                                             id="hotels-nationality" required>
                                                             <option value="">Nationality</option>
-                                                            <option value="IN">INDIAN</option>
+                                                            <option value="IN" selected>INDIAN</option>
                                                         </select>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-lg-3 position-relative">
-    <div class="form-floating guest-selector-wrapper">
-        <input type="text" class="guestSummary form-control shadow-none border-dark-subtle rounded-0"
-               placeholder="Room Guest" readonly>
+                <div class="form-floating guest-selector-wrapper">
+                    <input type="text" class="guestSummary form-control shadow-none border-dark-subtle rounded-0"
+                        placeholder="Room Guest" value="@foreach(request('PaxRooms', []) as $index => $room)
+                    Room {{ $index + 1 }} - {{ $room['Adults'] ?? 0 }} Adults: {{ $room['Adults'] ?? 0 }}, {{ $room['Children'] ?? 0 }} Child
+            @endforeach
+            " readonly>
         <label>Room & Guest</label>
 
         <div class="guest-dropdown-box position-absolute z-3 bg-white border rounded p-2 shadow mt-1 w-100" style="display:none;">
@@ -508,7 +511,7 @@
                                                     <div class="form-floating">
                                                         <input type="text"
                                                             class="form-control datepicker position-relative rounded-0 border-dark-subtle"
-                                                            id="activities-date" name="checkin" placeholder="Activity Date"
+                                                            id="activities-date" name="checkin" value="{{request('checkin')}}" placeholder="Activity Date"
                                                             required readonly>
                                                         <label for="activities-date">Date</label>
                                                     </div>
@@ -551,33 +554,66 @@
                                             @break
 
                                              @case('cabs')
+                                       @php
+                                            $cabType = request('cabtripType', 'airport');
+                                        @endphp
+
                                         <div class="cab-search flex-wrap p-1" id="cabTripTabs" role="tablist">
+
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="cabtripType" id="airport" value="airport" checked>
-                                                <label class="form-check-label" for="airport" data-bs-toggle="tab" data-bs-target="#Airport">Airport Transfer</label>
+                                                <input class="form-check-input" type="radio" name="cabtripType"
+                                                    id="airport" value="airport"
+                                                    {{ $cabType === 'airport' ? 'checked' : '' }}>
+                                                <label class="form-check-label {{ $cabType === 'airport' ? 'active' : '' }}"
+                                                    for="airport" data-bs-toggle="tab" data-bs-target="#Airport">
+                                                    Airport Transfer
+                                                </label>
                                             </div>
+
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="cabtripType" id="jetty" value="jetty">
-                                                <label class="form-check-label" for="jetty" data-bs-toggle="tab" data-bs-target="#Jetty">Jetty Transfer</label>
+                                                <input class="form-check-input" type="radio" name="cabtripType"
+                                                    id="jetty" value="jetty"
+                                                    {{ $cabType === 'jetty' ? 'checked' : '' }}>
+                                                <label class="form-check-label {{ $cabType === 'jetty' ? 'active' : '' }}"
+                                                    for="jetty" data-bs-toggle="tab" data-bs-target="#Jetty">
+                                                    Jetty Transfer
+                                                </label>
                                             </div>
+
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="cabtripType" id="local" value="local">
-                                                <label class="form-check-label" for="local" data-bs-toggle="tab" data-bs-target="#Local">Local Trip</label>
+                                                <input class="form-check-input" type="radio" name="cabtripType"
+                                                    id="local" value="local"
+                                                    {{ $cabType === 'local' ? 'checked' : '' }}>
+                                                <label class="form-check-label {{ $cabType === 'local' ? 'active' : '' }}"
+                                                    for="local" data-bs-toggle="tab" data-bs-target="#Local">
+                                                    Local Trip
+                                                </label>
                                             </div>
+
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="cabtripType" id="outstation" value="outstation">
-                                                <label class="form-check-label" for="outstation" data-bs-toggle="tab" data-bs-target="#Outstation">Outstation</label>
+                                                <input class="form-check-input" type="radio" name="cabtripType"
+                                                    id="outstation" value="outstation"
+                                                    {{ $cabType === 'outstation' ? 'checked' : '' }}>
+                                                <label class="form-check-label {{ $cabType === 'outstation' ? 'active' : '' }}"
+                                                    for="outstation" data-bs-toggle="tab" data-bs-target="#Outstation">
+                                                    Outstation
+                                                </label>
                                             </div>
+
                                         </div>
+                                        @php
+                                            $hasCabType = request()->has('cabtripType');
+                                            $cabType = request('cabtripType');
+                                        @endphp
 
                                         <div class="tab-content mt-3" id="cabTabContent">
-                                            <div class="tab-pane fade show active" id="Airport" role="tabpanel">
+                                            <div class="tab-pane fade  {{ (!$hasCabType || $cabType === 'airport') ? 'show active' : '' }}" id="Airport" role="tabpanel">
                                                 <div class="row g-3 align-items-center">
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
                                                             <select class="form-select rounded-0 border-dark-subtle" name="transfer_type_airport" id="airport-type" required>
-                                                                <option value="pickup">Airport Pickup</option>
-                                                                <option value="drop">Airport Drop</option>
+                                                                <option value="pickup" {{request('transfer_type_airport') == 'pickup' ? 'selected' : '' }} >Airport Pickup</option>
+                                                                <option value="drop" {{request('transfer_type_airport') == 'drop' ? 'selected' : '' }} >Airport Drop</option>
                                                             </select>
                                                             <label for="airport-type">Airport Transfer</label>
                                                         </div>
@@ -585,7 +621,7 @@
                                                     <input type="text" name="location_airport" value="Port Blair" hidden>
                                                     <div class="col-12 col-lg-3 autocomplete" id="airport-pickup-group" style="display: none;">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_location_airport" id="airport-pickup" placeholder="Hotels/Restaurant/Seight Location">
+                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_location_airport" value="{{ request('pickup_location_airport') }}" id="airport-pickup" placeholder="Hotels/Restaurant/Seight Location">
                                                             <label for="airport-pickup">Pickup Location</label>
                                                         </div>
                                                     </div>
@@ -599,26 +635,27 @@
                                                     </div>
                                                     <div class="col-12 col-lg-3 autocomplete" id="airport-drop-group">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="drop_location_airport" id="airport-drop" placeholder="Drop Location">
+                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="drop_location_airport" value="{{ request('drop_location_airport') }}" id="airport-drop" placeholder="Drop Location">
                                                             <label for="airport-drop">Drop Location</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control position-relative rounded-0 border-dark-subtle datetime-select" id="airport-date" name="travel_date_airport" placeholder="Travel Date" required readonly>
+                                                            <input type="text" class="form-control position-relative rounded-0 border-dark-subtle datetime-select" id="airport-date" name="travel_date_airport" value="{{ request('travel_date_airport') }}" placeholder="Travel Date" required readonly>
                                                             <label for="airport-date">Travel Date & Time</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane fade" id="Jetty" role="tabpanel">
+                                            <div class="tab-pane fade {{ $cabType === 'jetty' ? 'show active' : '' }}" id="Jetty" role="tabpanel">
                                                 <div class="row g-3 align-items-center">
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
                                                             <select class="form-select rounded-0 border-dark-subtle" name="transfer_type_jetty" id="jetty-type" required>
-                                                                <option value="pickup" selected>Jetty Pickup</option>
-                                                                <option value="drop">Jetty Drop</option>
+                                                                <option value=""selected>Select Option</option>
+                                                                <option value="pickup" {{ request('transfer_type_jetty') == 'pickup' ? 'selected' : '' }} >Jetty Pickup</option>
+                                                                <option value="drop" {{ request('transfer_type_jetty') == 'drop' ? 'selected' : '' }} >Jetty Drop</option>
                                                             </select>
                                                             <label for="jetty-type">Jetty Transfer</label>
                                                         </div>
@@ -626,52 +663,52 @@
                                                     <input type="text" name="location_jetty" value="Port Blair" hidden>
                                                     <div class="col-12 col-lg-3" id="jetty-pickup-group" style="display: none;">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_location_jetty" id="jetty-pickup" placeholder="Pickup Location">
+                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_location_jetty" value="{{ request('pickup_location_jetty') }}" id="jetty-pickup" placeholder="Pickup Location">
                                                             <label for="jetty-pickup">Pickup Location</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
                                                             <select class="form-select rounded-0 border-dark-subtle" name="jetty_select" id="jetty-select" required>
-                                                                <option value="">Select Jetty</option>
-                                                                <option value="Port Blair">Chatam Jetty</option>
-                                                                <option value="Havelock Island">Havelock Jetty</option>
-                                                                <option value="Neil Island">Neil Jetty</option>
+                                                                <option value="" {{ request('jetty_select') == '' ? 'selected' : '' }}>Select Jetty</option>
+                                                                <option value="Port Blair" {{ request('jetty_select') == 'Port Blair' ? 'selected' : '' }}>Chatam Jetty</option>
+                                                                <option value="Havelock Island" {{ request('jetty_select') == 'Havelock Island' ? 'selected' : '' }}>Havelock Jetty</option>
+                                                                <option value="Neil Island" {{ request('jetty_select') == 'Neil Island' ? 'selected' : '' }}>Neil Jetty</option>
                                                             </select>
                                                             <label for="jetty-select">Jetty Point</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-lg-3" id="jetty-drop-group">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="drop_location_jetty" id="jetty-drop" placeholder="Drop Location">
+                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" value="{{ request('drop_location_jetty') }}" name="drop_location_jetty" id="jetty-drop" placeholder="Drop Location">
                                                             <label for="jetty-drop">Drop Location</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control datetime-select position-relative rounded-0 border-dark-subtle" id="jetty-date" name="travel_date_jetty" placeholder="Travel Date" required readonly>
+                                                            <input type="text" class="form-control datetime-select position-relative rounded-0 border-dark-subtle" id="jetty-date" value="{{ request('travel_date_jetty') }}" name="travel_date_jetty" placeholder="Travel Date" required readonly>
                                                             <label for="jetty-date">Travel Date</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane fade" id="Local" role="tabpanel">
+                                            <div class="tab-pane fade {{ $cabType === 'local' ? 'show active' : '' }}" id="Local" role="tabpanel">
                                                 <div class="row g-3 align-items-center">
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
                                                             <select class="form-select rounded-0 border-dark-subtle" name="cab_location_local" id="cab-location" required>
-                                                                <option value="">Select Location</option>
-                                                                <option value="Port Blair">Port Blair</option>
-                                                                <option value="Havelock">Havelock Island</option>
-                                                                <option value="Neil Island">Neil Island</option>
+                                                                <option value="" {{request('cab_location_local') == '' ? 'selected' : ''}} >Select Location</option>
+                                                                <option value="Port Blair" {{request('cab_location_local') == 'Port Blair' ? 'selected' : ''}} >Port Blair</option>
+                                                                <option value="Havelock" {{request('cab_location_local') == 'Havelock' ? 'selected' : ''}} >Havelock Island</option>
+                                                                <option value="Neil Island" {{request('cab_location_local') == 'Neil Island' ? 'selected' : ''}} >Neil Island</option>
                                                             </select>
                                                             <label for="cab-location">Location</label>
                                                         </div>
                                                     </div>
                                                      <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <select class="form-control rounded-0 border-dark-subtle" name="drop_local" id="local-drop" placeholder="Drop Location" required>
+                                                            <select class="form-control rounded-0 border-dark-subtle" name="drop_local"  id="local-drop" placeholder="Drop Location" required>
                                                                 <option value="" selected disabled>Select Trip</option>
                                                             </select>
                                                             <label for="local-drop">Trip To</label>
@@ -679,29 +716,29 @@
                                                     </div>
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_local" id="local-pickup" placeholder="Pickup Location" required>
+                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_local" value="{{ request('pickup_local') }}" id="local-pickup" placeholder="Pickup Location" required>
                                                             <label for="local-pickup">Pickup Point</label>
                                                         </div>
                                                     </div>
                                                    
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control datetime-select position-relative rounded-0 border-dark-subtle" id="local-date" name="travel_date_local" placeholder="Travel Date" required readonly>
+                                                            <input type="text" class="form-control datetime-select position-relative rounded-0 border-dark-subtle" id="local-date" name="travel_date_local" value="{{ request('travel_date_local') }}" placeholder="Travel Date" required readonly>
                                                             <label for="local-date">Travel Date</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="tab-pane fade" id="Outstation" role="tabpanel">
+                                            <div class="tab-pane fade {{ $cabType === 'outstation' ? 'show active' : '' }}" id="Outstation" role="tabpanel">
                                                 <div class="row g-3 mb-0">
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
                                                             <select class="form-select rounded-0 border-dark-subtle" name="cab_location_outstation" id="outstation-location" required>
-                                                                <option value="">Select Location</option>
-                                                                <option value="Port Blair">Port Blair</option>
-                                                                <option value="Havelock">Havelock Island</option>
-                                                                <option value="Neil Island">Neil Island</option>
+                                                                <option value="" {{ request('cab_location_outstation') == '' ? 'selected' : '' }}>Select Location</option>
+                                                                <option value="Port Blair" {{ request('cab_location_outstation') == 'Port Blair' ? 'selected' : '' }}>Port Blair</option>
+                                                                <option value="Havelock" {{ request('cab_location_outstation') == 'Havelock' ? 'selected' : '' }}>Havelock Island</option>
+                                                                <option value="Neil Island" {{ request('cab_location_outstation') == 'Neil Island' ? 'selected' : '' }}>Neil Island</option>
                                                             </select>
                                                             <label for="outstation-location">Location</label>
                                                         </div>
@@ -716,14 +753,14 @@
                                                     </div>
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_outstation" id="outstation-pickup" placeholder="Pickup Location" required>
+                                                            <input type="text" class="form-control rounded-0 border-dark-subtle locationInput" name="pickup_outstation" value="{{ request('pickup_outstation') }}" id="outstation-pickup" placeholder="Pickup Location" required>
                                                             <label for="outstation-pickup">Pickup Point</label>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="col-12 col-lg-3">
                                                         <div class="form-floating">
-                                                            <input type="text" class="form-control datetime-select rounded-0 border-dark-subtle" id="outstation-date" name="travel_date_outstation" placeholder="Travel Date" required readonly>
+                                                            <input type="text" class="form-control datetime-select rounded-0 border-dark-subtle" id="outstation-date" name="travel_date_outstation" value="{{ request('travel_date_outstation') }}" placeholder="Travel Date" required readonly>
                                                             <label for="outstation-date">Travel Date</label>
                                                         </div>
                                                     </div>
@@ -1057,6 +1094,7 @@ $(function() {
     });
 });
 
+
  $('#cab-location, #outstation-location').on('change', function () {
         const selectedLocation = $(this).val();
         const selectedType = $('input[name="cabtripType"]:checked').val(); 
@@ -1087,6 +1125,7 @@ $(function() {
                                 let optionText = `${trip}`;
                                 $('#local-drop').append(`<option value="${trip}">${optionText}</option>`);
                             });
+
             },
                 error: function(xhr) {
                     console.error('Error:', xhr.responseText);
@@ -1197,5 +1236,32 @@ $(function() {
         const values = Array.from(document.querySelectorAll('.locationInput')).map(i=>i.value);
         alert("Selected or typed locations: " + values.join(", "));
     }
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const dropLocal = @json(request('drop_local'));
+
+            if (dropLocal) {
+
+                const $select = $('#local-drop');
+                if ($select.find(`option[value="${dropLocal}"]`).length === 0) {
+                    // Create new option
+                    $select.append(
+                        `<option value="${dropLocal}" selected>${dropLocal}</option>`
+                    );
+                } else {
+                    // Select existing option
+                    $select.val(dropLocal);
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const checked = document.querySelector('input[name="cabtripType"]:checked');
+            if (checked) checked.dispatchEvent(new Event('change'));
+        });
+
+
+
+
 </script>
 @endpush

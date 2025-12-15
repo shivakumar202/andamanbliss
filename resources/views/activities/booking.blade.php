@@ -825,7 +825,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     order_id: data.order_id,
                     handler: function (response) {
                         overlay.style.display = 'block';
-
                         fetch('{{ route('activity.payment.update') }}', {
                             method: 'POST',
                             headers: {
@@ -843,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         .then(r => r.json())
                         .then(update => {
                             if (update.success) {
-                                window.location.replace('/activity/payment-voucher/' + data.ticketcode);
+                                window.location.replace('/activity/payment-voucher/' + update.ticketcode);
                             } else {
                                 alert('Payment update failed. Please contact support.');
                             }

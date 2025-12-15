@@ -45,7 +45,6 @@ class Cabs extends Model
 
        public function cabPhotos()
     {
-        return $this->hasMany('App\Models\Drive', 'table_id', 'id')
-            ->where('table_type', 'cab_photo');
+        return $this->hasMany('App\Models\Drive', 'table_id', 'id')->where('table_type', 'cab_photo');
     }
 }

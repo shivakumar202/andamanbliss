@@ -43,11 +43,14 @@ RewriteCond %{REQUEST_URI} !^/hotel/payment-review/submit$
 RewriteCond %{REQUEST_URI} !^/travel-packages/payment/success$
 RewriteCond %{REQUEST_URI} !^/travel-packages/payment$
 RewriteCond %{REQUEST_URI} !^/login$
+RewriteCond %{REQUEST_URI} !^/hotel(/.*)?$
 RewriteCond %{REQUEST_URI} !^/ajx-login$
 RewriteCond %{REQUEST_URI} !^/boat-trip-pay$
+RewriteCond %{REQUEST_URI} !^/cabs-locations$
 RewriteCond %{REQUEST_URI} !^/boat-trip-pay-verify$
 RewriteCond %{REQUEST_URI} !^/cabs/submit$
 RewriteCond %{REQUEST_URI} !^/cabs/payment-confirmation$
+RewriteCond %{REQUEST_URI} !^/payment-confirmation$
 RewriteCond %{REQUEST_URI} !^/activity/paymentsubmit$
 RewriteCond %{REQUEST_URI} !^/cab-checkout$
 RewriteCond %{REQUEST_URI} !^/register$
@@ -56,6 +59,10 @@ RewriteCond %{REQUEST_URI} !^/[^/]+/andaman-[^/]+-tour-[^/]+/itinerary$
 RewriteCond %{REQUEST_URI} !^/store-temp-itinerary$
 RewriteCond %{REQUEST_URI} !^/book/bikes/review$
 RewriteCond %{REQUEST_URI} !^/ferry-booking(/.*)?$
+RewriteCond %{REQUEST_URI} !^/booking/confirm(/.*)?$
+RewriteCond %{REQUEST_URI} !^/activity/payment-voucher(/.*)?$
+RewriteCond %{REQUEST_URI} !^/activity/payment/update$
+
 RewriteCond %{REQUEST_URI} !^/contact$
 
 

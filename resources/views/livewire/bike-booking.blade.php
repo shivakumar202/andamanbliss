@@ -127,8 +127,20 @@
 
                         <div class="mb-2 col-12 col-md-6  {{ $showPickupLocation ? '' : 'd-none' }}">
                             <label for="pickupLocation" class="form-label mb-1">Pickup Location</label>
-                            <input type="text" id="pickupLocation" class="form-control rounded-0"
-                                wire:model="pickupLocation" autocomplete="off">
+                            <div wire:ignore>
+                                <select id="pickupLocation" class="form-control rounded-0 select2">
+                                    <option value="">Select Pickup Location</option>
+                                    @foreach($locations as $loc)
+                                    <option
+                                        value="{{ $loc['id'] }}"
+                                        data-distance="{{ $loc['distance_km'] }}">
+                                        {{ $loc['name'] }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                             <small style="font-size: 10px;" class="text-danger">Delivery avaiable within
                                 {{ $maps['range_km'] }} Km of city range</small>
                             @foreach (['pickupLocation', 'distance'] as $field)
@@ -429,11 +441,20 @@
         left: 0;
         z-index: 100;
     }
+    .select2-container--default .select2-selection--single {
+            width: 100% !important;
+    padding: 2px !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 0px !important;
+    font-size: 12px !important;
+    transition: var(--transition) !important;
+    height: 45px !important;
+
+    }
 </style>
 @endpush
 @push('scripts')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAai7unx7nXZnFcC4tVv3AGzJVjjUr4-bg&libraries=places">
 </script>
 
 <script>
@@ -487,6 +508,10 @@
     //     new Razorpay(options).open();
     // });
 
+
+
+
+
     function initMap() {
         var locationName = @json($location ?? null);
 
@@ -508,138 +533,78 @@
         document.addEventListener('DOMContentLoaded', initMap);
     };
 
-    const longitude = parseFloat(@json($maps['longitude']));
-    const latitude = parseFloat(@json($maps['latitude']));
-    const distance = parseFloat(@json($maps['range_km']));
-    const airportCoords = {
-        lat: latitude, // <-- careful, lat/lng order
-        lng: longitude
-    };
-    let autocomplete;
-    let islandBounds;
 
-    function initAutocomplete() {
-        const locationName = document.getElementById('hiddenLocation').value;
-        console.log(locationName);
-        if (!locationName) return;
 
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-            address: locationName
-        }, (results, status) => {
-            if (status !== "OK" || !results[0]) return;
-            const location = results[0].geometry.location;
-            islandBounds = results[0].geometry.viewport ? results[0].geometry.viewport : new google.maps
-                .LatLngBounds(
-                    new google.maps.LatLng(location.lat() - 0.045, location.lng() - 0.045),
-                    new google.maps.LatLng(location.lat() + 0.045, location.lng() + 0.045)
-                );
-            attachAutocomplete();
-        });
-    }
 
-    function attachAutocomplete() {
-        const placeInput = document.getElementById('pickupLocation');
-        if (!placeInput) return;
+    document.addEventListener('livewire:init', () => {
 
-        if (autocomplete) {
-            autocomplete.unbindAll();
-            autocomplete = null;
-        }
+        const longitude = parseFloat(@json($maps['longitude']));
+        const latitude = parseFloat(@json($maps['latitude']));
+        const distance = parseFloat(@json($maps['range_km']));
+        const airportCoords = {
+            lat: latitude,
+            lng: longitude
+        };
+        let autocomplete;
+        let islandBounds;
 
-        autocomplete = new google.maps.places.Autocomplete(placeInput, {
-            bounds: islandBounds,
-            strictBounds: true,
-            types: []
+        const maxDistance = parseFloat(@json($maps['range_km']));
+
+        $('#pickupLocation').select2({
+            width: '100%'
         });
 
-        autocomplete.addListener('place_changed', () => {
-            const place = autocomplete.getPlace();
-            if (!place.geometry) {
+        $('#pickupLocation').on('change', function() {
+
+            const selectedOption = $(this).find(':selected');
+
+            if (!selectedOption.val()) {
+                resetPickup();
+                return;
+            }
+
+            const locationName = selectedOption.text();
+            const distanceValue = parseFloat(selectedOption.data('distance'));
+
+            // 1️⃣ Invalid distance
+            if (isNaN(distanceValue)) {
                 Swal.fire({
                     icon: "warning",
                     title: "Oops!",
                     text: "Invalid location selected.",
-                }).then(() => {
-                    placeInput.value = '';
-                    autocomplete.set('place', null);
-                    @this.call('updatePickup', null, null);
-                    @this.set('distance', 0);
-                });
+                }).then(resetPickup);
                 return;
             }
 
-            const selectedCoords = {
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng()
-            };
+            // 2️⃣ Out of delivery range
+            if (distanceValue > maxDistance) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Sorry!",
+                    text: "We only deliver bikes within the city limits!",
+                }).then(resetPickup);
+                return;
+            }
 
-            const directionsService = new google.maps.DirectionsService();
-            directionsService.route({
-                origin: airportCoords,
-                destination: selectedCoords,
-                travelMode: google.maps.TravelMode.DRIVING
-            }, (result, status) => {
-                if (status !== google.maps.DirectionsStatus.OK || !result?.routes?.length) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Oops!",
-                        text: "We cannot calculate the route for this location.",
-                    }).then(() => {
-                        placeInput.value = '';
-                        autocomplete.set('place', null);
-                        @this.call('updatePickup', null, null);
-                        @this.set('distance', 0);
-                    });
-                    return;
-                }
+            @this.call('updatePickup', locationName, distanceValue);
+            @this.set('distance', distanceValue);
 
-                const distanceText = result.routes[0].legs[0].distance.text;
-                const distanceValue = parseFloat(distanceText.replace(/[^0-9.]/g, ''));
+            console.log('Pickup set:', locationName, distanceValue);
+        });
 
-                if (distanceValue > distance) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Sorry!",
-                        text: "We only deliver bikes within the city limits!",
-                    }).then(() => {
-                        placeInput.value = '';
-                        autocomplete.set('place', null);
-                        @this.call('updatePickup', null, null);
-                        @this.set('distance', 0);
-                    });
-                } else {
-                    @this.call('updatePickup', placeInput.value, distanceValue);
-                    @this.set('distance', distanceValue);
-                }
+        function resetPickup() {
+            $('#pickupLocation').val(null).trigger('change.select2');
+            @this.call('updatePickup', null, null);
+            @this.set('distance', 0);
+        }
+
+        Livewire.hook('message.processed', () => {
+            $('#pickupLocation').select2({
+                width: '100%'
             });
         });
+    });
 
-        const observer = new MutationObserver(() => {
-            var dropdown = document.querySelector('.pac-container');
-            if (dropdown && dropdown.offsetWidth > 0) stickAutocompleteToInput();
-        });
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        placeInput.addEventListener('focus', stickAutocompleteToInput);
-        window.addEventListener('resize', stickAutocompleteToInput);
-    }
-
-    function stickAutocompleteToInput() {
-        var input = document.getElementById('pickupLocation');
-        var dropdown = document.querySelector('.pac-container');
-        if (!input || !dropdown || dropdown.offsetWidth === 0) return;
-
-        var rect = input.getBoundingClientRect();
-        dropdown.style.position = 'fixed';
-        dropdown.style.top = rect.bottom + 'px';
-        dropdown.style.left = rect.left + 'px';
-        dropdown.style.width = rect.width + 'px';
-        dropdown.style.zIndex = 1050;
-    }
 
 
 
