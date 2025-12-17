@@ -1991,7 +1991,7 @@ function toggleItinerary(dayNumber) {
                         <div class="faq-icon">
                             <i class="fas fa-hotel"></i>
                         </div>
-                        <h3>What hotel category do you offer for an Andaman tour package#Dev@andamanbliss#23?</h3>
+                        <h3>What hotel category do you offer for an Andaman tour package?</h3>
                         <div class="faq-toggle">
                             <i class="fas fa-plus"></i>
                             <i class="fas fa-minus"></i>
